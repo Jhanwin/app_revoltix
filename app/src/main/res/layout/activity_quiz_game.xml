@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuizGame">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bluebg" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="661dp"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/more" />
+
+                <ImageView
+                    android:id="@+id/goHome"
+                    android:layout_width="62dp"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/home" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="REVOLTIX"
+                    android:fontFamily="@font/futura_display"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:letterSpacing="0.1"
+                    android:textSize="30sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="594dp"
+            android:layout_marginTop="58dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/glassmorphism"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/textTopicNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:text="What is the jhjds sashshfhffh ifjfhjfh fjhfjhdhjfhajfh ajfhjahf afjhf fhasfhahjfka ass hajfh?"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <Button
+                    android:id="@+id/btnEasy"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="13dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:text="A"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/btnMedium"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:padding="13dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:text="B"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/btnTopic3"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:padding="13dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:text="C"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/btnTopic4"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:padding="13dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:text="D"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

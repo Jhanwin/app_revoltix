@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bluebg" />
+
+
+        <!-- Your layout file -->
+        <LinearLayout
+            android:id="@+id/MainLinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="500dp">
+
+                <ImageView
+                    android:id="@+id/ProfilePic"
+                    android:layout_width="81dp"
+                    android:layout_height="80dp"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/SubLinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_radiusright"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <!-- Your LinearLayout content goes here -->
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:text="Erll Jhanwin Catapang"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/srCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="23-34607"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="499dp"
+            android:layout_below="@+id/MainLinearLayout1"
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="146dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="262dp"
+                android:layout_height="303dp"
+                android:src="@drawable/revoltixlogo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:gravity="center"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/PracticeMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/btn_practicemode"
+                    android:fontFamily="@font/futura_display"
+                    android:textSize="20sp"
+                    android:text="Practice Mode" />
+
+                <Button
+                    android:id="@+id/BattleMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/futura_display"
+                    android:textSize="20sp"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:text="Battle Mode" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/background_with_stroke"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:src="@drawable/more" />
+
+        </LinearLayout>
+
+
+
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="312dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_subjects"
+                android:fontFamily="@font/futura_display"
+                android:text="Leaderboards"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/background_with_stroke"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="42dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/user" />
+
+        </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
