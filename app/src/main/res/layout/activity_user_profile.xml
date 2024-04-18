@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".UserProfile">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/relativeUserProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="match_parent"
+                android:layout_height="1558dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bluebg" />
+
+
+            <LinearLayout
+                android:id="@+id/linearMother1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/linearChild1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnUserback"
+                        android:text="back"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura_display"
+                        android:text="Your User Profile"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linearChild2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="500dp">
+
+                        <ImageView
+                            android:id="@+id/UserProPicture"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            tools:srcCompat="@tools:sample/avatars" />
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:id="@+id/linearChild21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/NameOfUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/futura_display"
+                            android:text=". . ."
+                            android:textColor="@color/white"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:id="@+id/idSrCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=". . ."
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linearChild3"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <LinearLayout
+                        android:id="@+id/linearChild31"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/radius"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Easy"
+                            android:fontFamily="@font/futura_display"
+                            android:textColor="@color/black"
+                            android:textSize="30dp"/>
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barchart"
+                            android:layout_width="250dp"
+                            android:layout_height="200dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+<!--                for medium-->
+
+                <LinearLayout
+                    android:id="@+id/mediumChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <LinearLayout
+                        android:id="@+id/mediumChart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/radius"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Medium"
+                            android:fontFamily="@font/futura_display"
+                            android:textColor="@color/black"
+                            android:textSize="30dp"/>
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barchartMedium"
+                            android:layout_width="250dp"
+                            android:layout_height="200dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--                for medium-->
+
+                <LinearLayout
+                    android:id="@+id/hardChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+
+
+                    <LinearLayout
+                        android:id="@+id/hardChart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/radius"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hard"
+                            android:fontFamily="@font/futura_display"
+                            android:textColor="@color/black"
+                            android:textSize="30dp"/>
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barchartHard"
+                            android:layout_width="250dp"
+                            android:layout_height="200dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/linearChild4"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <LinearLayout
+                        android:id="@+id/linearChild41"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/radius"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="History"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/futura_display"
+                            android:textColor="@color/black"
+                            android:textSize="30dp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/userListHistory"
+                            android:layout_width="match_parent"
+                            android:layout_height="215dp"
+                            android:layout_alignParentBottom="true" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

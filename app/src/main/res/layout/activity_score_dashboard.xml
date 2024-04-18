@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScoreDashboard">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bluebg" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="71dp"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:text="REVOLTIX"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="50sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="456dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="58dp"
+            android:layout_marginBottom="179dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="339dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+
+                <TextView
+                    android:id="@+id/TextViewScore"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:text="YOUR SCORE"
+                    android:textAlignment="center"
+                    android:textColor="@color/yellow"
+                    android:textSize="55sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="297dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/glassmorphism"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/scoreFinish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:padding="20dp"
+                    android:text="..."
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="50sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="left"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/summary"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:fontFamily="@font/futura_display"-->
+                    <!--                        android:padding="0dp"-->
+                    <!--                        android:text="Time Duration : "-->
+                    <!--                        android:textColor="@color/white"-->
+                    <!--                        android:textSize="30sp" />-->
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura_display"
+                        android:padding="0dp"
+                        android:text="Time Duration : "
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura_display"
+                        android:padding="0dp"
+                        android:text="Time Duration : "
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/goHomeScore"
+                    android:layout_width="122dp"
+                    android:layout_height="41dp"
+                    app:srcCompat="@drawable/home" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

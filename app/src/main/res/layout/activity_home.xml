@@ -7,6 +7,7 @@
     tools:context=".Home">
 
     <RelativeLayout
+        android:id="@+id/RelativeHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,9 +18,9 @@
             android:src="@drawable/bluebg" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/Linear1"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="82dp"
             android:layout_alignParentTop="true"
             android:layout_marginBottom="661dp"
             android:gravity="left"
@@ -27,6 +28,7 @@
             android:padding="10dp">
 
             <LinearLayout
+                android:id="@+id/Linear11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -36,30 +38,35 @@
                     android:id="@+id/imageView2"
                     android:layout_width="48dp"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
                     app:srcCompat="@drawable/more" />
 
                 <ImageView
                     android:id="@+id/goHome"
-                    android:layout_width="62dp"
+                    android:layout_width="48dp"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/home" />
+
+
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/Linear12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="REVOLTIX"
+                    android:layout_width="235dp"
+                    android:layout_height="match_parent"
                     android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:text="@string/revoltix"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:letterSpacing="0.1"
                     android:textSize="30sp" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -74,7 +81,7 @@
             android:layout_height="364dp"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="276dp"
+            android:layout_marginBottom="264dp"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingLeft="10dp"
@@ -100,7 +107,7 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="Mathematics"
+                android:text="General Mathematics"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 

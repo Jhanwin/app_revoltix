@@ -13,55 +13,78 @@ import com.squareup.picasso.Picasso;
 
 public class Menu extends AppCompatActivity {
 
+    String data,link,email,name,substringToRemove,modCode;
+    Button BtnPracticeMode,BtnBattleMode,BtnLeaderboards,PretestMode,addQuestionToDb;
+    TextView txtName,srCode;
+    ImageView profileUser,btnToUserProfile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        TextView txtName = findViewById(R.id.txtName);
-        TextView srCode = findViewById(R.id.srCode);
-        ImageView profileUser = findViewById(R.id.ProfilePic);
+
+        txtName = findViewById(R.id.txtName);
+        srCode = findViewById(R.id.srCode);
+        profileUser = findViewById(R.id.ProfilePic);
 
         Intent intent = getIntent();
-        String data = intent.getStringExtra("id");
-        String link = intent.getStringExtra("link");
-        String email = intent.getStringExtra("email");
-        String name = intent.getStringExtra("name");
-
-        String substringToRemove = "@g.batstate-u.edu.ph";
-        // Remove the specified substring
-        String modCode = email.replace(substringToRemove, "");
+        data = intent.getStringExtra("id");
+        link = intent.getStringExtra("link");
+        email = intent.getStringExtra("email");
+        name = intent.getStringExtra("name");
+        substringToRemove = "@g.batstate-u.edu.ph";
+        modCode = email.replace(substringToRemove, "");
 
         txtName.setText(name);
         srCode.setText(modCode);
-
         Picasso.get().load(link).into(profileUser);
 
-        Button BtnPracticeMode = findViewById(R.id.PracticeMode);
-        Button BtnBattleMode = findViewById(R.id.BattleMode);
+        BtnPracticeMode = findViewById(R.id.PracticeMode);
+        BtnBattleMode = findViewById(R.id.BattleMode);
+        BtnLeaderboards = findViewById(R.id.btnLeaderboards);
+        PretestMode = findViewById(R.id.PretestMode);
+        addQuestionToDb = findViewById(R.id.addQuestionToDb);
+        btnToUserProfile = findViewById(R.id.btnToUserProfile);
 
-        BtnPracticeMode.setOnClickListener(new View.OnClickListener() {
+        BtnPracticeMode.setOnClickListener(v -> {
+            Intent subjects = new Intent(getApplicationContext(), Home.class);
+            subjects.putExtra("Mode","PracticeMode");
+            startActivity(subjects);
+        });
+
+        PretestMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent subjects = new Intent(getApplicationContext(), Home.class);
-                startActivity(subjects);
+                Intent pre = new Intent(getApplicationContext(), PretestGame.class);
 
+                startActivity(pre);
             }
         });
 
-        BtnPracticeMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent subjects = new Intent(getApplicationContext(), Home.class);
-                startActivity(subjects);
-
-            }
+        addQuestionToDb.setOnClickListener(v -> {
+            Intent add = new Intent(getApplicationContext(), AddQuestion.class);
+            startActivity(add);
         });
 
+        BtnLeaderboards.setOnClickListener(v -> {
+            Intent leaderboards = new Intent(getApplicationContext(), LeaderVersionTwo.class);
+            leaderboards.putExtra("NameUser",name);
+            startActivity(leaderboards);
+        });
 
+        BtnBattleMode.setOnClickListener(v -> {
+            Intent add = new Intent(getApplicationContext(), Home.class);
+            add.putExtra("Mode","BattleMode");
+            add.putExtra("UserId",data);
+            startActivity(add);
+        });
 
-
-
+        btnToUserProfile.setOnClickListener(v -> {
+            Intent profile = new Intent(getApplicationContext(), UserProfile.class);
+            profile.putExtra("idprofile",data);
+            startActivity(profile);
+        });
 
 
     }

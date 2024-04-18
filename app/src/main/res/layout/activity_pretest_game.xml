@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PretestGame">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bluebg" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="71dp"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:text="REVOLTIX"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="50sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutMechanics"
+            android:layout_width="match_parent"
+            android:layout_height="457dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="58dp"
+            android:layout_marginBottom="178dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="339dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+
+                <TextView
+                    android:id="@+id/TextViewScore"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:text="PRETEST"
+                    android:textAlignment="center"
+                    android:textColor="@color/yellow"
+                    android:textSize="55sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="297dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/glassmorphism"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/scoreFinish"
+                    android:layout_width="257dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:padding="0dp"
+                    android:text="This is the Pretest where you can determine what subject you need to improve. This pretest contain all of the question in every subject. Goodluck!"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="202dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnStartPretest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_practicemode"
+                    android:fontFamily="@font/futura_display"
+                    android:padding="10dp"
+                    android:text="Start"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+<!--        Prestest quiz-->
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/layoutPretestGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="58dp"
+            android:layout_marginBottom="123dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/glassmorphism"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/timerTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:text="..."
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/itemTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/futura_display"
+                    android:text="..."
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/scoreTextView"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:text="..."
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/glassmorphism"
+                android:gravity="center"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/questionsBPre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:text="..."
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+
+                <RadioGroup
+                    android:id="@+id/answerRadioGroupPre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"> <!-- Set the orientation to vertical -->
+
+                    <RadioButton
+                        android:id="@+id/answerOption1Pre"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/bg_btn_subjects"
+                        android:button="@null"
+                        android:fontFamily="@font/futura_display"
+                        android:padding="10dp"
+                        android:text="..."
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <RadioButton
+                        android:id="@+id/answerOption2Pre"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/bg_btn_subjects"
+                        android:button="@null"
+                        android:fontFamily="@font/futura_display"
+                        android:padding="5dp"
+                        android:text="..."
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <RadioButton
+                        android:id="@+id/answerOption3Pre"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/bg_btn_subjects"
+                        android:button="@null"
+                        android:fontFamily="@font/futura_display"
+                        android:padding="5dp"
+                        android:text="..."
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+
+                    <RadioButton
+                        android:id="@+id/answerOption4Pre"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/bg_btn_subjects"
+                        android:button="@null"
+                        android:fontFamily="@font/futura_display"
+                        android:padding="5dp"
+                        android:text="..."
+                        android:textAlignment="center"
+                        android:textSize="25sp" />
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/references"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura_display"
+                android:text="..."
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

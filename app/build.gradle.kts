@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.revolt"
-        minSdk = 19
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -38,12 +38,13 @@ android {
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-database:20.3.1")
-    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.23")
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
     implementation("androidx.navigation:navigation-fragment:2.7.7")
     implementation("androidx.navigation:navigation-ui:2.7.7")
     testImplementation("junit:junit:4.13.2")

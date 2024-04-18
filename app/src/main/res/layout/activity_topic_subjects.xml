@@ -40,10 +40,11 @@
                     app:srcCompat="@drawable/more" />
 
                 <ImageView
-                    android:id="@+id/goHome"
-                    android:layout_width="62dp"
+                    android:id="@+id/goHome2"
+                    android:layout_width="48dp"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/home" />
+
             </LinearLayout>
 
             <LinearLayout

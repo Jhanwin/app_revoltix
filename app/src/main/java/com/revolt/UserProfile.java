@@ -1,0 +1,266 @@
+package com.revolt;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class UserProfile extends AppCompatActivity {
+
+    DatabaseReference dbRef;
+
+    RecyclerView recyclerViewHis;
+    MyAdapterHistory myAdapterHis;
+    ArrayList<History> listHis;
+
+    List<Integer> values = new ArrayList<>();
+    List<Integer> valuesM = new ArrayList<>();
+    List<Integer> valuesH = new ArrayList<>();
+    TextView NameOfUser,idSrCode;
+
+    ImageView UserProPicture;
+    Button back;
+
+    BarChart barchart,barchart2,barchart3;
+    PieChart pieChart;
+
+    String idProfile;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user_profile);
+
+        Intent intent = getIntent();
+        idProfile = intent.getStringExtra("idprofile");
+        NameOfUser = findViewById(R.id.NameOfUser);
+        idSrCode = findViewById(R.id.idSrCode);
+        UserProPicture = findViewById(R.id.UserProPicture);
+        back = findViewById(R.id.btnUserback);
+
+        assert idProfile != null;
+        dbRef = FirebaseDatabase.getInstance().getReference("users").child(idProfile);
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Assuming you have the corresponding fields in your layout
+                    String name = snapshot.child("name").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+                    String linkPic = snapshot.child("profile").getValue(String.class);
+                    String substringToRemove = "@g.batstate-u.edu.ph";
+                    String SrCode = email.replace(substringToRemove, "");
+
+                    // Set the values to the TextViews
+                    NameOfUser.setText(name);
+                    idSrCode.setText(SrCode);
+                    Picasso.get().load(linkPic).into(UserProPicture);
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        dbRef.child("BattleMode").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                        String childKey = childSnapshot.getKey();
+                        int score = childSnapshot.child("score").getValue(Integer.class);
+                        String Date = childSnapshot.child("Date").getValue(String.class);
+                        String Dif = childSnapshot.child("Difficulty").getValue(String.class);
+
+                        if(Dif.equals("Easy")){
+//                            String scoreString = String.valueOf(score);
+                            values.add(score);
+                        } else if (Dif.equals("Medium")) {
+                            valuesM.add(score);
+                        } else if (Dif.equals("Hard")) {
+                            valuesH.add(score);
+                        }
+
+
+                    }
+
+                }
+                BarChart();
+                BarChartMedium();
+                BarChartHard();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
+
+        ShowHistory();
+
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+    }
+
+
+
+
+
+
+
+    public void ShowHistory(){
+
+        dbRef = FirebaseDatabase.getInstance().getReference("users").child(idProfile);
+        recyclerViewHis = findViewById(R.id.userListHistory);
+        recyclerViewHis.setHasFixedSize(true);
+        recyclerViewHis.setLayoutManager(new LinearLayoutManager(this));
+        listHis = new ArrayList<>();
+        myAdapterHis = new MyAdapterHistory(this, listHis);
+        recyclerViewHis.setAdapter(myAdapterHis);
+
+        dbRef.child("BattleMode").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listHis.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    String date = dataSnapshot.child("Date").getValue(String.class);
+                    String diff = dataSnapshot.child("Difficulty").getValue(String.class);
+                    String time = dataSnapshot.child("Time").getValue(String.class);
+                    String topic = dataSnapshot.child("Topic").getValue(String.class);
+                    int score = dataSnapshot.child("score").getValue(Integer.class);
+
+                    listHis.add(new History(date,diff,time,topic,score));
+                }
+
+                // Check the size of the list after adding data
+                Log.d("TAG", "Size of listHis: " + listHis.size());
+
+                myAdapterHis.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
+    public void BarChart(){
+        barchart = findViewById(R.id.barchart);
+//        pieChart = findViewById(R.id.pieChart);
+
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+
+        for(int i = 0;i<values.size();i++){
+            BarEntry barEntry = new BarEntry(i,values.get(i));
+//            PieEntry pieEntry = new PieEntry(i,value);
+            barEntries.add(barEntry);
+//            pieEntries.add(pieEntry);
+        }
+
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Students");
+        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        barDataSet.setDrawValues(false);
+        barchart.setData(new BarData(barDataSet));
+        barchart.animateY(500);
+        barchart.getDescription().setText("Students Chart");
+        barchart.getDescription().setTextColor(Color.BLUE);
+
+//        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Scores");
+//        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+//        pieChart.setData(new PieData(pieDataSet));
+//        pieChart.animateXY(1000,1000);
+//        pieChart.getDescription().setEnabled(false);
+    }
+
+    public void BarChartMedium(){
+        barchart2 = findViewById(R.id.barchartMedium);
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        for(int i = 0;i<valuesM.size();i++){
+            BarEntry barEntry = new BarEntry(i,valuesM.get(i));
+            barEntries.add(barEntry);
+        }
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Medium Mode");
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        barDataSet.setDrawValues(false);
+        barchart2.setData(new BarData(barDataSet));
+        barchart2.animateY(500);
+        barchart2.getDescription().setText("Medium Chart");
+        barchart2.getDescription().setTextColor(Color.BLUE);
+
+    }
+
+    public void BarChartHard(){
+        barchart3 = findViewById(R.id.barchartHard);
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        for(int i = 0;i<valuesH.size();i++){
+            BarEntry barEntry = new BarEntry(i,valuesH.get(i));
+            barEntries.add(barEntry);
+        }
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Hard Mode");
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        barDataSet.setDrawValues(false);
+        barchart3.setData(new BarData(barDataSet));
+        barchart3.animateY(500);
+        barchart3.getDescription().setText("Hard Chart");
+        barchart3.getDescription().setTextColor(Color.BLUE);
+
+    }
+
+
+
+
+
+}

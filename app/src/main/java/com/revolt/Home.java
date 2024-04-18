@@ -1,83 +1,72 @@
 package com.revolt;
 
-import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
+
+    Button btnMath,btnElect,btnGenEn,btnElectTech;
+    ImageView goHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Button btnMath = findViewById(R.id.btnMath);
-        Button btnElect = findViewById(R.id.btnElect);
-        Button btnGenEn = findViewById(R.id.btnGenEn);
-        Button btnElectTech = findViewById(R.id.btnElectTech);
-        ImageView goHome = findViewById(R.id.goHome);
+        btnMath = findViewById(R.id.btnMath);
+        btnElect = findViewById(R.id.btnElect);
+        btnGenEn = findViewById(R.id.btnGenEn);
+        btnElectTech = findViewById(R.id.btnElectTech);
+        goHome = findViewById(R.id.goHome);
 
-        btnMath.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
-                TopicSubjects.putExtra("textToGet", btnMath.getText().toString());
-                startActivity(TopicSubjects);
+        Intent intent = getIntent();
+        String Mode = intent.getStringExtra("Mode");
+        String data = intent.getStringExtra("UserId");
 
-            }
+        goHome.setOnClickListener(v -> finish());
+
+        btnMath.setOnClickListener(v -> {
+            Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
+            TopicSubjects.putExtra("textToGet", btnMath.getText().toString());
+            TopicSubjects.putExtra("Mode", Mode);
+            TopicSubjects.putExtra("UserId",data);
+            startActivity(TopicSubjects);
+            finish();
+
         });
 
 
-        btnElect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
-                TopicSubjects.putExtra("textToGet", btnElect.getText().toString());
-                startActivity(TopicSubjects);
+        btnElect.setOnClickListener(v -> {
+            Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
+            TopicSubjects.putExtra("textToGet", btnElect.getText().toString());
+            TopicSubjects.putExtra("Mode", Mode);
+            TopicSubjects.putExtra("UserId",data);
+            startActivity(TopicSubjects);
+            finish();
 
-            }
         });
 
 
-        btnGenEn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
-                TopicSubjects.putExtra("textToGet", btnGenEn.getText().toString());
-                startActivity(TopicSubjects);
+        btnGenEn.setOnClickListener(v -> {
+            Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
+            TopicSubjects.putExtra("textToGet", btnGenEn.getText().toString());
+            TopicSubjects.putExtra("Mode", Mode);
+            startActivity(TopicSubjects);
+            finish();
 
-            }
         });
 
-        btnElectTech.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
-                TopicSubjects.putExtra("textToGet", btnElectTech.getText().toString());
-                startActivity(TopicSubjects);
-
-            }
+        btnElectTech.setOnClickListener(v -> {
+            Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
+            TopicSubjects.putExtra("textToGet", btnElectTech.getText().toString());
+            TopicSubjects.putExtra("Mode", Mode);
+            startActivity(TopicSubjects);
+            finish();
         });
-
-        goHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent MainMenu = new Intent(getApplicationContext(), Menu.class);
-                startActivity(MainMenu);
-
-            }
-        });
-
-
-
-
-
-
 
     }
 }
