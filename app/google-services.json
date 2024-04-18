@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "144939716643",
-    "project_id": "revoltix-v2",
-    "storage_bucket": "revoltix-v2.appspot.com"
+    "project_number": "901047780905",
+    "firebase_url": "https://revoltix24-default-rtdb.firebaseio.com",
+    "project_id": "revoltix24",
+    "storage_bucket": "revoltix24.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:144939716643:android:4fc6b0be77bb572a696196",
+        "mobilesdk_app_id": "1:901047780905:android:eff627e5cf9af9ccfabe38",
         "android_client_info": {
           "package_name": "com.revolt"
         }
       },
       "oauth_client": [
         {
-          "client_id": "144939716643-6b0ad7geas0rb7kicv23uag9e2a86man.apps.googleusercontent.com",
+          "client_id": "901047780905-puboqi4bbsci1dkqs6uuijt7j09k1iee.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB09WJYMdMq2iYn2eV6WNlvJxm_NmcReYs"
+          "current_key": "AIzaSyDOmv5jVyymY2nRbiLQS2e0pS5AP8hu8yA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "144939716643-6b0ad7geas0rb7kicv23uag9e2a86man.apps.googleusercontent.com",
+              "client_id": "901047780905-puboqi4bbsci1dkqs6uuijt7j09k1iee.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
