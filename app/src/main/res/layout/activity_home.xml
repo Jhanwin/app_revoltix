@@ -107,7 +107,7 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="General Mathematics"
+                android:text="Mathematics"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -132,7 +132,7 @@
                 android:backgroundTint="@color/yellow"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="General engineering and applied sciences"
+                android:text="General Engineering &amp; Applied Sciences"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -144,7 +144,7 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="Electronics Systems and technologies"
+                android:text="Electronics Systems and Technologies"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 

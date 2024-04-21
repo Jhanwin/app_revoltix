@@ -55,6 +55,7 @@ public class Home extends AppCompatActivity {
             Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
             TopicSubjects.putExtra("textToGet", btnGenEn.getText().toString());
             TopicSubjects.putExtra("Mode", Mode);
+            TopicSubjects.putExtra("UserId",data);
             startActivity(TopicSubjects);
             finish();
 
@@ -64,6 +65,7 @@ public class Home extends AppCompatActivity {
             Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
             TopicSubjects.putExtra("textToGet", btnElectTech.getText().toString());
             TopicSubjects.putExtra("Mode", Mode);
+            TopicSubjects.putExtra("UserId",data);
             startActivity(TopicSubjects);
             finish();
         });
