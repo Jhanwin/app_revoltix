@@ -51,6 +51,7 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("textSubToGet", TextTopicNum);
                     addQuestAct.putExtra("textDifficulties", btnEasy.getText().toString());
                     addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId",data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
                     startActivity(addQuestAct);
                     finish();
@@ -82,6 +83,7 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("textSubToGet", TextTopicNum);
                     addQuestAct.putExtra("textDifficulties", btnMedium.getText().toString());
                     addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId",data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
                     startActivity(addQuestAct);
                     finish();
@@ -113,6 +115,7 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("textSubToGet", TextTopicNum);
                     addQuestAct.putExtra("textDifficulties", btnHard.getText().toString());
                     addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId",data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
                     startActivity(addQuestAct);
                     finish();

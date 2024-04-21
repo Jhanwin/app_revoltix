@@ -44,7 +44,7 @@
                         android:textAlignment="textStart"
                         android:text="Date"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -72,7 +72,7 @@
                         android:textAlignment="textStart"
                         android:text="Time"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -118,7 +118,7 @@
                         android:textAlignment="textStart"
                         android:text="Topic"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -146,7 +146,8 @@
                         android:textAlignment="textStart"
                         android:text="Difficulty"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="10sp" />
+
 
                 </LinearLayout>
 
@@ -181,7 +182,6 @@
                     <!--                        android:text="Score : "-->
                     <!--                        android:textColor="@color/black"-->
                     <!--                        android:textSize="15sp" />-->
-
                     <TextView
                         android:id="@+id/ScoreVal"
                         android:layout_width="wrap_content"
@@ -189,7 +189,8 @@
                         android:text="Score"
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="10sp" />
+
 
                 </LinearLayout>
 

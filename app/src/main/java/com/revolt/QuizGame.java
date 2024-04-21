@@ -25,22 +25,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class QuizGame extends AppCompatActivity {
     List<String> questions = new ArrayList<>();
     List<String> correctAnswers = new ArrayList<>();
     List<List<String>> confusionChoices = new ArrayList<>();
 
-    DatabaseReference database;
+
+
+
+
+    DatabaseReference database,keyTake,dbGetKeyToUser;
     Button next;
     LinearLayout LayoutL;
 
     ImageView imageShow,imageShowWrong;
 
     private RadioGroup answerRadioGroup;
-    TextView txt1,ShowCorrectAns;
+    TextView txt1,ShowCorrectAns, text;
     RadioButton c1,c2,c3,c4;
     private int currentQuestionIndex = 0;
+
+    int questionCounter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +60,21 @@ public class QuizGame extends AppCompatActivity {
         String TextSub = intent.getStringExtra("TextSub");
         String TextDiff = intent.getStringExtra("textDifficulties");
         String Mode = intent.getStringExtra("Mode");
+        String numOfItem = intent.getStringExtra("NumberOfItem");
+        String data = intent.getStringExtra("UserId");
 
         assert TextSub != null;
         assert TextTopicNum != null;
         assert TextDiff != null;
+        assert Mode != null;
+//
 
-        database = FirebaseDatabase.getInstance().getReference("Subject").child(TextSub).child(TextTopicNum).child(TextDiff);
+        assert numOfItem != null;
+        questionCounter = Integer.parseInt(numOfItem);
+
+        database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub).child(TextTopicNum).child(TextDiff);
+        assert data != null;
+        keyTake = FirebaseDatabase.getInstance().getReference("users").child(data);
 
         txt1 = findViewById(R.id.questions);
         c1 = findViewById(R.id.answerOption1);
@@ -69,6 +86,28 @@ public class QuizGame extends AppCompatActivity {
         imageShow = findViewById(R.id.imgToShow);
         imageShowWrong = findViewById(R.id.imgToShowWrong);
         ShowCorrectAns = findViewById(R.id.ShowCorrectAns);
+//        text = findViewById(R.id.textDebug);
+//        text.setText(TextTopicNum + " " + TextSub + " " + TextDiff + " " + Mode);
+
+
+        // Create a random number generator
+//        Random random = new Random();
+//
+//        // Generate and print five random numbers without repetition
+//        for (int i = 0; i < 5; i++) {
+//            int index = random.nextInt(numbers.size());
+//            int randomNumber = numbers.remove(index);
+////                        System.out.println("Random Number " + (i + 1) + ": " + randomNumber);
+//            Toast.makeText(QuizGame.this, "Random Number " + (i + 1) + ": " + randomNumber, Toast.LENGTH_SHORT).show();
+//
+//        }
+//
+//        QuestionIndex = numbers.get(currentQuestionIndex);
+
+
+
+
+
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,33 +115,84 @@ public class QuizGame extends AppCompatActivity {
 
                 if(snapshot.exists()){
 
+//                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+//                        String childKey = childSnapshot.getKey();
+//
+//                            if (childSnapshot.hasChild( "question" )) {
+//                                DataSnapshot ques = childSnapshot.child( "question" );
+//                                String quesAdd = ques.child( "questionText" ).getValue(String.class);
+//                                questions.add(quesAdd);
+//                            }
+//
+//                            if (childSnapshot.hasChild( "correct" )) {
+//                                DataSnapshot choicesCorrect = childSnapshot.child( "correct" );
+//                                String choice1 = choicesCorrect.child( "choice1" ).getValue(String.class);
+//                                correctAnswers.add(choice1);
+//                            }
+//
+//                            if (childSnapshot.hasChild( "incorrect" )) {
+//                                DataSnapshot choicesIncorrect = childSnapshot.child( "incorrect" );
+//                                String choice2 = choicesIncorrect.child( "choice2" ).child("choiceText").getValue(String.class);
+//                                String choice3 = choicesIncorrect.child( "choice3" ).child("choiceText").getValue(String.class);
+//                                String choice4 = choicesIncorrect.child( "choice4" ).child("choiceText").getValue(String.class);
+//
+//
+//                                List<String> confusion = new ArrayList<>();
+//
+//                                confusion.add(choice2);
+//                                confusion.add(choice3);
+//                                confusion.add(choice4);
+//
+//                                confusionChoices.add(confusion);
+//                            }
+//
+////
+////                            questionCounter--;
+////
+////                            if(questionCounter==0){
+////                                break;
+////                            }
+//
+//                    }
+
+
+
+                    List<DataSnapshot> children = new ArrayList<>();
+
+                    // Iterate through all children nodes and add them to the list
                     for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                        String childKey = childSnapshot.getKey();
-                        questions.add(childKey);
-
-                        if (childSnapshot.hasChild( "correct" )) {
-                            DataSnapshot choicesCorrect = childSnapshot.child( "correct" );
-                            String choice1 = choicesCorrect.child( "choices1" ).getValue(String.class);
-                            correctAnswers.add(choice1);
-                        }
-
-                        if (childSnapshot.hasChild( "incorrect" )) {
-                            DataSnapshot choicesIncorrect = childSnapshot.child( "incorrect" );
-                            String choice2 = choicesIncorrect.child( "choices2" ).getValue(String.class);
-                            String choice3 = choicesIncorrect.child( "choices3" ).getValue(String.class);
-                            String choice4 = choicesIncorrect.child( "choices4" ).getValue(String.class);
-
-
-                            List<String> confusion = new ArrayList<>();
-
-                            confusion.add(choice2);
-                            confusion.add(choice3);
-                            confusion.add(choice4);
-
-                            confusionChoices.add(confusion);
-                        }
-
+                        children.add(childSnapshot);
                     }
+
+                    // Shuffle the list randomly
+                    Collections.shuffle(children);
+
+                    // Retrieve a subset of children nodes based on your desired number
+                    List<DataSnapshot> randomChildren = children.subList(0, questionCounter);
+
+                    // Now you can process the randomly selected children nodes
+                    for (DataSnapshot child : randomChildren) {
+                        // Retrieve data from each child node as needed
+                        String question = child.child("question").child("questionText").getValue(String.class);
+                        String correctAnswe = child.child("correct").child("choice1").getValue(String.class);
+                        String choice2 = child.child("incorrect").child("choice2").child("choiceText").getValue(String.class);
+                        String choice3 = child.child("incorrect").child("choice3").child("choiceText").getValue(String.class);
+                        String choice4 = child.child("incorrect").child("choice4").child("choiceText").getValue(String.class);
+
+                        questions.add(question);
+                        correctAnswers.add(correctAnswe);
+
+                        List<String> confusion = new ArrayList<>();
+
+                                confusion.add(choice2);
+                                confusion.add(choice3);
+                                confusion.add(choice4);
+
+                                confusionChoices.add(confusion);
+
+                        // Process the retrieved data as required
+                    }
+
                     displayQuestion();
                 }
 

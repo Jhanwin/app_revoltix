@@ -112,7 +112,7 @@
                     android:background="@drawable/bg_btn_subjects"
                     android:fontFamily="@font/futura_display"
                     android:letterSpacing="0.1"
-                    android:text="Topic 1"
+                    android:text="DC Electrical Circuits"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
@@ -126,7 +126,7 @@
                     android:background="@drawable/bg_btn_subjects"
                     android:fontFamily="@font/futura_display"
                     android:letterSpacing="0.1"
-                    android:text="Topic 2"
+                    android:text="Electronic Devices and Circuits"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 

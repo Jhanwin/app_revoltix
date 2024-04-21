@@ -6,14 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".QuizGame">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="741dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
             android:scaleType="centerCrop"
             android:src="@drawable/bluebg" />
 
@@ -139,11 +149,11 @@
                         android:id="@+id/answerOption1"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_btn_subjects"
                         android:button="@null"
-                        android:padding="10dp"
+                        android:padding="5dp"
                         android:fontFamily="@font/futura_display"
                         android:text="..."
                         android:textSize="25sp"
@@ -153,7 +163,7 @@
                         android:id="@+id/answerOption2"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/futura_display"
                         android:layout_gravity="center_horizontal"
                         android:textSize="25sp"
@@ -167,7 +177,7 @@
                         android:id="@+id/answerOption3"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/futura_display"
                         android:layout_gravity="center_horizontal"
                         android:textSize="25sp"
@@ -180,8 +190,7 @@
                     <RadioButton
                         android:id="@+id/answerOption4"
                         android:layout_width="match_parent"
-                        android:layout_marginBottom="10dp"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/futura_display"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/bg_btn_subjects"
@@ -210,10 +219,14 @@
                 android:textColor="@color/black"
                 android:textSize="30sp" />
 
+
+
         </LinearLayout>
 
 
     </RelativeLayout>
+
+    </ScrollView>
 
 
 

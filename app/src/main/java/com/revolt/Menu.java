@@ -50,6 +50,7 @@ public class Menu extends AppCompatActivity {
         BtnPracticeMode.setOnClickListener(v -> {
             Intent subjects = new Intent(getApplicationContext(), Home.class);
             subjects.putExtra("Mode","PracticeMode");
+            subjects.putExtra("UserId",data);
             startActivity(subjects);
         });
 
