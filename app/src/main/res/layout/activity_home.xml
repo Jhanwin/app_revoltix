@@ -25,7 +25,8 @@
             android:layout_marginBottom="661dp"
             android:gravity="left"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="10dp"
+            tools:ignore="RtlHardcoded">
 
             <LinearLayout
                 android:id="@+id/Linear11"
@@ -38,12 +39,14 @@
                     android:id="@+id/imageView2"
                     android:layout_width="48dp"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/img_hamburger"
                     android:layout_marginRight="10dp"
                     app:srcCompat="@drawable/more" />
 
                 <ImageView
                     android:id="@+id/goHome"
                     android:layout_width="48dp"
+                    android:contentDescription="@string/img_home"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/home" />
 
@@ -78,10 +81,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="364dp"
+            android:layout_height="348dp"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="264dp"
+            android:layout_marginBottom="292dp"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingLeft="10dp"
@@ -93,7 +96,7 @@
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="SUBJECTS"
+                android:text="@string/subjects"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
@@ -107,7 +110,7 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="Mathematics"
+                android:text="@string/mathematics"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -119,7 +122,7 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="Electronics Engineering"
+                android:text="@string/electronics_engineering"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -132,7 +135,7 @@
                 android:backgroundTint="@color/yellow"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="General Engineering &amp; Applied Sciences"
+                android:text="@string/general_engineering_amp_applied_sciences"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -144,14 +147,10 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
-                android:text="Electronics Systems and Technologies"
+                android:text="@string/electronics_systems_and_technologies"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
-
-
         </LinearLayout>
-
-
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

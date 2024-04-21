@@ -2,11 +2,14 @@ package com.revolt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 public class TopicSubjects extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class TopicSubjects extends AppCompatActivity {
     ImageView goHome2;
     TextView textSubject;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,33 +37,34 @@ public class TopicSubjects extends AppCompatActivity {
         btnTopic4 = findViewById(R.id.btnTopic4);
         goHome2 = findViewById(R.id.goHome2);
 
-        goHome2.setOnClickListener(v -> {
-            finish();
-        });
+        goHome2.setOnClickListener(v -> finish());
 
 
-
-
-        if(TextSub.equals("Electronics Engineering")) {
-            btnTopic1.setText("DC Electrical Circuits");
-            btnTopic2.setText("Electronic Devices and Circuits");
-            btnTopic3.setText("tba");
-            btnTopic4.setText("tba");
-        }else if(TextSub.equals("Electronics Systems and Technologies")){
-            btnTopic1.setText("Principles of Communications");
-            btnTopic2.setText("tba");
-            btnTopic3.setText("tba");
-            btnTopic4.setText("tba");
-        }else if(TextSub.equals("General Engineering & Applied Sciences")){
-            btnTopic1.setText("Chemistry");
-            btnTopic2.setText("tba");
-            btnTopic3.setText("tba");
-            btnTopic4.setText("tba");
-        }else if(TextSub.equals("Mathematics")){
-            btnTopic1.setText("Differential Calculus");
-            btnTopic2.setText("Differential Equations");
-            btnTopic3.setText("tba");
-            btnTopic4.setText("tba");
+        switch (Objects.requireNonNull(TextSub)) {
+            case "Electronics Engineering":
+                btnTopic1.setText("DC Electrical Circuits");
+                btnTopic2.setText("Electronic Devices and Circuits");
+                btnTopic3.setText("tba");
+                btnTopic4.setText("tba");
+                break;
+            case "Electronics Systems and Technologies":
+                btnTopic1.setText("Principles of Communications");
+                btnTopic2.setText("tba");
+                btnTopic3.setText("tba");
+                btnTopic4.setText("tba");
+                break;
+            case "General Engineering & Applied Sciences":
+                btnTopic1.setText("Chemistry");
+                btnTopic2.setText("tba");
+                btnTopic3.setText("tba");
+                btnTopic4.setText("tba");
+                break;
+            case "Mathematics":
+                btnTopic1.setText("Differential Calculus");
+                btnTopic2.setText("Differential Equations");
+                btnTopic3.setText("tba");
+                btnTopic4.setText("tba");
+                break;
         }
 
 

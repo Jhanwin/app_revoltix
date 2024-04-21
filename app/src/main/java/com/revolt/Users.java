@@ -2,8 +2,6 @@ package com.revolt;
 
 public class Users {
 
-
-
     public String name;
     public String id;
     public String email;

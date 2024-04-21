@@ -1,12 +1,9 @@
 package com.revolt;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,16 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +45,6 @@ public class UserProfile extends AppCompatActivity {
     Button back;
 
     BarChart barchart,barchart2,barchart3;
-    PieChart pieChart;
 
     String idProfile;
 
@@ -84,6 +73,7 @@ public class UserProfile extends AppCompatActivity {
                     String email = snapshot.child("email").getValue(String.class);
                     String linkPic = snapshot.child("profile").getValue(String.class);
                     String substringToRemove = "@g.batstate-u.edu.ph";
+                    assert email != null;
                     String SrCode = email.replace(substringToRemove, "");
 
                     // Set the values to the TextViews
@@ -106,7 +96,6 @@ public class UserProfile extends AppCompatActivity {
                 if (snapshot.exists()) {
 
                     for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                        String childKey = childSnapshot.getKey();
                         int score = childSnapshot.child("score").getValue(Integer.class);
                         String Date = childSnapshot.child("Date").getValue(String.class);
                         String Dif = childSnapshot.child("Difficulty").getValue(String.class);

@@ -116,13 +116,13 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -131,7 +131,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/futura_display"
                             android:letterSpacing="0.1"
-                            android:text="Sample Name"
+                            android:text="@string/sample_name"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
@@ -140,7 +140,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:orientation="horizontal">
 
 
@@ -148,7 +148,7 @@
                             android:id="@+id/txtEmail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sample Rmail"
+                            android:text="@string/sample_rmail"
                             android:textColor="@color/black"
                             android:textSize="15sp"
                             android:visibility="gone" />
@@ -158,7 +158,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:orientation="horizontal">
 
 
@@ -166,7 +166,7 @@
                             android:id="@+id/txtScore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sample Rmail"
+                            android:text="@string/sample_rmail"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
@@ -175,7 +175,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:orientation="horizontal">
 
 
@@ -183,7 +183,7 @@
                             android:id="@+id/RankLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RANK "
+                            android:text="@string/rank"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
@@ -191,7 +191,7 @@
                             android:id="@+id/RankVal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RANK"
+                            android:text="@string/rank"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 

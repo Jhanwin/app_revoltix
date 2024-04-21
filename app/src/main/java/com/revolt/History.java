@@ -22,15 +22,12 @@ public class History {
     public String getDate() {
         return date;
     }
-
     public String getDifficulty() {
         return difficulty;
     }
-
     public String getTime() {
         return time;
     }
-
     public String getTopic() {
         return topic;
     }

@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +20,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class LeaderVersionTwo extends AppCompatActivity {
-
 
     RecyclerView recyclerView;
     DatabaseReference database;
@@ -54,6 +52,7 @@ public class LeaderVersionTwo extends AppCompatActivity {
 
         database.addValueEventListener(new ValueEventListener() {
 
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
@@ -74,11 +73,11 @@ public class LeaderVersionTwo extends AppCompatActivity {
                 });
 
                 for(int i=0;i< list.size();i++){
-                    String namee = list.get(i).getName();
-                    if(namee.equals(nameGet)){
+                    String name = list.get(i).getName();
+                    if(name.equals(nameGet)){
                         String text = String.valueOf(i+1);
                         Picasso.get().load(list.get(i).getProfile()).into(ProfilePicture);
-                        txtNameUser.setText(namee);
+                        txtNameUser.setText(name);
                         rankval.setText(text);
                         txtScore.setText(String.valueOf(list.get(i).getScore()));
                         break;

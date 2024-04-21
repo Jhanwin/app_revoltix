@@ -39,7 +39,6 @@ public class Home extends AppCompatActivity {
 
         });
 
-
         btnElect.setOnClickListener(v -> {
             Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
             TopicSubjects.putExtra("textToGet", btnElect.getText().toString());
@@ -49,7 +48,6 @@ public class Home extends AppCompatActivity {
             finish();
 
         });
-
 
         btnGenEn.setOnClickListener(v -> {
             Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);

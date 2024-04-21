@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -54,13 +53,10 @@ public class Menu extends AppCompatActivity {
             startActivity(subjects);
         });
 
-        PretestMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pre = new Intent(getApplicationContext(), PretestGame.class);
+        PretestMode.setOnClickListener(v -> {
+            Intent pre = new Intent(getApplicationContext(), PretestGame.class);
 
-                startActivity(pre);
-            }
+            startActivity(pre);
         });
 
         addQuestionToDb.setOnClickListener(v -> {

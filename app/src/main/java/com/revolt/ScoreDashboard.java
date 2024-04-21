@@ -4,13 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -18,9 +13,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ScoreDashboard extends AppCompatActivity {
 
-    TextView scoreFinish,summary,date,time;
-
-
+    TextView scoreFinish,date,time;
     ImageView goHomeScore;
 
     @Override
@@ -30,9 +23,9 @@ public class ScoreDashboard extends AppCompatActivity {
 
         Intent intent = getIntent();
         String score = intent.getStringExtra("Score");
-        String Timer = intent.getStringExtra("Time");
-        String id = intent.getStringExtra("UserId");
-        String TextDiff = intent.getStringExtra("TextDiff");
+//        String Timer = intent.getStringExtra("Time");
+//        String id = intent.getStringExtra("UserId");
+//        String TextDiff = intent.getStringExtra("TextDiff");
 
         scoreFinish = findViewById(R.id.scoreFinish);
 //        summary = findViewById(R.id.summary);

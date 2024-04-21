@@ -51,7 +51,7 @@ public class QuizGameBattle extends AppCompatActivity {
 
         Intent intent = getIntent();
         String TextSub = intent.getStringExtra("TextSub");
-        String Mode = intent.getStringExtra("Mode");
+//        String Mode = intent.getStringExtra("Mode");
         TextTopicNum = intent.getStringExtra("textSubToGet");
         TextDiff = intent.getStringExtra("textDifficulties");
         data = intent.getStringExtra("UserId");
@@ -74,10 +74,10 @@ public class QuizGameBattle extends AppCompatActivity {
         timerTextView = findViewById(R.id.timerTextView);
         scoreTextView = findViewById(R.id.scoreTextView);
         itemTextView = findViewById(R.id.itemTextView);
-        references = findViewById(R.id.references);
-
-        String ref = TextTopicNum +" "+ TextSub +" "+ TextDiff +" "+ data +" "+ numOfItem;
-        references.setText(ref);
+//        references = findViewById(R.id.references);
+//
+//        String ref = TextTopicNum +" "+ TextSub +" "+ TextDiff +" "+ data +" "+ numOfItem;
+//        references.setText(ref);
 
         database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
@@ -85,40 +85,6 @@ public class QuizGameBattle extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if(snapshot.exists()){
-
-//                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-//                        String childKey = childSnapshot.getKey();
-//                        questions.add(childKey);
-//
-//                        if (childSnapshot.hasChild( "correct" )) {
-//                            DataSnapshot choicesCorrect = childSnapshot.child( "correct" );
-//                            String choice1 = choicesCorrect.child( "choices1" ).getValue(String.class);
-//                            correctAnswers.add(choice1);
-//                        }
-//
-//                        if (childSnapshot.hasChild( "incorrect" )) {
-//                            DataSnapshot choicesIncorrect = childSnapshot.child( "incorrect" );
-//                            String choice2 = choicesIncorrect.child( "choices2" ).getValue(String.class);
-//                            String choice3 = choicesIncorrect.child( "choices3" ).getValue(String.class);
-//                            String choice4 = choicesIncorrect.child( "choices4" ).getValue(String.class);
-//
-//
-//                            List<String> confusion = new ArrayList<>();
-//
-//                            confusion.add(choice2);
-//                            confusion.add(choice3);
-//                            confusion.add(choice4);
-//
-//                            confusionChoices.add(confusion);
-//                        }
-//
-//                        questionCounter--;
-//
-//                        if(questionCounter==0){
-//                            break;
-//                        }
-//
-//                    }
 
                     List<DataSnapshot> children = new ArrayList<>();
 
@@ -137,13 +103,13 @@ public class QuizGameBattle extends AppCompatActivity {
                     for (DataSnapshot child : randomChildren) {
                         // Retrieve data from each child node as needed
                         String question = child.child("question").child("questionText").getValue(String.class);
-                        String correctAnswe = child.child("correct").child("choice1").getValue(String.class);
+                        String correctAns = child.child("correct").child("choice1").getValue(String.class);
                         String choice2 = child.child("incorrect").child("choice2").child("choiceText").getValue(String.class);
                         String choice3 = child.child("incorrect").child("choice3").child("choiceText").getValue(String.class);
                         String choice4 = child.child("incorrect").child("choice4").child("choiceText").getValue(String.class);
 
                         questions.add(question);
-                        correctAnswers.add(correctAnswe);
+                        correctAnswers.add(correctAns);
 
                         List<String> confusion = new ArrayList<>();
 
@@ -152,7 +118,6 @@ public class QuizGameBattle extends AppCompatActivity {
                         confusion.add(choice4);
 
                         confusionChoices.add(confusion);
-
                         // Process the retrieved data as required
                     }
 
@@ -316,11 +281,5 @@ public class QuizGameBattle extends AppCompatActivity {
         }
 
     }
-
-
-
-
-
-
 
 }

@@ -45,4 +45,15 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="revoltix">REVOLTIX</string>
+    <string name="electronics_engineering">Electronics Engineering</string>
+    <string name="general_engineering_amp_applied_sciences"><![CDATA[General Engineering & Applied Sciences]]></string>
+    <string name="electronics_systems_and_technologies">Electronics Systems and Technologies</string>
+    <string name="img_home">img home</string>
+    <string name="img_hamburger">img hamburger</string>
+    <string name="mathematics">Mathematics</string>
+    <string name="subjects">SUBJECTS</string>
+    <string name="sample_name">Sample Name</string>
+    <string name="sample_rmail">Sample Rmail</string>
+    <string name="rank">RANK</string>
+    <string name="emptytext">...</string>
 </resources>
