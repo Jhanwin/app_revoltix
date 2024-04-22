@@ -8,8 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +31,11 @@ public class LeaderVersionTwo extends AppCompatActivity {
     MyAdapterNew myAdapter;
     ArrayList<UserNew> list;
 
-    TextView testing,rankval,txtNameUser,txtScore;
+    LinearLayout linLayout4;
+
+    Button btnBoardEasy, btnBoardMedium, btnBoardHard;
+
+    TextView testing, rankval, txtNameUser, txtScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +59,14 @@ public class LeaderVersionTwo extends AppCompatActivity {
         myAdapter = new MyAdapterNew(this, list);
         recyclerView.setAdapter(myAdapter);
 
-        database.addValueEventListener(new ValueEventListener() {
+        linLayout4 = findViewById(R.id.linearLayout4);
 
+//        btnBoardEasy = findViewById(R.id.btnBoardEasy);
+//        btnBoardMedium = findViewById(R.id.btnBoardMedium);
+//        btnBoardHard = findViewById(R.id.btnBoardHard);
+//
+
+        database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,11 +82,12 @@ public class LeaderVersionTwo extends AppCompatActivity {
                     list.add(new UserNew(name,email,id,profile,score,scoreM,scoreH));
                 }
                 // Sort the list based on the score in descending order
+
                 list.sort((user1, user2) -> {
                     // Sort in descending order
-                    return Integer.compare(user2.getScoreHard(), user1.getScoreHard());
+                    return Integer.compare(user2.getScore(), user1.getScore());
                 });
-
+                linLayout4.setVisibility(View.VISIBLE);
                 for(int i=0;i< list.size();i++){
                     String name = list.get(i).getName();
                     if(name.equals(nameGet)){
@@ -82,24 +98,17 @@ public class LeaderVersionTwo extends AppCompatActivity {
                         txtScore.setText(String.valueOf(list.get(i).getScore()));
                         break;
                     }
-
                 }
                 myAdapter.notifyDataSetChanged();
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
 
 
-
-
-
-
-
-
     }
 }
+
+

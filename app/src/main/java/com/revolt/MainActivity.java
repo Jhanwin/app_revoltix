@@ -63,14 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void navigateToNextActivity(FirebaseUser user) {
 
-//        Intent second = new Intent(getApplicationContext(), Menu.class);
-//        second.putExtra("id", user.getUid().toString());
-//        second.putExtra("link", user.getPhotoUrl().toString());
-//        second.putExtra("name", user.getDisplayName());
-//        second.putExtra("email", user.getEmail());
-//        startActivity(second);
-//        finish();
-
         Intent second = new Intent(getApplicationContext(), Menu.class);
         Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
         second.putExtra("id", user.getUid().toString());
@@ -103,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     GoogleSignInAccount account = task.getResult(ApiException.class);
                     firebaseAuth(account.getIdToken());
                 } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "There is a Problem, or check your internet connection.", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast.makeText(MainActivity.this, "Intent data is null", Toast.LENGTH_SHORT).show();

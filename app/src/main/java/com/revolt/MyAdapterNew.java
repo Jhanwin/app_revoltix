@@ -42,7 +42,7 @@ public class MyAdapterNew extends RecyclerView.Adapter<MyAdapterNew.MyViewHolder
             String substringToRemove = "@g.batstate-u.edu.ph";
             String modCode = usernew.getEmail().replace(substringToRemove, "");
             holder.email.setText(modCode);
-            holder.score.setText(String.valueOf(usernew.getScoreHard()));
+            holder.score.setText(String.valueOf(usernew.getScore()));
             Picasso.get().load(usernew.getProfile()).into(holder.ProfilePicture);
         }
 

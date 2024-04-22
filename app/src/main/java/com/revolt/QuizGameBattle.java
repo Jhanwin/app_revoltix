@@ -34,7 +34,7 @@ public class QuizGameBattle extends AppCompatActivity {
     List<List<String>> confusionChoices = new ArrayList<>();
     DatabaseReference database;
     private RadioGroup answerRadioGroup;
-    TextView txt1,timerTextView,scoreTextView,itemTextView,references;
+    TextView txt1,timerTextView,scoreTextView,itemTextView;
     RadioButton c1,c2,c3,c4;
     private int currentQuestionIndex = 0;
     int score;
