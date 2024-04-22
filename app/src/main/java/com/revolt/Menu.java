@@ -43,7 +43,7 @@ public class Menu extends AppCompatActivity {
         BtnBattleMode = findViewById(R.id.BattleMode);
         BtnLeaderboards = findViewById(R.id.btnLeaderboards);
         PretestMode = findViewById(R.id.PretestMode);
-        addQuestionToDb = findViewById(R.id.addQuestionToDb);
+//        addQuestionToDb = findViewById(R.id.addQuestionToDb);
         btnToUserProfile = findViewById(R.id.btnToUserProfile);
 
         BtnPracticeMode.setOnClickListener(v -> {
@@ -59,10 +59,10 @@ public class Menu extends AppCompatActivity {
             startActivity(pre);
         });
 
-        addQuestionToDb.setOnClickListener(v -> {
-            Intent add = new Intent(getApplicationContext(), AddQuestion.class);
-            startActivity(add);
-        });
+//        addQuestionToDb.setOnClickListener(v -> {
+//            Intent add = new Intent(getApplicationContext(), AddQuestion.class);
+//            startActivity(add);
+//        });
 
         BtnLeaderboards.setOnClickListener(v -> {
             Intent leaderboards = new Intent(getApplicationContext(), LeaderVersionTwo.class);

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,26 +45,26 @@ public class TopicSubjects extends AppCompatActivity {
             case "Electronics Engineering":
                 btnTopic1.setText("DC Electrical Circuits");
                 btnTopic2.setText("Electronic Devices and Circuits");
-                btnTopic3.setText("tba");
-                btnTopic4.setText("tba");
+                btnTopic3.setVisibility(View.GONE);
+                btnTopic4.setVisibility(View.GONE);
                 break;
             case "Electronics Systems and Technologies":
                 btnTopic1.setText("Principles of Communications");
-                btnTopic2.setText("tba");
-                btnTopic3.setText("tba");
-                btnTopic4.setText("tba");
+                btnTopic2.setVisibility(View.GONE);
+                btnTopic3.setVisibility(View.GONE);
+                btnTopic4.setVisibility(View.GONE);
                 break;
             case "General Engineering & Applied Sciences":
                 btnTopic1.setText("Chemistry");
-                btnTopic2.setText("tba");
-                btnTopic3.setText("tba");
-                btnTopic4.setText("tba");
+                btnTopic2.setVisibility(View.GONE);
+                btnTopic3.setVisibility(View.GONE);
+                btnTopic4.setVisibility(View.GONE);
                 break;
             case "Mathematics":
                 btnTopic1.setText("Differential Calculus");
                 btnTopic2.setText("Differential Equations");
-                btnTopic3.setText("tba");
-                btnTopic4.setText("tba");
+                btnTopic3.setVisibility(View.GONE);
+                btnTopic4.setVisibility(View.GONE);
                 break;
         }
 

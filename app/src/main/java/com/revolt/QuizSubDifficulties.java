@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuizSubDifficulties extends AppCompatActivity {
     TextView textTopic;
@@ -43,27 +44,54 @@ public class QuizSubDifficulties extends AppCompatActivity {
             assert Mode != null;
             if(Mode.equals("PracticeMode")){
 
-                Intent addQuestAct = new Intent(getApplicationContext(), QuizGame.class);
-                addQuestAct.putExtra("TextSub", TextSub);
-                addQuestAct.putExtra("textSubToGet", TextTopicNum);
-                addQuestAct.putExtra("textDifficulties", btnEasy.getText().toString());
-                addQuestAct.putExtra("Mode", Mode);
-                addQuestAct.putExtra("UserId",data);
-                addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
-                startActivity(addQuestAct);
-                finish();
+
+                if(numOfItem.getText().toString().equals("")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Please enter the Number of Item", Toast.LENGTH_SHORT).show();
+
+                }else if(numOfItem.getText().toString().equals("0")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Enter the Number higher than 0", Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                    Intent addQuestAct = new Intent(getApplicationContext(), QuizGame.class);
+                    addQuestAct.putExtra("TextSub", TextSub);
+                    addQuestAct.putExtra("textSubToGet", TextTopicNum);
+                    addQuestAct.putExtra("textDifficulties", btnEasy.getText().toString());
+                    addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId",data);
+                    addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    startActivity(addQuestAct);
+                    finish();
+
+                }
+
+
 
             }else{
 
-                Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
-                addQuestAct.putExtra("TextSub", TextSub);
-                addQuestAct.putExtra("textSubToGet", TextTopicNum);
-                addQuestAct.putExtra("textDifficulties", btnEasy.getText().toString());
-                addQuestAct.putExtra("Mode", Mode);
-                addQuestAct.putExtra("UserId",data);
-                addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
-                startActivity(addQuestAct);
-                finish();
+                if(numOfItem.getText().toString().equals("")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Please enter the Number of Item", Toast.LENGTH_SHORT).show();
+
+                }else if(numOfItem.getText().toString().equals("0")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Enter the Number higher than 0", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
+                    addQuestAct.putExtra("TextSub", TextSub);
+                    addQuestAct.putExtra("textSubToGet", TextTopicNum);
+                    addQuestAct.putExtra("textDifficulties", btnEasy.getText().toString());
+                    addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId", data);
+                    addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    startActivity(addQuestAct);
+                    finish();
+
+                }
 
             }
 
@@ -73,27 +101,50 @@ public class QuizSubDifficulties extends AppCompatActivity {
             assert Mode != null;
             if(Mode.equals("PracticeMode")){
 
-                Intent addQuestAct = new Intent(getApplicationContext(), QuizGame.class);
-                addQuestAct.putExtra("TextSub", TextSub);
-                addQuestAct.putExtra("textSubToGet", TextTopicNum);
-                addQuestAct.putExtra("textDifficulties", btnMedium.getText().toString());
-                addQuestAct.putExtra("Mode", Mode);
-                addQuestAct.putExtra("UserId",data);
-                addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
-                startActivity(addQuestAct);
-                finish();
+                if(numOfItem.getText().toString().equals("")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Please enter the Number of Item", Toast.LENGTH_SHORT).show();
+
+                }else if(numOfItem.getText().toString().equals("0")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Enter the Number higher than 0", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Intent addQuestAct = new Intent(getApplicationContext(), QuizGame.class);
+                    addQuestAct.putExtra("TextSub", TextSub);
+                    addQuestAct.putExtra("textSubToGet", TextTopicNum);
+                    addQuestAct.putExtra("textDifficulties", btnMedium.getText().toString());
+                    addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId", data);
+                    addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    startActivity(addQuestAct);
+                    finish();
+                }
 
             }else{
 
-                Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
-                addQuestAct.putExtra("TextSub", TextSub);
-                addQuestAct.putExtra("textSubToGet", TextTopicNum);
-                addQuestAct.putExtra("textDifficulties", btnMedium.getText().toString());
-                addQuestAct.putExtra("Mode", Mode);
-                addQuestAct.putExtra("UserId",data);
-                addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
-                startActivity(addQuestAct);
-                finish();
+                if(numOfItem.getText().toString().equals("")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Please enter the Number of Item", Toast.LENGTH_SHORT).show();
+
+                }else if(numOfItem.getText().toString().equals("0")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Enter the Number higher than 0", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
+                    addQuestAct.putExtra("TextSub", TextSub);
+                    addQuestAct.putExtra("textSubToGet", TextTopicNum);
+                    addQuestAct.putExtra("textDifficulties", btnMedium.getText().toString());
+                    addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId", data);
+                    addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    startActivity(addQuestAct);
+                    finish();
+
+                }
 
             }
 
@@ -103,27 +154,51 @@ public class QuizSubDifficulties extends AppCompatActivity {
             assert Mode != null;
             if(Mode.equals("PracticeMode")){
 
-                Intent addQuestAct = new Intent(getApplicationContext(), QuizGame.class);
-                addQuestAct.putExtra("TextSub", TextSub);
-                addQuestAct.putExtra("textSubToGet", TextTopicNum);
-                addQuestAct.putExtra("textDifficulties", btnHard.getText().toString());
-                addQuestAct.putExtra("Mode", Mode);
-                addQuestAct.putExtra("UserId",data);
-                addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
-                startActivity(addQuestAct);
-                finish();
+                if(numOfItem.getText().toString().equals("")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Please enter the Number of Item", Toast.LENGTH_SHORT).show();
+
+                }else if(numOfItem.getText().toString().equals("0")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Enter the Number higher than 0", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Intent addQuestAct = new Intent(getApplicationContext(), QuizGame.class);
+                    addQuestAct.putExtra("TextSub", TextSub);
+                    addQuestAct.putExtra("textSubToGet", TextTopicNum);
+                    addQuestAct.putExtra("textDifficulties", btnHard.getText().toString());
+                    addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId", data);
+                    addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    startActivity(addQuestAct);
+                    finish();
+
+                }
 
             }else{
 
-                Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
-                addQuestAct.putExtra("TextSub", TextSub);
-                addQuestAct.putExtra("textSubToGet", TextTopicNum);
-                addQuestAct.putExtra("textDifficulties", btnHard.getText().toString());
-                addQuestAct.putExtra("Mode", Mode);
-                addQuestAct.putExtra("UserId",data);
-                addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
-                startActivity(addQuestAct);
-                finish();
+                if(numOfItem.getText().toString().equals("")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Please enter the Number of Item", Toast.LENGTH_SHORT).show();
+
+                }else if(numOfItem.getText().toString().equals("0")){
+
+                    Toast.makeText(QuizSubDifficulties.this, "Enter the Number higher than 0", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
+                    addQuestAct.putExtra("TextSub", TextSub);
+                    addQuestAct.putExtra("textSubToGet", TextTopicNum);
+                    addQuestAct.putExtra("textDifficulties", btnHard.getText().toString());
+                    addQuestAct.putExtra("Mode", Mode);
+                    addQuestAct.putExtra("UserId", data);
+                    addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    startActivity(addQuestAct);
+                    finish();
+
+                }
 
             }
 

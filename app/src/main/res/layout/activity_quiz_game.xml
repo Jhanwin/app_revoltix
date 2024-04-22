@@ -21,7 +21,7 @@
 
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
-            android:layout_height="741dp"
+            android:layout_height="796dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="0dp"
             android:scaleType="centerCrop"
@@ -76,11 +76,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="673dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="58dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="20dp">
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,6 +103,9 @@
 
 
             </LinearLayout>
+
+
+
 
             <LinearLayout
                 android:id="@+id/LayoutImageAppear"
@@ -123,7 +128,7 @@
                     android:textSize="35sp"
                     android:visibility="gone" />
 
-<!--                <ImageView-->
+            <!--                <ImageView-->
 <!--                    android:id="@+id/imgToShow"-->
 <!--                    android:layout_width="268dp"-->
 <!--                    android:layout_height="280dp"-->
@@ -204,31 +209,35 @@
 
             </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="20dp">
 
-            <Button
-                android:id="@+id/btnNext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:fontFamily="@font/futura_display"
-                android:letterSpacing="0.1"
-                android:padding="5dp"
-                android:text="Next"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:visibility="gone" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp">
+
+                    <Button
+                        android:id="@+id/btnNext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:fontFamily="@font/futura_display"
+                        android:letterSpacing="0.1"
+                        android:padding="5dp"
+                        android:text="Next"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+
 
         </LinearLayout>
 
 
-        </LinearLayout>
 
 
     </RelativeLayout>

@@ -141,17 +141,17 @@
                     android:background="@drawable/bg_btn_subjects"
                     android:text="Pretest Mode" />
 
-                <Button
-                    android:id="@+id/addQuestionToDb"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/black"
-                    android:background="@drawable/btn_practicemode"
-                    android:fontFamily="@font/futura_display"
-                    android:textSize="20sp"
-                    android:text="Add Questions" />
+<!--                <Button-->
+<!--                    android:id="@+id/addQuestionToDb"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:background="@drawable/btn_practicemode"-->
+<!--                    android:fontFamily="@font/futura_display"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:text="Add Questions" />-->
             </LinearLayout>
 
         </LinearLayout>

@@ -81,11 +81,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="348dp"
+            android:layout_height="550dp"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="292dp"
-            android:gravity="center"
+            android:layout_marginBottom="84dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
@@ -99,7 +99,7 @@
                 android:text="@string/subjects"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="30sp"
+                android:textSize="40sp"
                 android:textStyle="bold" />
 
             <Button
@@ -110,9 +110,10 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
+                android:padding="5dp"
                 android:text="@string/mathematics"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/btnElect"
@@ -122,9 +123,10 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
+                android:padding="5dp"
                 android:text="@string/electronics_engineering"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/btnGenEn"
@@ -135,9 +137,10 @@
                 android:backgroundTint="@color/yellow"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
+                android:padding="5dp"
                 android:text="@string/general_engineering_amp_applied_sciences"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/btnElectTech"
@@ -147,9 +150,10 @@
                 android:background="@drawable/bg_btn_subjects"
                 android:fontFamily="@font/futura_display"
                 android:letterSpacing="0.1"
+                android:padding="5dp"
                 android:text="@string/electronics_systems_and_technologies"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
         </LinearLayout>
     </RelativeLayout>
 
