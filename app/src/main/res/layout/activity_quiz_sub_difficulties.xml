@@ -16,170 +16,197 @@
             android:scaleType="centerCrop"
             android:src="@drawable/bluebg" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="661dp"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="48dp"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/more" />
-
-                <ImageView
-                    android:id="@+id/goHome3"
-                    android:layout_width="62dp"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/home" />
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:layout_alignParentTop="true"
                 android:gravity="left"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView2"-->
+<!--                        android:layout_width="48dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        app:srcCompat="@drawable/more" />-->
+
+                    <ImageView
+                        android:id="@+id/goHome3"
+                        android:layout_width="62dp"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/home" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="REVOLTIX"
-                    android:fontFamily="@font/futura_display"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:letterSpacing="0.1"
-                    android:textSize="30sp" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:gravity="left"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="594dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="58dp"
-            android:layout_marginBottom="79dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/glassmorphism"
-                android:gravity="center"
-                android:padding="20dp">
-
-                <TextView
-                    android:id="@+id/textTopicNum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/futura_display"
-                    android:text="Topic num"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="40sp" />
-
-
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura_display"
+                        android:letterSpacing="0.1"
+                        android:text="REVOLTIX"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/glassmorphism"
-                android:gravity="center"
-                android:padding="10dp">
-
-                <EditText
-                    android:id="@+id/numOfItem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Number of Items?"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.065"
-                    tools:layout_editor_absoluteX="-16dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_alignParentBottom="true"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.224"
+                tools:layout_editor_absoluteX="0dp">
 
-
-                <Button
-                    android:id="@+id/btnEasy"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_btn_subjects"
-                    android:fontFamily="@font/futura_display"
-                    android:letterSpacing="0.1"
-                    android:padding="13dp"
-                    android:text="Easy"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:background="@drawable/glassmorphism"
+                    android:gravity="center"
+                    android:padding="20dp">
 
-                <Button
-                    android:id="@+id/btnMedium"
+                    <TextView
+                        android:id="@+id/textTopicNum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura_display"
+                        android:text="Topic num"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_btn_subjects"
-                    android:fontFamily="@font/futura_display"
-                    android:letterSpacing="0.1"
-                    android:padding="13dp"
-                    android:text="Medium"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/glassmorphism"
+                    android:gravity="center"
+                    android:padding="10dp">
 
-                <Button
-                    android:id="@+id/btnHard"
+                    <EditText
+                        android:id="@+id/numOfItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Number of Items?"
+                        android:inputType="number"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.065"
+                        tools:layout_editor_absoluteX="-16dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_btn_subjects"
-                    android:fontFamily="@font/futura_display"
-                    android:letterSpacing="0.1"
-                    android:padding="13dp"
-                    android:text="Hard"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+
+                    <Button
+                        android:id="@+id/btnEasy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_subjects"
+                        android:fontFamily="@font/futura_display"
+                        android:letterSpacing="0.1"
+                        android:padding="5dp"
+
+                        android:shadowColor="#000000"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="10"
+
+                        android:text="Easy"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                    <Button
+                        android:id="@+id/btnMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_subjects"
+                        android:fontFamily="@font/futura_display"
+                        android:letterSpacing="0.1"
+                        android:padding="5dp"
+
+                        android:shadowColor="#000000"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="10"
+
+                        android:text="Medium"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                    <Button
+                        android:id="@+id/btnHard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_btn_subjects"
+                        android:fontFamily="@font/futura_display"
+                        android:letterSpacing="0.1"
+                        android:padding="5dp"
+
+                        android:shadowColor="#000000"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="10"
+
+                        android:text="Hard"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
-
-
-        </LinearLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
 

@@ -7,26 +7,27 @@
     android:background="@color/black"
     tools:context=".UserProfile">
 
-    <ScrollView
+
+    <RelativeLayout
+        android:id="@+id/relativeUserProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
-            android:id="@+id/relativeUserProfile"
+
+        <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="1558dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bluebg" />
 
-
-            <pl.droidsonroids.gif.GifImageView
-                android:layout_width="match_parent"
-                android:layout_height="1558dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bluebg" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:scrollbars="vertical">
 
 
             <LinearLayout
@@ -43,23 +44,62 @@
                     android:id="@+id/linearChild1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
-                    <Button
+                    <LinearLayout
+                        android:id="@+id/Linear11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btnUserback"
-                        android:text="back"/>
+                        android:gravity="start"
+                        android:orientation="horizontal">
 
-                    <TextView
+                        <ImageView
+                            android:id="@+id/goHome"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:contentDescription="@string/img_home"
+                            app:srcCompat="@drawable/home" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Linear12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/futura_display"
-                        android:text="Your User Profile"
-                        android:textColor="@color/white"
-                        android:textSize="30dp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/futura_display"
+                            android:text="@string/your_profile"
+                            android:textColor="@color/white"
+                            android:textSize="30sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Linear13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/goHomej"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:contentDescription="@string/img_home"
+                            app:srcCompat="@drawable/home" />
+
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -81,7 +121,8 @@
                             android:id="@+id/UserProPicture"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
-                            tools:srcCompat="@tools:sample/avatars" />
+                            tools:srcCompat="@tools:sample/avatars"
+                            android:contentDescription="@string/profile_picture"/>
                     </androidx.cardview.widget.CardView>
 
                     <LinearLayout
@@ -96,7 +137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/futura_display"
-                            android:text=". . ."
+                            android:text="@string/load"
                             android:textColor="@color/white"
                             android:textSize="25sp" />
 
@@ -104,7 +145,7 @@
                             android:id="@+id/idSrCode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=". . ."
+                            android:text="@string/load"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
@@ -113,159 +154,160 @@
 
                 </LinearLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/linearChild3"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linearChild3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="300dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="15dp">-->
 
                     <LinearLayout
                         android:id="@+id/linearChild31"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="300dp"
                         android:background="@drawable/radius"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Easy"
                             android:fontFamily="@font/futura_display"
+                            android:text="@string/easy"
                             android:textColor="@color/black"
-                            android:textSize="30dp"/>
+                            android:textSize="20sp" />
 
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/barchart"
-                            android:layout_width="250dp"
-                            android:layout_height="200dp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-<!--                for medium-->
+                <!--                for medium-->
 
-                <LinearLayout
-                    android:id="@+id/mediumChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/mediumChart"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="300dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="15dp">-->
 
                     <LinearLayout
                         android:id="@+id/mediumChart1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="300dp"
                         android:background="@drawable/radius"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Medium"
                             android:fontFamily="@font/futura_display"
+                            android:text="@string/medium"
                             android:textColor="@color/black"
-                            android:textSize="30dp"/>
+                            android:textSize="20sp" />
 
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/barchartMedium"
-                            android:layout_width="250dp"
-                            android:layout_height="200dp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
 
                 <!--                for medium-->
 
-                <LinearLayout
-                    android:id="@+id/hardChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/hardChart"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="300dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="15dp">-->
 
 
                     <LinearLayout
                         android:id="@+id/hardChart1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="300dp"
                         android:background="@drawable/radius"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Hard"
                             android:fontFamily="@font/futura_display"
+                            android:text="@string/hard"
                             android:textColor="@color/black"
-                            android:textSize="30dp"/>
+                            android:textSize="20sp" />
 
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/barchartHard"
-                            android:layout_width="250dp"
-                            android:layout_height="200dp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                     </LinearLayout>
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
 
-
-
-
-
-
-
-
-
-                <LinearLayout
-                    android:id="@+id/linearChild4"
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linearChild4"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="350dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="15dp">-->
 
                     <LinearLayout
                         android:id="@+id/linearChild41"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="300dp"
                         android:background="@drawable/radius"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:orientation="vertical">
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="History"
-                            android:layout_marginBottom="20dp"
+                            android:layout_marginBottom="5dp"
                             android:fontFamily="@font/futura_display"
+                            android:text="@string/history"
                             android:textColor="@color/black"
-                            android:textSize="30dp"/>
+                            android:textSize="20sp" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/userListHistory"
                             android:layout_width="match_parent"
-                            android:layout_height="215dp"
-                            android:layout_alignParentBottom="true" />
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-
+<!--                </LinearLayout>-->
             </LinearLayout>
+        </ScrollView>
 
-
-        </RelativeLayout>
-
-    </ScrollView>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

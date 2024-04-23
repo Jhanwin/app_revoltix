@@ -56,4 +56,13 @@
     <string name="sample_rmail">Sample Rmail</string>
     <string name="rank">RANK</string>
     <string name="emptytext">...</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="history">History</string>
+    <string name="load">. . .</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="your_score">YOUR SCORE</string>
+    <string name="time_duration">Time Duration :</string>
 </resources>

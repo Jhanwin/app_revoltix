@@ -106,7 +106,7 @@
                     android:textColor="@color/black"
                     android:background="@drawable/btn_practicemode"
                     android:fontFamily="@font/futura_display"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:text="Practice Mode" />
 
                 <Button
@@ -117,7 +117,7 @@
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/white"
                     android:fontFamily="@font/futura_display"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:background="@drawable/bg_btn_subjects"
                     android:text="Battle Mode" />
 
@@ -137,7 +137,7 @@
                     android:layout_marginRight="5dp"
                     android:textColor="@color/white"
                     android:fontFamily="@font/futura_display"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:background="@drawable/bg_btn_subjects"
                     android:text="Pretest Mode" />
 
@@ -196,7 +196,7 @@
                 android:fontFamily="@font/futura_display"
                 android:text="Leaderboards"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"

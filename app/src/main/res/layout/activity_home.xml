@@ -17,144 +17,187 @@
             android:scaleType="centerCrop"
             android:src="@drawable/bluebg" />
 
-        <LinearLayout
-            android:id="@+id/Linear1"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="82dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="661dp"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            tools:ignore="RtlHardcoded">
-
-            <LinearLayout
-                android:id="@+id/Linear11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="48dp"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/img_hamburger"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@drawable/more" />
-
-                <ImageView
-                    android:id="@+id/goHome"
-                    android:layout_width="48dp"
-                    android:contentDescription="@string/img_home"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/home" />
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true">
 
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Linear12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="235dp"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/futura_display"
-                    android:letterSpacing="0.1"
-                    android:text="@string/revoltix"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="30sp" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-
-<!--        2nd Linear Layout-->
+            <!--        2nd Linear Layout-->
 
         <!-- 3rd Linear layout buttons-->
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="550dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="84dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            <LinearLayout
+                android:id="@+id/Linear1"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:layout_alignParentTop="true"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:padding="10dp"
 
-            <TextView
-                android:layout_width="172dp"
-                android:layout_height="51dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/futura_display"
-                android:letterSpacing="0.1"
-                android:text="@string/subjects"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="RtlHardcoded">
 
-            <Button
-                android:id="@+id/btnMath"
+                <LinearLayout
+                    android:id="@+id/Linear11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+                    <!--                <ImageView-->
+                    <!--                    android:id="@+id/imageView2"-->
+                    <!--                    android:layout_width="48dp"-->
+                    <!--                    android:layout_height="match_parent"-->
+                    <!--                    android:layout_marginRight="10dp"-->
+                    <!--                    android:contentDescription="@string/img_hamburger"-->
+                    <!--                    app:srcCompat="@drawable/more" />-->
+
+                    <ImageView
+                        android:id="@+id/goHome"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/img_home"
+                        app:srcCompat="@drawable/home" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Linear12"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/futura_display"
+                        android:letterSpacing="0.1"
+                        android:text="@string/revoltix"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_btn_subjects"
-                android:fontFamily="@font/futura_display"
-                android:letterSpacing="0.1"
-                android:padding="5dp"
-                android:text="@string/mathematics"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:layout_marginBottom="268dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
 
-            <Button
-                android:id="@+id/btnElect"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_btn_subjects"
-                android:fontFamily="@font/futura_display"
-                android:letterSpacing="0.1"
-                android:padding="5dp"
-                android:text="@string/electronics_engineering"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:paddingRight="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Linear1"
+                app:layout_constraintVertical_bias="0.361">
 
-            <Button
-                android:id="@+id/btnGenEn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_btn_subjects"
-                android:backgroundTint="@color/yellow"
-                android:fontFamily="@font/futura_display"
-                android:letterSpacing="0.1"
-                android:padding="5dp"
-                android:text="@string/general_engineering_amp_applied_sciences"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:text="@string/subjects"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btnElectTech"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_btn_subjects"
-                android:fontFamily="@font/futura_display"
-                android:letterSpacing="0.1"
-                android:padding="5dp"
-                android:text="@string/electronics_systems_and_technologies"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btnMath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+
+                    android:shadowColor="#000000"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="10"
+
+                    android:padding="5dp"
+                    android:text="@string/mathematics"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/btnElect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+
+                    android:shadowColor="#000000"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="10"
+
+                    android:padding="5dp"
+                    android:text="@string/electronics_engineering"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/btnGenEn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:backgroundTint="@color/yellow"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:padding="5dp"
+
+                    android:shadowColor="#000000"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="10"
+
+                    android:text="@string/general_engineering_amp_applied_sciences"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <Button
+                    android:id="@+id/btnElectTech"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_btn_subjects"
+                    android:fontFamily="@font/futura_display"
+                    android:letterSpacing="0.1"
+                    android:padding="5dp"
+
+                    android:shadowColor="#000000"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="10"
+
+                    android:text="@string/electronics_systems_and_technologies"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

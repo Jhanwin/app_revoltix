@@ -157,7 +157,24 @@ public class QuizGameBattle extends AppCompatActivity {
             @Override
             public void onFinish() {
                 timerTextView.setText("Time's up!");
-                finish();
+                currentQuestionIndex++;
+
+                // Move to the next question
+                if (currentQuestionIndex < questions.size()) {
+                    resetTimer();
+                    displayQuestion();
+                    itemNum++;
+                    itemTextView.setText("Item " +itemNum);
+                } else {
+                    countDownTimer.cancel();
+                    questions.clear();
+                    correctAnswers.clear();
+                    confusionChoices.clear();
+                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
+                    SaveDataToDatabase();
+                    finish();
+                    //ending of quiz
+                }
             }
         }.start();
     }
@@ -229,6 +246,7 @@ public class QuizGameBattle extends AppCompatActivity {
 
         assert data != null;
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("users").child(data);
+
         db.child("BattleMode").child(formattedDateTime).child("score").setValue(score);
         db.child("BattleMode").child(formattedDateTime).child("Date").setValue(currentDate.toString());
         db.child("BattleMode").child(formattedDateTime).child("Time").setValue(formattedDateTime);

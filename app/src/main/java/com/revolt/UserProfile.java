@@ -58,7 +58,7 @@ public class UserProfile extends AppCompatActivity {
         NameOfUser = findViewById(R.id.NameOfUser);
         idSrCode = findViewById(R.id.idSrCode);
         UserProPicture = findViewById(R.id.UserProPicture);
-        back = findViewById(R.id.btnUserback);
+        ImageView home = findViewById(R.id.goHome);
 
         assert idProfile != null;
         dbRef = FirebaseDatabase.getInstance().getReference("users").child(idProfile);
@@ -129,7 +129,7 @@ public class UserProfile extends AppCompatActivity {
 
 
 
-        back.setOnClickListener(new View.OnClickListener() {
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
