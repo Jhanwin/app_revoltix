@@ -44,20 +44,20 @@ public class TopicSubjects extends AppCompatActivity {
         switch (Objects.requireNonNull(TextSub)) {
             case "Electronics Engineering":
                 btnTopic1.setText("DC Electrical Circuits");
-                btnTopic2.setText("Electronic Devices and Circuits");
-                btnTopic3.setVisibility(View.GONE);
+                btnTopic2.setText("AC Electrical Circuits");
+                btnTopic3.setText("Electronic Devices and Circuits");
                 btnTopic4.setVisibility(View.GONE);
                 break;
             case "Electronics Systems and Technologies":
                 btnTopic1.setText("Principles of Communications");
-                btnTopic2.setVisibility(View.GONE);
+                btnTopic2.setText("Transmission and Antenna Systems");
                 btnTopic3.setVisibility(View.GONE);
                 btnTopic4.setVisibility(View.GONE);
                 break;
             case "General Engineering & Applied Sciences":
                 btnTopic1.setText("Chemistry");
-                btnTopic2.setVisibility(View.GONE);
-                btnTopic3.setVisibility(View.GONE);
+                btnTopic2.setText("Physics 1");
+                btnTopic3.setText("Physics 2");
                 btnTopic4.setVisibility(View.GONE);
                 break;
             case "Mathematics":

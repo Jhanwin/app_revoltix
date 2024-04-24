@@ -36,6 +36,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="302dp"
                 android:layout_height="331dp"
+                android:contentDescription="@string/revoltix_logo"
                 app:srcCompat="@drawable/revoltixlogo" />
 
             <Button

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@android:color/transparent"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:cardCornerRadius="8dp"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -25,8 +25,9 @@
 
             <ImageView
                 android:id="@+id/ProfilePicture"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/profile_picture"
                 tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.cardview.widget.CardView>
@@ -34,31 +35,31 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sample Name"
+                    android:text="@string/sample_name"
                     android:letterSpacing="0.1"
                     android:textColor="@color/black"
                     android:fontFamily="@font/futura_display"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:orientation="horizontal">
 
 
@@ -67,7 +68,7 @@
                     android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sample Rmail"
+                    android:text="@string/sample_rmail"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -76,7 +77,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:orientation="horizontal">
 
 
@@ -84,16 +85,16 @@
                     android:id="@+id/txtScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sample Rmail"
+                    android:text="@string/sample_rmail"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:orientation="horizontal">
 
 
@@ -101,17 +102,17 @@
                     android:id="@+id/RankLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RANK "
+                    android:text="@string/rank"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/RankVal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RANK"
+                    android:text="@string/rank"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 

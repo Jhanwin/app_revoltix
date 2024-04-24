@@ -35,7 +35,7 @@
                 android:fontFamily="@font/futura_display"
                 android:text="Revoltix"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                 android:fontFamily="@font/futura_display"
                 android:text="Leaderboards"
                 android:textColor="@color/yellow"
-                android:textSize="60sp" />
+                android:textSize="30sp" />
 
 
         </LinearLayout>
@@ -109,8 +109,8 @@
 
                     <ImageView
                         android:id="@+id/ProfilePicture"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         tools:srcCompat="@tools:sample/avatars" />
 
                 </androidx.cardview.widget.CardView>
@@ -135,7 +135,7 @@
                             android:letterSpacing="0.1"
                             android:text="@string/sample_name"
                             android:textColor="@color/black"
-                            android:textSize="20sp" />
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
@@ -152,7 +152,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/sample_rmail"
                             android:textColor="@color/black"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:visibility="gone" />
 
                     </LinearLayout>
@@ -170,7 +170,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/sample_rmail"
                             android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 

@@ -65,4 +65,13 @@
     <string name="profile_picture">Profile Picture</string>
     <string name="your_score">YOUR SCORE</string>
     <string name="time_duration">Time Duration :</string>
+    <string name="leaderboards">Leaderboards</string>
+    <string name="revoltix_logo">Revoltix Logo</string>
+    <string name="battle_mode">Battle Mode</string>
+    <string name="practice_mode">Practice Mode</string>
+    <string name="pretest_mode">Pretest Mode</string>
+    <string name="go_to_profile_icon">go to profile icon</string>
+    <string name="menu_icon">menu icon</string>
+    <string name="_23_34607">23-34607</string>
+    <string name="go_home">go home</string>
 </resources>

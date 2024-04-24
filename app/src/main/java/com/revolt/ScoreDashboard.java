@@ -3,9 +3,13 @@ package com.revolt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -16,6 +20,8 @@ public class ScoreDashboard extends AppCompatActivity {
     TextView scoreFinish,date,time;
     ImageView goHomeScore;
 
+    MediaPlayer passed, failed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +29,28 @@ public class ScoreDashboard extends AppCompatActivity {
 
         Intent intent = getIntent();
         String score = intent.getStringExtra("Score");
+        String numOfItem = intent.getStringExtra("numOfItem");
 //        String Timer = intent.getStringExtra("Time");
 //        String id = intent.getStringExtra("UserId");
 //        String TextDiff = intent.getStringExtra("TextDiff");
+
+        passed = MediaPlayer.create(this, R.raw.passed);
+        failed = MediaPlayer.create(this, R.raw.fail);
+
+        assert score != null;
+        float numScore = Float.parseFloat(score);
+        assert numOfItem != null;
+        float numberItem = Float.parseFloat(numOfItem);
+
+        float comp = (float) (numberItem * 0.7);
+
+        if(comp <= numScore){
+            playPassed();
+            Toast.makeText(ScoreDashboard.this, "You Passed", Toast.LENGTH_LONG).show();
+        }else{
+            playFailed();
+            Toast.makeText(ScoreDashboard.this, "You Failed", Toast.LENGTH_LONG).show();
+        }
 
         scoreFinish = findViewById(R.id.scoreFinish);
 //        summary = findViewById(R.id.summary);
@@ -54,8 +79,40 @@ public class ScoreDashboard extends AppCompatActivity {
         date.setText(currentDate.toString());
         time.setText(formattedDateTime);
 
-        goHomeScore.setOnClickListener(v -> finish());
+        goHomeScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                releaseMediaPlayer();
+                finish();
+            }
+        });
 
 
     }
+
+    private void playPassed() {
+        if (passed != null) {
+            passed.start(); // Start playing the sound
+        }
+    }
+
+    private void playFailed() {
+        if (failed != null) {
+            failed.start(); // Start playing the sound
+        }
+    }
+
+    private void releaseMediaPlayer() {
+        if (passed != null) {
+            passed.release();
+            passed = null;
+        }
+        if (failed != null) {
+            failed.release();
+            failed = null;
+        }
+    }
+
+
+
 }

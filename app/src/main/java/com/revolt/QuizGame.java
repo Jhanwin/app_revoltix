@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +34,7 @@ import java.util.List;
 
 public class QuizGame extends AppCompatActivity {
     List<String> questions = new ArrayList<>();
+    List<String> imageLink = new ArrayList<>();
     List<String> correctAnswers = new ArrayList<>();
     List<List<String>> confusionChoices = new ArrayList<>();
     DatabaseReference database;
@@ -35,10 +42,12 @@ public class QuizGame extends AppCompatActivity {
     LinearLayout LayoutL;
     ImageView imageShow,imageShowWrong;
     private RadioGroup answerRadioGroup;
-    TextView txt1,ShowCorrectAns;
+    TextView txt1,ShowCorrectAns,ShowCorrectAns2;
     RadioButton c1,c2,c3,c4;
     private int currentQuestionIndex = 0;
     int questionCounter;
+
+    MediaPlayer Right, Wrong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +82,11 @@ public class QuizGame extends AppCompatActivity {
 //        imageShow = findViewById(R.id.imgToShow);
 //        imageShowWrong = findViewById(R.id.imgToShowWrong);
         ShowCorrectAns = findViewById(R.id.ShowCorrectAns);
+        ShowCorrectAns2 = findViewById(R.id.ShowCorrectAns2);
+        ImageView goHome = findViewById(R.id.goHome);
+
+        Right = MediaPlayer.create(this, R.raw.correct);
+        Wrong = MediaPlayer.create(this, R.raw.wrong);
 
 
         database.addValueEventListener(new ValueEventListener() {
@@ -100,8 +114,15 @@ public class QuizGame extends AppCompatActivity {
                         String choice3 = child.child("incorrect").child("choice3").child("choiceText").getValue(String.class);
                         String choice4 = child.child("incorrect").child("choice4").child("choiceText").getValue(String.class);
 
+                        if(child.child("correct").hasChild("choiceImageURL1")){
+                            String correctAnsImage = child.child("correct").child("choiceImageURL1").getValue(String.class);
+                            correctAnswers.add(correctAnsImage);
+                        }else{
+                            correctAnswers.add(correctAns);
+                        }
+
                         questions.add(question);
-                        correctAnswers.add(correctAns);
+//                        correctAnswers.add(correctAns);
 
                         List<String> confusion = new ArrayList<>();
 
@@ -131,6 +152,19 @@ public class QuizGame extends AppCompatActivity {
         c3.setOnClickListener(v -> checkAnswer());
         c4.setOnClickListener(v -> checkAnswer());
 
+
+    }
+
+    private void playRight() {
+        if (Right != null) {
+            Right.start(); // Start playing the sound
+        }
+    }
+
+    private void playWrong() {
+        if (Wrong != null) {
+            Wrong.start(); // Start playing the sound
+        }
     }
 
     private void displayQuestion() {
@@ -164,6 +198,9 @@ public class QuizGame extends AppCompatActivity {
         Collections.shuffle(answerOptions);
 
         // Set the shuffled options to radio buttons
+
+
+
         option1.setText(answerOptions.get(0));
         option2.setText(answerOptions.get(1));
         option3.setText(answerOptions.get(2));
@@ -186,16 +223,23 @@ public class QuizGame extends AppCompatActivity {
 
         //comparing the text to the correctAnswer array if it is correct answer
         if (selectedAnswer.equals(correctAnswers.get(currentQuestionIndex))) {
+            playRight();
             Toast.makeText(QuizGame.this, "Correct! ", Toast.LENGTH_SHORT).show();
             ShowCorrectAns.setText("You are Correct!");
+            ShowCorrectAns2.setText(correctAnswers.get(currentQuestionIndex));
+
 //            imageShow.setVisibility(View.VISIBLE);
         } else {
+            playWrong();
             Toast.makeText(QuizGame.this, "Incorrect!", Toast.LENGTH_SHORT).show();
-            ShowCorrectAns.setText(String.format("The Correct Answer is %s", correctAnswers.get(currentQuestionIndex)));
+            ShowCorrectAns.setText("The Correct Answer is");
+            ShowCorrectAns2.setText(correctAnswers.get(currentQuestionIndex));
+
 //            imageShowWrong.setVisibility(View.VISIBLE);
         }
 
         ShowCorrectAns.setVisibility(View.VISIBLE);
+        ShowCorrectAns2.setVisibility(View.VISIBLE);
         next.setVisibility(View.VISIBLE);
 
         next.setOnClickListener(v -> {
@@ -211,6 +255,7 @@ public class QuizGame extends AppCompatActivity {
 //            imageShow.setVisibility(View.GONE);
 //            imageShowWrong.setVisibility(View.GONE);
             ShowCorrectAns.setVisibility(View.GONE);
+            ShowCorrectAns2.setVisibility(View.GONE);
             answerRadioGroup.setVisibility(View.VISIBLE);
         });
 

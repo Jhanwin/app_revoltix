@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.RadioButton;
@@ -44,6 +45,8 @@ public class QuizGameBattle extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     String data,TextDiff,numOfItem,TextTopicNum;
 
+    MediaPlayer Right, Wrong;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +77,11 @@ public class QuizGameBattle extends AppCompatActivity {
         timerTextView = findViewById(R.id.timerTextView);
         scoreTextView = findViewById(R.id.scoreTextView);
         itemTextView = findViewById(R.id.itemTextView);
+
+        Right = MediaPlayer.create(this, R.raw.correct);
+        Wrong = MediaPlayer.create(this, R.raw.wrong);
+
+
 //        references = findViewById(R.id.references);
 //
 //        String ref = TextTopicNum +" "+ TextSub +" "+ TextDiff +" "+ data +" "+ numOfItem;
@@ -143,6 +151,22 @@ public class QuizGameBattle extends AppCompatActivity {
         c4.setOnClickListener(v -> checkAnswer());
 
     }
+
+
+
+    private void playRight() {
+        if (Right != null) {
+            Right.start(); // Start playing the sound
+        }
+    }
+
+    private void playWrong() {
+        if (Wrong != null) {
+            Wrong.start(); // Start playing the sound
+        }
+    }
+
+
 
 
     private void startTimer() {
@@ -255,6 +279,7 @@ public class QuizGameBattle extends AppCompatActivity {
 
         Intent ScoreBoard = new Intent(getApplicationContext(), ScoreDashboard.class);
         ScoreBoard.putExtra("Score",Integer.toString(score));
+        ScoreBoard.putExtra("numOfItem",numOfItem);
         startActivity(ScoreBoard);
     }
 
@@ -272,31 +297,61 @@ public class QuizGameBattle extends AppCompatActivity {
 
         //comparing the text to the correctAnswer array if it is correct answer
         if (selectedAnswer.equals(correctAnswers.get(currentQuestionIndex))) {
+            playRight();
             Toast.makeText(QuizGameBattle.this, "Correct! ", Toast.LENGTH_SHORT).show();
             score++;
             scoreTextView.setText("Score: "+score);
         } else {
+            playWrong();
             Toast.makeText(QuizGameBattle.this, "Incorrect!", Toast.LENGTH_SHORT).show();
         }
 
-        resetTimer();
-        currentQuestionIndex++;
+        Right.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                resetTimer();
+                currentQuestionIndex++;
+                // Move to the next question
+                if (currentQuestionIndex < questions.size()) {
+                    displayQuestion();
+                    itemNum++;
+                    itemTextView.setText("Item " +itemNum);
+                } else {
+                    countDownTimer.cancel();
+                    questions.clear();
+                    correctAnswers.clear();
+                    confusionChoices.clear();
+                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
+                    SaveDataToDatabase();
+                    finish();
+                    //ending of quiz
+                }
+            }
+        });
 
-        // Move to the next question
-        if (currentQuestionIndex < questions.size()) {
-            displayQuestion();
-            itemNum++;
-            itemTextView.setText("Item " +itemNum);
-        } else {
-            countDownTimer.cancel();
-            questions.clear();
-            correctAnswers.clear();
-            confusionChoices.clear();
-            Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
-            SaveDataToDatabase();
-            finish();
-            //ending of quiz
-        }
+        Wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                resetTimer();
+                currentQuestionIndex++;
+                // Move to the next question
+                if (currentQuestionIndex < questions.size()) {
+                    displayQuestion();
+                    itemNum++;
+                    itemTextView.setText("Item " +itemNum);
+                } else {
+                    countDownTimer.cancel();
+                    questions.clear();
+                    correctAnswers.clear();
+                    confusionChoices.clear();
+                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
+                    SaveDataToDatabase();
+                    finish();
+                    //ending of quiz
+                }
+            }
+        });
+
 
     }
 

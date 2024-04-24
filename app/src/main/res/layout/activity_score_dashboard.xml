@@ -26,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:gravity="left"
                 android:orientation="horizontal"
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,13 +33,9 @@
                 app:layout_constraintTop_toTopOf="parent">
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/revText"
                         android:layout_width="match_parent"
                         android:layout_height="71dp"
                         android:fontFamily="@font/futura_display"
@@ -49,7 +44,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="50sp" />
-                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -101,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/futura_display"
                         android:padding="20dp"
-                        android:text="..."
+                        android:text="@string/load"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="50sp" />
@@ -111,7 +106,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:gravity="left"
                         android:orientation="vertical"
                         android:padding="5dp">
 
@@ -153,20 +147,14 @@
                         android:id="@+id/goHomeScore"
                         android:layout_width="122dp"
                         android:layout_height="41dp"
+                        android:contentDescription="@string/go_home"
                         app:srcCompat="@drawable/home" />
 
 
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
 
-
-                </LinearLayout>
 
             </LinearLayout>
 

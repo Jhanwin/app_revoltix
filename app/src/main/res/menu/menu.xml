@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/Home"
+        android:title="Home"
+        />
+
+    <item
+        android:id="@+id/Activities"
+        android:title="History"
+       />
+
+    <item
+        android:id="@+id/Profile"
+        android:title="Profile"
+        />
+
+    <item
+        android:id="@+id/Leaderboard"
+        android:title="Leaderboards"
+        />
+
+    <item
+        android:id="@+id/Settings"
+        android:title="Settings"
+        />
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/AboutUs"
+                android:title="About Us"
+                />
+
+            <item
+                android:id="@+id/ForStudents"
+                android:title="For Students"
+                />
+
+            <item
+                android:id="@+id/PrivacyPolicy"
+                android:title="Privacy and Policy"
+                />
+
+            <item
+                android:id="@+id/CommunityGuidelines"
+                android:title="Community Guidelines"
+                />
+        </menu>
+    </item>
+
+
+
+</menu>

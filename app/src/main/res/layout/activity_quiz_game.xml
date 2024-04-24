@@ -65,7 +65,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="REVOLTIX"
+                    android:text="Practice Mode"
                     android:fontFamily="@font/futura_display"
                     android:textAlignment="center"
                     android:textColor="@color/white"
@@ -87,7 +87,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/glassmorphism"
+                android:background="@drawable/bg_btn_google"
                 android:gravity="center"
                 android:padding="20dp">
 
@@ -95,16 +95,12 @@
                     android:id="@+id/questions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:shadowColor="#000000"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="10"
+                    android:textStyle="bold"
 
                     android:text="..."
                     android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
 
 
             </LinearLayout>
@@ -125,12 +121,24 @@
                     android:id="@+id/ShowCorrectAns"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/futura_display"
                     android:padding="10dp"
                     android:text="..."
                     android:textAlignment="center"
-                    android:textColor="@color/yellow"
-                    android:textSize="35sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/ShowCorrectAns2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="..."
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
                     android:visibility="gone" />
 
             <!--                <ImageView-->
@@ -172,7 +180,7 @@
                         android:padding="5dp"
                         android:text="..."
                         android:textAlignment="center"
-                        android:textSize="20sp" />
+                        android:textSize="17sp" />
 
                     <RadioButton
                         android:id="@+id/answerOption2"
@@ -191,7 +199,7 @@
                         android:padding="5dp"
                         android:text="..."
                         android:textAlignment="center"
-                        android:textSize="20sp" />
+                        android:textSize="17sp" />
 
                     <RadioButton
                         android:id="@+id/answerOption3"
@@ -210,7 +218,7 @@
                         android:padding="5dp"
                         android:text="..."
                         android:textAlignment="center"
-                        android:textSize="20sp" />
+                        android:textSize="17sp" />
 
                     <RadioButton
                         android:id="@+id/answerOption4"
@@ -228,7 +236,7 @@
                         android:padding="5dp"
                         android:text="..."
                         android:textAlignment="center"
-                        android:textSize="20sp" />
+                        android:textSize="17sp" />
                 </RadioGroup>
 
 

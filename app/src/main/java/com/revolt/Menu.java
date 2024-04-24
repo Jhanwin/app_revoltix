@@ -1,12 +1,19 @@
 package com.revolt;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -15,7 +22,9 @@ public class Menu extends AppCompatActivity {
     String data,link,email,name,substringToRemove,modCode;
     Button BtnPracticeMode,BtnBattleMode,BtnLeaderboards,PretestMode,addQuestionToDb;
     TextView txtName,srCode;
-    ImageView profileUser,btnToUserProfile;
+    ImageView profileUser,btnToUserProfile, menuBtn;
+
+    MenuItem menuitem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,17 @@ public class Menu extends AppCompatActivity {
         PretestMode = findViewById(R.id.PretestMode);
 //        addQuestionToDb = findViewById(R.id.addQuestionToDb);
         btnToUserProfile = findViewById(R.id.btnToUserProfile);
+
+        menuBtn = findViewById(R.id.menuBtn);
+
+        final DrawerLayout dlayout = findViewById(R.id.drawerLayout);
+
+        menuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlayout.openDrawer(GravityCompat.START);
+            }
+        });
 
         BtnPracticeMode.setOnClickListener(v -> {
             Intent subjects = new Intent(getApplicationContext(), Home.class);
@@ -85,4 +105,12 @@ public class Menu extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
+
+
 }
