@@ -126,7 +126,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
                             android:fontFamily="@font/futura_display"
                             android:text="@string/emptytext"
 
@@ -139,22 +138,22 @@
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 
-                        <TextView
-                            android:id="@+id/scoreTextView"
+<!--                        <TextView-->
+<!--                            android:id="@+id/scoreTextView"-->
 
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/futura_display"
-                            android:text="@string/emptytext"
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/futura_display"-->
+<!--                            android:text="@string/emptytext"-->
 
-                            android:shadowColor="#000000"
-                            android:shadowDx="0"
-                            android:shadowDy="0"
-                            android:shadowRadius="10"
+<!--                            android:shadowColor="#000000"-->
+<!--                            android:shadowDx="0"-->
+<!--                            android:shadowDy="0"-->
+<!--                            android:shadowRadius="10"-->
 
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textSize="20sp" />
+<!--                            android:textAlignment="center"-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="20sp" />-->
 
                     </LinearLayout>
 

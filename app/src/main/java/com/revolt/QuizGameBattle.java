@@ -44,8 +44,10 @@ public class QuizGameBattle extends AppCompatActivity {
     private static final long TIMER_DURATION = 20000; // 20 seconds
     private CountDownTimer countDownTimer;
     String data,TextDiff,numOfItem,TextTopicNum;
-
+    String scoreEasy, scoreMedium, scoreHard;
     MediaPlayer Right, Wrong;
+
+    int sEasy, sMedium, sHard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +61,18 @@ public class QuizGameBattle extends AppCompatActivity {
         TextDiff = intent.getStringExtra("textDifficulties");
         data = intent.getStringExtra("UserId");
         numOfItem = intent.getStringExtra("NumberOfItem");
+//        scoreEasy = intent.getStringExtra("scoreEasy");
+//        scoreMedium = intent.getStringExtra("scoreMedium");
+//        scoreHard = intent.getStringExtra("scoreHard");
 
         assert numOfItem != null;
         questionCounter = Integer.parseInt(numOfItem);
+
+
+//
+//        sEasy = Integer.parseInt(scoreEasy);
+//        sMedium = Integer.parseInt(scoreMedium);
+//        sHard = Integer.parseInt(scoreHard);
 
         assert TextSub != null;
         assert TextTopicNum != null;
@@ -75,7 +86,7 @@ public class QuizGameBattle extends AppCompatActivity {
         c4 = findViewById(R.id.answerOption4B);
         answerRadioGroup = findViewById(R.id.answerRadioGroupB);
         timerTextView = findViewById(R.id.timerTextView);
-        scoreTextView = findViewById(R.id.scoreTextView);
+//        scoreTextView = findViewById(R.id.scoreTextView);
         itemTextView = findViewById(R.id.itemTextView);
 
         Right = MediaPlayer.create(this, R.raw.correct);
@@ -127,7 +138,7 @@ public class QuizGameBattle extends AppCompatActivity {
 
                     displayQuestion();
                     startTimer();
-                    scoreTextView.setText("Score: 0");
+//                    scoreTextView.setText("Score: 0");
                     itemTextView.setText("Item "+itemNum);
                 }
 
@@ -272,6 +283,11 @@ public class QuizGameBattle extends AppCompatActivity {
         db.child("BattleMode").child(formattedDateTime).child("Topic").setValue(TextTopicNum);
         db.child("BattleMode").child(formattedDateTime).child("Difficulty").setValue(TextDiff);
 
+//        db.child("score").setValue(score);
+        db.child("scoreMedium").setValue(score);
+        db.child("scoreHard").setValue(score);
+
+
         Intent ScoreBoard = new Intent(getApplicationContext(), ScoreDashboard.class);
         ScoreBoard.putExtra("Score",Integer.toString(score));
         ScoreBoard.putExtra("numOfItem",numOfItem);
@@ -293,12 +309,12 @@ public class QuizGameBattle extends AppCompatActivity {
         //comparing the text to the correctAnswer array if it is correct answer
         if (selectedAnswer.equals(correctAnswers.get(currentQuestionIndex))) {
             playRight();
-            Toast.makeText(QuizGameBattle.this, "Correct! ", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(QuizGameBattle.this, "Correct! ", Toast.LENGTH_SHORT).show();
             score++;
-            scoreTextView.setText("Score: "+score);
+//            scoreTextView.setText("Score: "+score);
         } else {
             playWrong();
-            Toast.makeText(QuizGameBattle.this, "Incorrect!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(QuizGameBattle.this, "Incorrect!", Toast.LENGTH_SHORT).show();
         }
 
         Right.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

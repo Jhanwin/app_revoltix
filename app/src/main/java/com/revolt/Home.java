@@ -30,7 +30,7 @@ public class Home extends AppCompatActivity {
         goHome.setOnClickListener(v -> finish());
 
         btnMath.setOnClickListener(v -> {
-            Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
+            Intent TopicSubjects = new Intent(getApplicationContext(), AddQuestion.class);
             TopicSubjects.putExtra("textToGet", btnMath.getText().toString());
             TopicSubjects.putExtra("Mode", Mode);
             TopicSubjects.putExtra("UserId",data);
@@ -40,7 +40,7 @@ public class Home extends AppCompatActivity {
         });
 
         btnElect.setOnClickListener(v -> {
-            Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
+            Intent TopicSubjects = new Intent(getApplicationContext(), AddQuestion.class);
             TopicSubjects.putExtra("textToGet", btnElect.getText().toString());
             TopicSubjects.putExtra("Mode", Mode);
             TopicSubjects.putExtra("UserId",data);
@@ -50,7 +50,7 @@ public class Home extends AppCompatActivity {
         });
 
         btnGenEn.setOnClickListener(v -> {
-            Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
+            Intent TopicSubjects = new Intent(getApplicationContext(), AddQuestion.class);
             TopicSubjects.putExtra("textToGet", btnGenEn.getText().toString());
             TopicSubjects.putExtra("Mode", Mode);
             TopicSubjects.putExtra("UserId",data);
@@ -60,7 +60,7 @@ public class Home extends AppCompatActivity {
         });
 
         btnElectTech.setOnClickListener(v -> {
-            Intent TopicSubjects = new Intent(getApplicationContext(), TopicSubjects.class);
+            Intent TopicSubjects = new Intent(getApplicationContext(), AddQuestion.class);
             TopicSubjects.putExtra("textToGet", btnElectTech.getText().toString());
             TopicSubjects.putExtra("Mode", Mode);
             TopicSubjects.putExtra("UserId",data);

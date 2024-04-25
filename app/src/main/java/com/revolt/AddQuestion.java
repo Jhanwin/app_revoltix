@@ -1,49 +1,73 @@
 package com.revolt;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AddQuestion extends AppCompatActivity {
 
-    DatabaseReference database;
-    EditText subject,topic,Difficulty,QuestionAdd,CorrectAnswer,WrongAnswer1,WrongAnswer2,WrongAnswer3;
-    Button btnAdd;
+
+    List<String> buttonCont = new ArrayList<>();
+
+    String TextSub,Mode,data;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_question);
 
-        subject = findViewById(R.id.subject);
-        topic = findViewById(R.id.topic);
-        Difficulty = findViewById(R.id.Difficulty);
-        QuestionAdd = findViewById(R.id.QuestionsAdd);
-        CorrectAnswer = findViewById(R.id.CorrectAnswer);
-        WrongAnswer1 = findViewById(R.id.WrongAnswer1);
-        WrongAnswer2 = findViewById(R.id.WrongAnswer2);
-        WrongAnswer3 = findViewById(R.id.WrongAnswer3);
 
-        btnAdd = findViewById(R.id.btnAddQuestions);
+        Intent intent = getIntent();
+        TextSub = intent.getStringExtra("textToGet");
+        Mode = intent.getStringExtra("Mode");
+        data = intent.getStringExtra("UserId");
 
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+
+
+        assert TextSub != null;
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub);
+        database.addValueEventListener(new ValueEventListener(){
+            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View v) {
-
-                database = FirebaseDatabase.getInstance().getReference("Subject").child(subject.getText().toString()).child(topic.getText().toString()).child(Difficulty.getText().toString());
-                database.child(QuestionAdd.getText().toString()).child("correct").child("choices1").setValue(CorrectAnswer.getText().toString());
-                database.child(QuestionAdd.getText().toString()).child("incorrect").child("choices2").setValue(WrongAnswer1.getText().toString());
-                database.child(QuestionAdd.getText().toString()).child("incorrect").child("choices3").setValue(WrongAnswer2.getText().toString());
-                database.child(QuestionAdd.getText().toString()).child("incorrect").child("choices4").setValue(WrongAnswer3.getText().toString());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    buttonCont.clear();
+                    // Iterate through all children nodes and add them to the list
+                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                        String key = childSnapshot.getKey();
+                        buttonCont.add(key);
+                    }
+                    // After populating the list, create the button and set its text
+                    createButton();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -51,9 +75,48 @@ public class AddQuestion extends AppCompatActivity {
 
 
 
+    }
 
+    private void createButton() {
 
+        for(int i = 0;i< buttonCont.size();i++){
+            Button button = new Button(this);
+            if (!buttonCont.isEmpty()) {
+                button.setText(buttonCont.get(i));
+            }
 
+            button.setBackgroundResource(R.drawable.bg_btn_subjects);
+            button.setTextColor(Color.WHITE);
+            button.setTypeface(ResourcesCompat.getFont(this, R.font.futura_display));
+            button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            );
+            button.setLayoutParams(layoutParams);
+            layoutParams.setMargins(20, 0, 20, 20);
+
+            int finalI = i;
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent quizSubDif = new Intent(getApplicationContext(), QuizSubDifficulties.class);
+                    quizSubDif.putExtra("textTopicToGet", buttonCont.get(finalI));
+                    quizSubDif.putExtra("textSubToGet", TextSub);
+                    quizSubDif.putExtra("Mode", Mode);
+                    quizSubDif.putExtra("UserId", data);
+                    startActivity(quizSubDif);
+                    finish();
+                }
+            });
+
+            LinearLayout layout = findViewById(R.id.layoutButtons);
+            layout.addView(button);
+        }
 
     }
+
+
+
 }

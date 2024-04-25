@@ -8,10 +8,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,10 +61,15 @@ public class Menu extends AppCompatActivity {
 
         final DrawerLayout dlayout = findViewById(R.id.drawerLayout);
 
+        LinearLayout lt = findViewById(R.id.buttonsLayout);
+
         menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dlayout.openDrawer(GravityCompat.START);
+//                dlayout.openDrawer(GravityCompat.START);
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) lt.getLayoutParams();
+                layoutParams.gravity = Gravity.NO_GRAVITY; // Setting gravity to NO_GRAVITY removes it
+                lt.setLayoutParams(layoutParams);
             }
         });
 

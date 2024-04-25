@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("901047780905-puboqi4bbsci1dkqs6uuijt7j09k1iee.apps.googleusercontent.com")
                 .requestEmail()
+                .setHostedDomain("g.batstate-u.edu.ph")
                 .build();
         mGoogleSigninClient = GoogleSignIn.getClient(this,gso);
 

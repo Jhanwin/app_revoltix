@@ -25,17 +25,17 @@ public class QuizSubDifficulties extends AppCompatActivity {
     TextView textTopic;
     Button btnEasy,btnMedium,btnHard;
     EditText numOfItem;
-
-    List<String> easyQ = new ArrayList<>();
-    List<String> mediumQ = new ArrayList<>();
-    List<String> hardQ = new ArrayList<>();
-
-    DatabaseReference database;
+    DatabaseReference database, databaseUser;
 
     ImageView goHome3;
 
     int easy, medium, hard;
 
+    int score, scoreMedium, scoreHard;
+
+    int scoreE, scoreM, scoreH;
+
+    int sEasy, sMedium, sHard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +104,34 @@ public class QuizSubDifficulties extends AppCompatActivity {
         });
 
 
+//        assert data != null;
+//        databaseUser = FirebaseDatabase.getInstance().getReference("users").child(data);
+//        databaseUser.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    // Iterate through all children nodes and add them to the list
+//                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+//                        scoreE = childSnapshot.child("score").getValue(Integer.class);
+//                        scoreM = childSnapshot.child("scoreMedium").getValue(Integer.class);
+//                        scoreH = childSnapshot.child("scoreHard").getValue(Integer.class);
+//                    }
+//                }
+//
+//                Toast.makeText(QuizSubDifficulties.this, scoreE+" "+scoreM+" "+scoreH, Toast.LENGTH_LONG).show();
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {}
+//        });
+//
+//
+//        Toast.makeText(QuizSubDifficulties.this, data, Toast.LENGTH_LONG).show();
+//
+//
+//
+
+
+
 
 
 
@@ -140,7 +168,6 @@ public class QuizSubDifficulties extends AppCompatActivity {
                 }
 
 
-
             }else{
 
                 if(numOfItem.getText().toString().equals("")){
@@ -164,6 +191,9 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("Mode", Mode);
                     addQuestAct.putExtra("UserId", data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    addQuestAct.putExtra("scoreEasy", score);
+                    addQuestAct.putExtra("scoreMedium", scoreMedium);
+                    addQuestAct.putExtra("scoreHard", scoreHard);
                     startActivity(addQuestAct);
                     finish();
 
