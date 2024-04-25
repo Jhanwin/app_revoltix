@@ -82,11 +82,6 @@ public class QuizGameBattle extends AppCompatActivity {
         Wrong = MediaPlayer.create(this, R.raw.wrong);
 
 
-//        references = findViewById(R.id.references);
-//
-//        String ref = TextTopicNum +" "+ TextSub +" "+ TextDiff +" "+ data +" "+ numOfItem;
-//        references.setText(ref);
-
         database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override

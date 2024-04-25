@@ -22,7 +22,7 @@ public class Menu extends AppCompatActivity {
     String data,link,email,name,substringToRemove,modCode;
     Button BtnPracticeMode,BtnBattleMode,BtnLeaderboards,PretestMode,addQuestionToDb;
     TextView txtName,srCode;
-    ImageView profileUser,btnToUserProfile, menuBtn;
+    ImageView profileUser,btnToUserProfile, menuBtn, app;
 
     MenuItem menuitem;
 
@@ -30,7 +30,6 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
 
         txtName = findViewById(R.id.txtName);
         srCode = findViewById(R.id.srCode);
@@ -43,6 +42,7 @@ public class Menu extends AppCompatActivity {
         name = intent.getStringExtra("name");
         substringToRemove = "@g.batstate-u.edu.ph";
         modCode = email.replace(substringToRemove, "");
+
 
         txtName.setText(name);
         srCode.setText(modCode);
@@ -104,6 +104,22 @@ public class Menu extends AppCompatActivity {
         });
 
 
+    }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu, (android.view.Menu) menu);
+//        return true;
+//    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.Home) {
+            Toast.makeText(Menu.this, "Home", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
