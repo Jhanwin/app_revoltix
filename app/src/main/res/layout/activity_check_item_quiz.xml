@@ -5,17 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".AddQuestion">
+    tools:context=".CheckItemQuiz">
 
-    <LinearLayout
-        android:id="@+id/layoutButtons"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/checkItemQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp"
-        tools:ignore="MissingConstraints">
-
-    </LinearLayout>
-
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

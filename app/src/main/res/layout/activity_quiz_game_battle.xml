@@ -163,7 +163,16 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_btn_google"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/imgQues"
+                            android:visibility="gone"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/app_logo"/>
 
                         <TextView
                             android:id="@+id/questionsB"

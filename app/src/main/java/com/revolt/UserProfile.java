@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UserProfile extends AppCompatActivity {
+public class UserProfile extends AppCompatActivity implements SelectListener{
 
     DatabaseReference dbRef;
 
@@ -152,7 +154,7 @@ public class UserProfile extends AppCompatActivity {
         recyclerViewHis.setHasFixedSize(true);
         recyclerViewHis.setLayoutManager(new LinearLayoutManager(this));
         listHis = new ArrayList<>();
-        myAdapterHis = new MyAdapterHistory(this, listHis);
+        myAdapterHis = new MyAdapterHistory(this, listHis, this);
         recyclerViewHis.setAdapter(myAdapterHis);
 
         dbRef.child("BattleMode").addValueEventListener(new ValueEventListener() {
@@ -248,8 +250,12 @@ public class UserProfile extends AppCompatActivity {
 
     }
 
-
-
-
-
+    @Override
+    public void onItemClicked(History history) {
+        Toast.makeText(UserProfile.this, history.getTopic(), Toast.LENGTH_LONG).show();
+        Intent checkItem = new Intent(getApplicationContext(), CheckItemQuiz.class);
+        checkItem.putExtra("idprofile", idProfile);
+        checkItem.putExtra("TimeBattleMode", history.getTime());
+        startActivity(checkItem);
+    }
 }

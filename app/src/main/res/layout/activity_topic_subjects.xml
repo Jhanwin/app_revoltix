@@ -121,85 +121,85 @@
                     android:padding="5dp">
 
 
-                    <Button
-                        android:id="@+id/btnTopic1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
+<!--                    <Button-->
+<!--                        android:id="@+id/btnTopic1"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:shadowColor="#000000"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="10"
+<!--                        android:shadowColor="#000000"-->
+<!--                        android:shadowDx="0"-->
+<!--                        android:shadowDy="0"-->
+<!--                        android:shadowRadius="10"-->
 
-                        android:background="@drawable/bg_btn_subjects"
-                        android:fontFamily="@font/futura_display"
-                        android:letterSpacing="0.1"
-                        android:padding="13dp"
-                        android:text="DC Electrical Circuits"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+<!--                        android:background="@drawable/bg_btn_subjects"-->
+<!--                        android:fontFamily="@font/futura_display"-->
+<!--                        android:letterSpacing="0.1"-->
+<!--                        android:padding="13dp"-->
+<!--                        android:text="DC Electrical Circuits"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="20sp" />-->
 
-                    <Button
-                        android:id="@+id/btnTopic2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
+<!--                    <Button-->
+<!--                        android:id="@+id/btnTopic2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:shadowColor="#000000"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="10"
+<!--                        android:shadowColor="#000000"-->
+<!--                        android:shadowDx="0"-->
+<!--                        android:shadowDy="0"-->
+<!--                        android:shadowRadius="10"-->
 
-                        android:background="@drawable/bg_btn_subjects"
-                        android:fontFamily="@font/futura_display"
-                        android:letterSpacing="0.1"
-                        android:padding="13dp"
-                        android:text="Electronic Devices and Circuits"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+<!--                        android:background="@drawable/bg_btn_subjects"-->
+<!--                        android:fontFamily="@font/futura_display"-->
+<!--                        android:letterSpacing="0.1"-->
+<!--                        android:padding="13dp"-->
+<!--                        android:text="Electronic Devices and Circuits"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="20sp" />-->
 
-                    <Button
-                        android:id="@+id/btnTopic3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_btn_subjects"
-                        android:fontFamily="@font/futura_display"
-                        android:letterSpacing="0.1"
+<!--                    <Button-->
+<!--                        android:id="@+id/btnTopic3"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@drawable/bg_btn_subjects"-->
+<!--                        android:fontFamily="@font/futura_display"-->
+<!--                        android:letterSpacing="0.1"-->
 
-                        android:shadowColor="#000000"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="10"
+<!--                        android:shadowColor="#000000"-->
+<!--                        android:shadowDx="0"-->
+<!--                        android:shadowDy="0"-->
+<!--                        android:shadowRadius="10"-->
 
-                        android:padding="13dp"
-                        android:text="Topic 3"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+<!--                        android:padding="13dp"-->
+<!--                        android:text="Topic 3"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="20sp" />-->
 
-                    <Button
-                        android:id="@+id/btnTopic4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_btn_subjects"
-                        android:fontFamily="@font/futura_display"
-                        android:letterSpacing="0.1"
+<!--                    <Button-->
+<!--                        android:id="@+id/btnTopic4"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@drawable/bg_btn_subjects"-->
+<!--                        android:fontFamily="@font/futura_display"-->
+<!--                        android:letterSpacing="0.1"-->
 
-                        android:shadowColor="#000000"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="10"
+<!--                        android:shadowColor="#000000"-->
+<!--                        android:shadowDx="0"-->
+<!--                        android:shadowDy="0"-->
+<!--                        android:shadowRadius="10"-->
 
-                        android:padding="13dp"
-                        android:text="Topic 4"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+<!--                        android:padding="13dp"-->
+<!--                        android:text="Topic 4"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="20sp" />-->
 
 
                 </LinearLayout>

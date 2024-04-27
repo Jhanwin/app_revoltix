@@ -42,15 +42,15 @@ public class ScoreDashboard extends AppCompatActivity {
         assert numOfItem != null;
         float numberItem = Float.parseFloat(numOfItem);
 
-        float comp = (float) (numberItem * 0.7);
-
-        if(comp <= numScore){
-            playPassed();
-            Toast.makeText(ScoreDashboard.this, "You Passed", Toast.LENGTH_LONG).show();
-        }else{
-            playFailed();
-            Toast.makeText(ScoreDashboard.this, "You Failed", Toast.LENGTH_LONG).show();
-        }
+//        float comp = (float) (numberItem * 0.7);
+//
+//        if(comp <= numScore){
+//            playPassed();
+//            Toast.makeText(ScoreDashboard.this, "You Passed", Toast.LENGTH_LONG).show();
+//        }else{
+//            playFailed();
+//            Toast.makeText(ScoreDashboard.this, "You Failed", Toast.LENGTH_LONG).show();
+//        }
 
         scoreFinish = findViewById(R.id.scoreFinish);
 //        summary = findViewById(R.id.summary);
@@ -75,7 +75,7 @@ public class ScoreDashboard extends AppCompatActivity {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
         String formattedDateTime = currentTime.format(formatter);
 
-        scoreFinish.setText(score);
+        scoreFinish.setText("Congratulation, you finish the quiz");
         date.setText(currentDate.toString());
         time.setText(formattedDateTime);
 

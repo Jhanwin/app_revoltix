@@ -115,6 +115,7 @@
                     android:layout_marginTop="25dp"
                     android:background="@drawable/glassmorphism"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="10dp">
 
                     <EditText
@@ -137,6 +138,15 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.065"
                         tools:layout_editor_absoluteX="-16dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="152dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+
+                        android:padding="10dp" />
+
 
 
                 </LinearLayout>

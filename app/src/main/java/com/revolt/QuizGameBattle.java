@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.time.LocalDate;
 
@@ -27,12 +30,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class QuizGameBattle extends AppCompatActivity {
     List<String> questions = new ArrayList<>();
     List<String> correctAnswers = new ArrayList<>();
     List<List<String>> confusionChoices = new ArrayList<>();
+    List<String> imageQuestion = new ArrayList<>();
+
+    List<String> selected = new ArrayList<>();
+
+    List<String> remarks = new ArrayList<>();
+
+
+    ImageView imgQues;
     DatabaseReference database;
     private RadioGroup answerRadioGroup;
     TextView txt1,timerTextView,scoreTextView,itemTextView;
@@ -40,14 +52,15 @@ public class QuizGameBattle extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     int score;
     int itemNum = 1;
-    int questionCounter;
-    private static final long TIMER_DURATION = 20000; // 20 seconds
+    int questionCounter, numTime;
+//    private static final long TIMER_DURATION = 10000; // 20 seconds
+    long TIMER_DURATION;
+
     private CountDownTimer countDownTimer;
-    String data,TextDiff,numOfItem,TextTopicNum;
+    String data,TextDiff,numOfItem,TextTopicNum,selectedTime;
     String scoreEasy, scoreMedium, scoreHard;
     MediaPlayer Right, Wrong;
 
-    int sEasy, sMedium, sHard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,18 +74,17 @@ public class QuizGameBattle extends AppCompatActivity {
         TextDiff = intent.getStringExtra("textDifficulties");
         data = intent.getStringExtra("UserId");
         numOfItem = intent.getStringExtra("NumberOfItem");
-//        scoreEasy = intent.getStringExtra("scoreEasy");
-//        scoreMedium = intent.getStringExtra("scoreMedium");
-//        scoreHard = intent.getStringExtra("scoreHard");
+        selectedTime = intent.getStringExtra("selectedTime");
+
+
 
         assert numOfItem != null;
         questionCounter = Integer.parseInt(numOfItem);
 
+        assert selectedTime != null;
+        numTime = Integer.parseInt(selectedTime);
 
-//
-//        sEasy = Integer.parseInt(scoreEasy);
-//        sMedium = Integer.parseInt(scoreMedium);
-//        sHard = Integer.parseInt(scoreHard);
+        TIMER_DURATION = 3600000L * numTime;
 
         assert TextSub != null;
         assert TextTopicNum != null;
@@ -86,11 +98,12 @@ public class QuizGameBattle extends AppCompatActivity {
         c4 = findViewById(R.id.answerOption4B);
         answerRadioGroup = findViewById(R.id.answerRadioGroupB);
         timerTextView = findViewById(R.id.timerTextView);
-//        scoreTextView = findViewById(R.id.scoreTextView);
         itemTextView = findViewById(R.id.itemTextView);
 
         Right = MediaPlayer.create(this, R.raw.correct);
         Wrong = MediaPlayer.create(this, R.raw.wrong);
+
+        imgQues = findViewById(R.id.imgQues);
 
 
         database.addValueEventListener(new ValueEventListener() {
@@ -122,6 +135,13 @@ public class QuizGameBattle extends AppCompatActivity {
                         String choice3 = child.child("incorrect").child("choice3").child("choiceText").getValue(String.class);
                         String choice4 = child.child("incorrect").child("choice4").child("choiceText").getValue(String.class);
 
+                        if(child.child("question").hasChild("questionImageURL")){
+                            String questionImage = child.child("question").child("questionImageURL").getValue(String.class);
+                            imageQuestion.add(questionImage);
+                        }else {
+                            imageQuestion.add("blank");
+                        }
+
                         questions.add(question);
                         correctAnswers.add(correctAns);
 
@@ -138,8 +158,8 @@ public class QuizGameBattle extends AppCompatActivity {
 
                     displayQuestion();
                     startTimer();
-//                    scoreTextView.setText("Score: 0");
                     itemTextView.setText("Item "+itemNum);
+                    Toast.makeText(QuizGameBattle.this, scoreEasy+" "+scoreMedium+" "+scoreHard, Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -180,7 +200,14 @@ public class QuizGameBattle extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onTick(long millisUntilFinished) {
-                timerTextView.setText("Time: " + millisUntilFinished / 1000 + "s");
+//                timerTextView.setText("Time: " + millisUntilFinished / 1000 + "s");
+                long seconds = millisUntilFinished / 1000;
+                long hours = seconds / 3600;
+                long minutes = (seconds % 3600) / 60;
+                seconds = seconds % 60;
+
+                @SuppressLint("DefaultLocale") String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+                timerTextView.setText("Time: " + timeString);
             }
 
             @SuppressLint("SetTextI18n")
@@ -223,6 +250,14 @@ public class QuizGameBattle extends AppCompatActivity {
     }
 
     private void displayQuestion() {
+
+        if(!imageQuestion.get(currentQuestionIndex).equals("blank")){
+            Picasso.get().load(imageQuestion.get(currentQuestionIndex)).into(imgQues);
+            imgQues.setVisibility(View.VISIBLE);
+        }else{
+            imgQues.setVisibility(View.GONE);
+        }
+
         txt1.setText(questions.get(currentQuestionIndex));
 
         //resetting the radio button
@@ -274,6 +309,33 @@ public class QuizGameBattle extends AppCompatActivity {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
         String formattedDateTime = currentTime.format(formatter);
 
+//        DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("users");
+//        ValueEventListener valueEventListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    if(snapshot.hasChild(data)) {
+//
+//                        DataSnapshot child = snapshot.child(data);
+//
+//                        int score = child.child("score").getValue(Integer.class);
+//                        int scoreMedium = child.child("scoreMedium").getValue(Integer.class);
+//                        int scoreHard = child.child("scoreHard").getValue(Integer.class);
+//
+//
+//
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        };
+//
+//        databaseUser.addValueEventListener(valueEventListener);
+
+
         assert data != null;
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("users").child(data);
 
@@ -283,14 +345,42 @@ public class QuizGameBattle extends AppCompatActivity {
         db.child("BattleMode").child(formattedDateTime).child("Topic").setValue(TextTopicNum);
         db.child("BattleMode").child(formattedDateTime).child("Difficulty").setValue(TextDiff);
 
-//        db.child("score").setValue(score);
-        db.child("scoreMedium").setValue(score);
-        db.child("scoreHard").setValue(score);
+        HashMap<String,Object> map = new HashMap<>();
+
+        for(int i = 0;i<questions.size();i++) {
+
+            db.child("BattleMode")
+                    .child(formattedDateTime)
+                    .child("Item")
+                    .child("question"+(i+1))
+                    .child("question").setValue(questions.get(i));
+
+            db.child("BattleMode")
+                    .child(formattedDateTime)
+                    .child("Item")
+                    .child("question"+(i+1))
+                    .child("selectedAnswer").setValue(selected.get(i));
+
+            db.child("BattleMode")
+                    .child(formattedDateTime)
+                    .child("Item")
+                    .child("question"+(i+1))
+                    .child("remarks").setValue(remarks.get(i));
+
+            db.child("BattleMode")
+                    .child(formattedDateTime)
+                    .child("Item")
+                    .child("question"+(i+1))
+                    .child("correctAnswer").setValue(correctAnswers.get(i));
+
+        }
+
 
 
         Intent ScoreBoard = new Intent(getApplicationContext(), ScoreDashboard.class);
         ScoreBoard.putExtra("Score",Integer.toString(score));
         ScoreBoard.putExtra("numOfItem",numOfItem);
+//        databaseUser.removeEventListener(valueEventListener);
         startActivity(ScoreBoard);
     }
 
@@ -309,12 +399,16 @@ public class QuizGameBattle extends AppCompatActivity {
         //comparing the text to the correctAnswer array if it is correct answer
         if (selectedAnswer.equals(correctAnswers.get(currentQuestionIndex))) {
             playRight();
-//            Toast.makeText(QuizGameBattle.this, "Correct! ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(QuizGameBattle.this, "Correct! ", Toast.LENGTH_SHORT).show();
+            selected.add(selectedAnswer);
+            remarks.add("correct");
             score++;
 //            scoreTextView.setText("Score: "+score);
         } else {
             playWrong();
-//            Toast.makeText(QuizGameBattle.this, "Incorrect!", Toast.LENGTH_SHORT).show();
+            selected.add(selectedAnswer);
+            remarks.add("wrong");
+            Toast.makeText(QuizGameBattle.this, "Incorrect!", Toast.LENGTH_SHORT).show();
         }
 
         Right.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -328,12 +422,13 @@ public class QuizGameBattle extends AppCompatActivity {
                     itemNum++;
                     itemTextView.setText("Item " +itemNum);
                 } else {
+                    SaveDataToDatabase();
                     countDownTimer.cancel();
                     questions.clear();
                     correctAnswers.clear();
                     confusionChoices.clear();
                     Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
-                    SaveDataToDatabase();
+
                     finish();
                     //ending of quiz
                 }
@@ -351,12 +446,12 @@ public class QuizGameBattle extends AppCompatActivity {
                     itemNum++;
                     itemTextView.setText("Item " +itemNum);
                 } else {
+                    SaveDataToDatabase();
                     countDownTimer.cancel();
                     questions.clear();
                     correctAnswers.clear();
                     confusionChoices.clear();
                     Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
-                    SaveDataToDatabase();
                     finish();
                     //ending of quiz
                 }

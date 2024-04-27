@@ -2,11 +2,13 @@ package com.revolt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,7 +34,8 @@ public class TopicSubjects extends AppCompatActivity {
     ImageView goHome2;
     TextView textSubject;
 
-    DatabaseReference dbUser;
+    String TextSub, Mode, data;
+    int sEasy, sMedium, sHard;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -43,120 +46,86 @@ public class TopicSubjects extends AppCompatActivity {
         textSubject = findViewById(R.id.textSubject);
 
         Intent intent = getIntent();
-        String TextSub = intent.getStringExtra("textToGet");
-        String Mode = intent.getStringExtra("Mode");
-        String data = intent.getStringExtra("UserId");
+        TextSub = intent.getStringExtra("textToGet");
+        Mode = intent.getStringExtra("Mode");
+        data = intent.getStringExtra("UserId");
         textSubject.setText(TextSub);
-
-        btnTopic1 = findViewById(R.id.btnTopic1);
-        btnTopic2 = findViewById(R.id.btnTopic2);
-        btnTopic3 = findViewById(R.id.btnTopic3);
-        btnTopic4 = findViewById(R.id.btnTopic4);
         goHome2 = findViewById(R.id.goHome2);
 
         goHome2.setOnClickListener(v -> finish());
 
 
-//        assert TextSub != null;
-//        DatabaseReference database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub);
-//
-//        database.addValueEventListener(new ValueEventListener() {
-//            @SuppressLint("SetTextI18n")
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    // Iterate through all children nodes and add them to the list
-//                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-//
-//                        String key = childSnapshot.getKey();
-//                        buttonCont.add(key);
-//
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
+        assert TextSub != null;
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub);
+        database.addValueEventListener(new ValueEventListener(){
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    buttonCont.clear();
+                    // Iterate through all children nodes and add them to the list
+                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                        String key = childSnapshot.getKey();
+                        buttonCont.add(key);
+                    }
+                    // After populating the list, create the button and set its text
+                    createButton();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        switch (Objects.requireNonNull(TextSub)) {
-            case "Electronics Engineering":
-                btnTopic1.setText("DC Electrical Circuits");
-                btnTopic2.setText("AC Electrical Circuits");
-                btnTopic3.setText("Electronic Devices and Circuits");
-                btnTopic4.setText("Electronic Circuit Analysis and Design");
-                break;
-            case "Electronics Systems and Technologies":
-                btnTopic1.setText("Principles of Communications");
-                btnTopic2.setText("Transmission and Antenna Systems");
-                btnTopic3.setText("Digital Communications");
-                btnTopic4.setVisibility(View.GONE);
-                break;
-            case "General Engineering & Applied Sciences":
-                btnTopic1.setText("Chemistry");
-                btnTopic2.setText("Physics 1");
-                btnTopic3.setText("Physics 2");
-                btnTopic4.setText("Engineering Management");
-                break;
-            case "Mathematics":
-                btnTopic1.setText("Differential Calculus");
-                btnTopic2.setText("Differential Equations");
-                btnTopic3.setVisibility(View.GONE);
-                btnTopic4.setVisibility(View.GONE);
-                break;
-        }
-
-
-
-        btnTopic1.setOnClickListener(v -> {
-                Intent quizSubDif = new Intent(getApplicationContext(), QuizSubDifficulties.class);
-                quizSubDif.putExtra("textTopicToGet", btnTopic1.getText().toString());
-                quizSubDif.putExtra("textSubToGet", TextSub);
-                quizSubDif.putExtra("Mode", Mode);
-                quizSubDif.putExtra("UserId", data);
-                startActivity(quizSubDif);
-                finish();
-
-            });
-
-        btnTopic2.setOnClickListener(v -> {
-                Intent quizSubDif = new Intent(getApplicationContext(), QuizSubDifficulties.class);
-                quizSubDif.putExtra("textTopicToGet", btnTopic2.getText().toString());
-                quizSubDif.putExtra("textSubToGet", TextSub);
-                quizSubDif.putExtra("UserId", data);
-                quizSubDif.putExtra("Mode", Mode);
-                startActivity(quizSubDif);
-                finish();
-
-            });
-
-        btnTopic3.setOnClickListener(v -> {
-                Intent quizSubDif = new Intent(getApplicationContext(), QuizSubDifficulties.class);
-                quizSubDif.putExtra("textTopicToGet", btnTopic3.getText().toString());
-                quizSubDif.putExtra("textSubToGet", TextSub);
-                quizSubDif.putExtra("UserId", data);
-                quizSubDif.putExtra("Mode", Mode);
-                startActivity(quizSubDif);
-                finish();
-
-            });
-
-        btnTopic4.setOnClickListener(v -> {
-                Intent quizSubDif = new Intent(getApplicationContext(), QuizSubDifficulties.class);
-                quizSubDif.putExtra("textTopicToGet", btnTopic4.getText().toString());
-                quizSubDif.putExtra("textSubToGet", TextSub);
-                quizSubDif.putExtra("UserId", data);
-                quizSubDif.putExtra("Mode", Mode);
-                startActivity(quizSubDif);
-                finish();
-
-            });
-
-
+            }
+        });
 
 
 
     }
+
+    private void createButton() {
+
+        for(int i = 0;i< buttonCont.size();i++){
+            Button button = new Button(this);
+
+            if (!buttonCont.isEmpty()) {
+                button.setText(buttonCont.get(i));
+            }
+
+            button.setBackgroundResource(R.drawable.bg_btn_subjects);
+            button.setTextColor(Color.WHITE);
+            button.setTypeface(ResourcesCompat.getFont(this, R.font.futura_display));
+            button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            );
+            button.setLayoutParams(layoutParams);
+            layoutParams.setMargins(20, 0, 20, 20);
+
+            int finalI = i;
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent quizSubDif = new Intent(getApplicationContext(), QuizSubDifficulties.class);
+                    quizSubDif.putExtra("textTopicToGet", buttonCont.get(finalI));
+                    quizSubDif.putExtra("textSubToGet", TextSub);
+                    quizSubDif.putExtra("Mode", Mode);
+                    quizSubDif.putExtra("UserId", data);
+                    quizSubDif.putExtra("sEasy", sEasy);
+                    quizSubDif.putExtra("sMedium", sMedium);
+                    quizSubDif.putExtra("sHard", sHard);
+                    startActivity(quizSubDif);
+
+                }
+            });
+
+            LinearLayout layout = findViewById(R.id.topicButtons);
+            layout.addView(button);
+        }
+
+    }
+
+
 }

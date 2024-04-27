@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +40,8 @@ public class QuizSubDifficulties extends AppCompatActivity {
     int scoreE, scoreM, scoreH;
 
     int sEasy, sMedium, sHard;
+
+    String selectedItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +58,49 @@ public class QuizSubDifficulties extends AppCompatActivity {
         String TextSub = intent.getStringExtra("textSubToGet");
         String Mode = intent.getStringExtra("Mode");
         String data = intent.getStringExtra("UserId");
+        String sEasy = intent.getStringExtra("sEasy");
+        String sMedium = intent.getStringExtra("sMedium");
+        String sHard = intent.getStringExtra("sHard");
 
         textTopic.setText(TextTopicNum);
         goHome3 = findViewById(R.id.goHome3);
-
         goHome3.setOnClickListener(v -> finish());
+
+
+
+        // In your activity's onCreate method
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.dropdown_options, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Perform action based on selected item
+                selectedItem = (String) parentView.getItemAtPosition(position);
+                Toast.makeText(QuizSubDifficulties.this, selectedItem, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
 
         assert TextSub != null;
         assert TextTopicNum != null;
@@ -102,36 +146,6 @@ public class QuizSubDifficulties extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
-
-
-//        assert data != null;
-//        databaseUser = FirebaseDatabase.getInstance().getReference("users").child(data);
-//        databaseUser.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    // Iterate through all children nodes and add them to the list
-//                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-//                        scoreE = childSnapshot.child("score").getValue(Integer.class);
-//                        scoreM = childSnapshot.child("scoreMedium").getValue(Integer.class);
-//                        scoreH = childSnapshot.child("scoreHard").getValue(Integer.class);
-//                    }
-//                }
-//
-//                Toast.makeText(QuizSubDifficulties.this, scoreE+" "+scoreM+" "+scoreH, Toast.LENGTH_LONG).show();
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {}
-//        });
-//
-//
-//        Toast.makeText(QuizSubDifficulties.this, data, Toast.LENGTH_LONG).show();
-//
-//
-//
-
-
-
 
 
 
@@ -191,9 +205,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("Mode", Mode);
                     addQuestAct.putExtra("UserId", data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
-                    addQuestAct.putExtra("scoreEasy", score);
-                    addQuestAct.putExtra("scoreMedium", scoreMedium);
-                    addQuestAct.putExtra("scoreHard", scoreHard);
+                    addQuestAct.putExtra("sEasy", sEasy);
+                    addQuestAct.putExtra("sMedium", sMedium);
+                    addQuestAct.putExtra("sHard", sHard);
+                    addQuestAct.putExtra("selectedTime", selectedItem);
                     startActivity(addQuestAct);
                     finish();
 
@@ -255,6 +270,12 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("Mode", Mode);
                     addQuestAct.putExtra("UserId", data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+
+                    addQuestAct.putExtra("sEasy", sEasy);
+                    addQuestAct.putExtra("sMedium", sMedium);
+                    addQuestAct.putExtra("sHard", sHard);
+
+                    addQuestAct.putExtra("selectedTime", selectedItem);
                     startActivity(addQuestAct);
                     finish();
 
@@ -317,6 +338,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("Mode", Mode);
                     addQuestAct.putExtra("UserId", data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    addQuestAct.putExtra("sEasy", sEasy);
+                    addQuestAct.putExtra("sMedium", sMedium);
+                    addQuestAct.putExtra("sHard", sHard);
+                    addQuestAct.putExtra("selectedTime", selectedItem);
                     startActivity(addQuestAct);
                     finish();
 
