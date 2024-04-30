@@ -14,27 +14,29 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MyAdapterNew extends RecyclerView.Adapter<MyAdapterNew.MyViewHolder> {
+public class AdapterHard extends RecyclerView.Adapter<AdapterHard.MyViewHolder>{
+
     Context context;
     ArrayList<UserNew> list;
 
 //    int dataScore;
 
-    public MyAdapterNew(Context context, ArrayList<UserNew> list) {
+    public AdapterHard(Context context, ArrayList<UserNew> list) {
         this.context = context;
         this.list = list;
 
     }
 
+
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterHard.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item3,parent,false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterHard.MyViewHolder holder, int position) {
 
         UserNew usernew = list.get(position);
 
@@ -46,7 +48,7 @@ public class MyAdapterNew extends RecyclerView.Adapter<MyAdapterNew.MyViewHolder
             String modCode = usernew.getEmail().replace(substringToRemove, "");
             holder.email.setText(modCode);
 //            holder.score.setText(String.valueOf(usernew.getScore()));
-            holder.score.setText(String.valueOf(usernew.getScore()));
+            holder.score.setText(String.valueOf(usernew.getScoreHard()));
             Picasso.get().load(usernew.getProfile()).into(holder.ProfilePicture);
         }
 
@@ -71,6 +73,10 @@ public class MyAdapterNew extends RecyclerView.Adapter<MyAdapterNew.MyViewHolder
             rank = itemView.findViewById(R.id.RankVal);
 
         }
-    }
 
+
+
+
+
+    }
 }

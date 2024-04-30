@@ -58,27 +58,27 @@
                 app:layout_constraintVertical_bias="0.146"
                 tools:layout_editor_absoluteX="0dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="horizontal">-->
 
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/TextViewScore"-->
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:id="@+id/TextViewScore"&ndash;&gt;-->
 
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:fontFamily="@font/futura_display"-->
-<!--                        android:text="@string/your_score"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:textColor="@color/yellow"-->
-<!--                        android:textSize="40sp" />-->
+<!--&lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:fontFamily="@font/futura_display"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="@string/your_score"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textAlignment="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/yellow"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="40sp" />&ndash;&gt;-->
 
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -14,27 +14,27 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MyAdapterNew extends RecyclerView.Adapter<MyAdapterNew.MyViewHolder> {
+public class AdapterMedium extends RecyclerView.Adapter<AdapterMedium.MyViewHolder>{
+
     Context context;
     ArrayList<UserNew> list;
 
-//    int dataScore;
-
-    public MyAdapterNew(Context context, ArrayList<UserNew> list) {
+    public AdapterMedium(Context context, ArrayList<UserNew> list) {
         this.context = context;
         this.list = list;
 
     }
 
+
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterMedium.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item3,parent,false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterMedium.MyViewHolder holder, int position) {
 
         UserNew usernew = list.get(position);
 
@@ -46,7 +46,7 @@ public class MyAdapterNew extends RecyclerView.Adapter<MyAdapterNew.MyViewHolder
             String modCode = usernew.getEmail().replace(substringToRemove, "");
             holder.email.setText(modCode);
 //            holder.score.setText(String.valueOf(usernew.getScore()));
-            holder.score.setText(String.valueOf(usernew.getScore()));
+            holder.score.setText(String.valueOf(usernew.getScoreMedium()));
             Picasso.get().load(usernew.getProfile()).into(holder.ProfilePicture);
         }
 
@@ -57,10 +57,12 @@ public class MyAdapterNew extends RecyclerView.Adapter<MyAdapterNew.MyViewHolder
         return Math.min(list.size(), 3);
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
 
         TextView name,email,score,rank;
         ImageView ProfilePicture;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -70,7 +72,7 @@ public class MyAdapterNew extends RecyclerView.Adapter<MyAdapterNew.MyViewHolder
             ProfilePicture = itemView.findViewById(R.id.ProfilePicture);
             rank = itemView.findViewById(R.id.RankVal);
 
+
         }
     }
-
 }

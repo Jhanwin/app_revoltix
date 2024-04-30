@@ -15,6 +15,12 @@
         android:theme="@style/Theme.Revolt"
         tools:targetApi="31">
         <activity
+            android:name=".LeaderboardHard"
+            android:exported="false" />
+        <activity
+            android:name=".LeaderboardMedium"
+            android:exported="false" />
+        <activity
             android:name=".CheckItemQuiz"
             android:exported="false" />
         <activity

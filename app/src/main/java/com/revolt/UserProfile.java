@@ -15,10 +15,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,7 +55,8 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
     ImageView UserProPicture;
     Button back;
 
-    BarChart barchart,barchart2,barchart3;
+
+    BarChart barchart, barchart2, barchart3;
 
     String idProfile;
 
@@ -189,32 +199,38 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
 
     public void BarChart(){
         barchart = findViewById(R.id.barchart);
-//        pieChart = findViewById(R.id.pieChart);
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
         for(int i = 0;i<values.size();i++){
             BarEntry barEntry = new BarEntry(i,values.get(i));
-//            PieEntry pieEntry = new PieEntry(i,value);
             barEntries.add(barEntry);
-//            pieEntries.add(pieEntry);
         }
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "Students");
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        barDataSet.setDrawValues(false);
+//        barDataSet.setDrawValues(false);
+
+        barDataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getBarLabel(BarEntry barEntry) {
+                // Here you can customize the label for each bar entry
+                int index = (int) barEntry.getX();
+                // Retrieve additional data or descriptions based on the index
+                return "Another";
+            }
+        });
+
         barchart.setData(new BarData(barDataSet));
         barchart.animateY(500);
-        barchart.getDescription().setText("Students Chart");
+        barchart.getDescription().setText("Easy Chart");
+        barchart.getDescription().setPosition(600, 100);
         barchart.getDescription().setTextColor(Color.BLUE);
 
-//        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Scores");
-//        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-//        pieChart.setData(new PieData(pieDataSet));
-//        pieChart.animateXY(1000,1000);
-//        pieChart.getDescription().setEnabled(false);
     }
+
+
 
     public void BarChartMedium(){
         barchart2 = findViewById(R.id.barchartMedium);

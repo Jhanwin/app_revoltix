@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,11 +23,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class LeaderVersionTwo extends AppCompatActivity {
+public class LeaderboardHard extends AppCompatActivity {
+
 
     RecyclerView recyclerView;
     DatabaseReference database;
-    MyAdapterNew myAdapter;
+    AdapterHard myAdapter;
     ArrayList<UserNew> list;
 
     LinearLayout linLayout4;
@@ -41,18 +41,17 @@ public class LeaderVersionTwo extends AppCompatActivity {
 
     String nameGet;
 
-    int dataScore,i=0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leader_version_two);
+        setContentView(R.layout.activity_leaderboard_hard);
+
 
         testing = findViewById(R.id.Testing);
-        rankval = findViewById(R.id.RankVal);
-        txtNameUser = findViewById(R.id.txtNameUser);
-        txtScore = findViewById(R.id.txtScore);
-        ProfilePicture = findViewById(R.id.ProfilePicture);
+        rankval = findViewById(R.id.RankValH);
+        txtNameUser = findViewById(R.id.txtNameUserH);
+        txtScore = findViewById(R.id.txtScoreH);
+        ProfilePicture = findViewById(R.id.ProfilePictureH);
 
         Intent intent = getIntent();
         nameGet = intent.getStringExtra("NameUser");
@@ -61,7 +60,7 @@ public class LeaderVersionTwo extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference("users");
         recyclerView.setHasFixedSize(true);
         list = new ArrayList<>();
-        myAdapter = new MyAdapterNew(this, list);
+        myAdapter = new AdapterHard(this, list);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -70,6 +69,16 @@ public class LeaderVersionTwo extends AppCompatActivity {
         btnBoardEasy = findViewById(R.id.btnBoardEasy);
         btnBoardMedium = findViewById(R.id.btnBoardMedium);
         btnBoardHard = findViewById(R.id.btnBoardHard);
+
+        btnBoardEasy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toEasy = new Intent(getApplicationContext(), LeaderVersionTwo.class);
+                toEasy.putExtra("NameUser",nameGet);
+                startActivity(toEasy);
+                finish();
+            }
+        });
 
         btnBoardMedium.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,21 +90,13 @@ public class LeaderVersionTwo extends AppCompatActivity {
             }
         });
 
-        btnBoardHard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toHard = new Intent(getApplicationContext(), LeaderboardHard.class);
-                toHard.putExtra("NameUser",nameGet);
-                startActivity(toHard);
-            }
-        });
-
         LoadLeaderboard();
-//
+
 
 
 
     }
+
 
 
     public void LoadLeaderboard(){
@@ -118,7 +119,7 @@ public class LeaderVersionTwo extends AppCompatActivity {
                 }
 
                 list.sort((user1, user2) -> {
-                    return Integer.compare(user2.getScore(), user1.getScore());
+                    return Integer.compare(user2.getScoreHard(), user1.getScoreHard());
                 });
 
                 linLayout4.setVisibility(View.VISIBLE);
@@ -130,7 +131,7 @@ public class LeaderVersionTwo extends AppCompatActivity {
                         Picasso.get().load(list.get(i).getProfile()).into(ProfilePicture);
                         txtNameUser.setText(name);
                         rankval.setText(text);
-                        txtScore.setText(String.valueOf(list.get(i).getScore()));
+                        txtScore.setText(String.valueOf(list.get(i).getScoreHard()));
                         break;
                     }
                 }
@@ -146,10 +147,4 @@ public class LeaderVersionTwo extends AppCompatActivity {
     }
 
 
-
-
-
-
 }
-
-
