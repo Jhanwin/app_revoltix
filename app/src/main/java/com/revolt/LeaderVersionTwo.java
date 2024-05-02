@@ -43,6 +43,8 @@ public class LeaderVersionTwo extends AppCompatActivity {
 
     int dataScore,i=0;
 
+    ValueEventListener easyLeader;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +78,7 @@ public class LeaderVersionTwo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent toMedium = new Intent(getApplicationContext(), LeaderboardMedium.class);
                 toMedium.putExtra("NameUser",nameGet);
+                database.removeEventListener(easyLeader);
                 startActivity(toMedium);
                 finish();
             }
@@ -86,6 +89,7 @@ public class LeaderVersionTwo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent toHard = new Intent(getApplicationContext(), LeaderboardHard.class);
                 toHard.putExtra("NameUser",nameGet);
+                database.removeEventListener(easyLeader);
                 startActivity(toHard);
                 finish();
             }
@@ -101,7 +105,7 @@ public class LeaderVersionTwo extends AppCompatActivity {
 
     public void LoadLeaderboard(){
 
-        database.addValueEventListener(new ValueEventListener() {
+        easyLeader = new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -142,8 +146,20 @@ public class LeaderVersionTwo extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });
+        };
 
+        database.addValueEventListener(easyLeader);
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        // Call finish to close the current activity when the back button is pressed
+        super.onBackPressed();
+        database.removeEventListener(easyLeader);
+        Toast.makeText(LeaderVersionTwo.this, "Back", Toast.LENGTH_LONG).show();
+        finish();
     }
 
 

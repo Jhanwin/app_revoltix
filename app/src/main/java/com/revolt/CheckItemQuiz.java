@@ -70,6 +70,15 @@ public class CheckItemQuiz extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        // Call finish to close the current activity when the back button is pressed
+        super.onBackPressed();
+        dbRef.child("BattleMode").child(time).child("Item").removeEventListener(checkAllItem);
+        Toast.makeText(CheckItemQuiz.this, "Back", Toast.LENGTH_LONG).show();
+        finish();
+    }
+
 
     public void ShowHistory(){
 

@@ -96,7 +96,6 @@ public class TopicSubjects extends AppCompatActivity {
         fetchData(new ValueEventListenerCallback() {
             @Override
             public void onDataChangeCompleted() {
-//                Toast.makeText(TopicSubjects.this, "Masaya kana?", Toast.LENGTH_LONG).show();
                 database.removeEventListener(listTopic);
             }
         });

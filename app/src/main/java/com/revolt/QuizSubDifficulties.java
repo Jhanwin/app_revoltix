@@ -391,14 +391,17 @@ public class QuizSubDifficulties extends AppCompatActivity {
 
         });
 
+    }
 
-
-
-
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        // Call finish to close the current activity when the back button is pressed
+        super.onBackPressed();
+        database.child("Easy").removeEventListener(getNumEasy);
+        database.child("Medium").removeEventListener(getNumMedium);
+        database.child("Hard").removeEventListener(getNumHard);
+        Toast.makeText(QuizSubDifficulties.this, "Back", Toast.LENGTH_LONG).show();
+        finish();
     }
 
 

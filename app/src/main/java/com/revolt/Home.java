@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
@@ -68,5 +69,13 @@ public class Home extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Call finish to close the current activity when the back button is pressed
+        super.onBackPressed();
+        Toast.makeText(Home.this, "Back", Toast.LENGTH_LONG).show();
+        finish();
     }
 }

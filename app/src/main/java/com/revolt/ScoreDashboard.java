@@ -4,22 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+
 import android.content.Intent;
-import android.media.MediaPlayer;
+
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.Path;
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -32,7 +33,7 @@ public class ScoreDashboard extends AppCompatActivity {
     TextView scoreFinish,date,time;
     ImageView goHomeScore;
 
-    MediaPlayer passed, failed;
+
 
     DatabaseReference db;
 
@@ -46,10 +47,9 @@ public class ScoreDashboard extends AppCompatActivity {
 
     ValueEventListener updateAllScore;
 
-    boolean exists;
 
 
-    @SuppressLint("RestrictedApi")
+    @SuppressLint({"RestrictedApi", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,17 +57,12 @@ public class ScoreDashboard extends AppCompatActivity {
 
         Intent intent = getIntent();
         score = intent.getStringExtra("Score");
-        String numOfItem = intent.getStringExtra("numOfItem");
         id = intent.getStringExtra("UserId");
 
-//        passed = MediaPlayer.create(this, R.raw.passed);
-//        failed = MediaPlayer.create(this, R.raw.fail);
+
 
         assert score != null;
         numScore = Integer.parseInt(score);
-        assert numOfItem != null;
-        float numberItem = Float.parseFloat(numOfItem);
-
 
 
         scoreFinish = findViewById(R.id.scoreFinish);
@@ -96,8 +91,6 @@ public class ScoreDashboard extends AppCompatActivity {
         date.setText(currentDate.toString());
         time.setText(formattedDateTime);
 
-        Toast.makeText(ScoreDashboard.this, id,Toast.LENGTH_LONG).show();
-
         db = FirebaseDatabase.getInstance().getReference("users").child(id);
         updateAllScore = new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -105,9 +98,7 @@ public class ScoreDashboard extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    String key = dataSnapshot.getKey();
 
-//                    Toast.makeText(ScoreDashboard.this, key,Toast.LENGTH_LONG).show();
 
                     String diff = dataSnapshot.child("Difficulty").getValue(String.class);
                     int score = dataSnapshot.child("score").getValue(Integer.class);
@@ -126,7 +117,6 @@ public class ScoreDashboard extends AppCompatActivity {
 
                 }
 
-//                Toast.makeText(ScoreDashboard.this, easyTotal+" "+mediumTotal+" "+hardTotal,Toast.LENGTH_LONG).show();
                 db.child("score").setValue(easyTotal);
                 db.child("scoreMedium").setValue(mediumTotal);
                 db.child("scoreHard").setValue(hardTotal);
@@ -137,60 +127,26 @@ public class ScoreDashboard extends AppCompatActivity {
             }
         };
 
-//        db.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                // Check if the key exists
-//                exists = dataSnapshot.hasChild("BattleMode");
-//                if(exists){
-//                    db.child("BattleMode").addValueEventListener(updateAllScore);
-//                }
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Handle error
-//                System.err.println("Error reading from database: " + databaseError.getMessage());
-//            }
-//        });
+
 
         db.child("BattleMode").addValueEventListener(updateAllScore);
 
-
-        goHomeScore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                releaseMediaPlayer();
-                db.child("BattleMode").removeEventListener(updateAllScore);
-                finish();
-            }
+        goHomeScore.setOnClickListener(v -> {
+            db.child("BattleMode").removeEventListener(updateAllScore);
+            finish();
         });
 
 
     }
 
-//    private void playPassed() {
-//        if (passed != null) {
-//            passed.start(); // Start playing the sound
-//        }
-//    }
-//
-//    private void playFailed() {
-//        if (failed != null) {
-//            failed.start(); // Start playing the sound
-//        }
-//    }
-//
-//    private void releaseMediaPlayer() {
-//        if (passed != null) {
-//            passed.release();
-//            passed = null;
-//        }
-//        if (failed != null) {
-//            failed.release();
-//            failed = null;
-//        }
-//    }
-
+    @Override
+    public void onBackPressed() {
+        // Call finish to close the current activity when the back button is pressed
+        super.onBackPressed();
+        db.child("BattleMode").removeEventListener(updateAllScore);
+        Toast.makeText(ScoreDashboard.this, "Back", Toast.LENGTH_LONG).show();
+        finish();
+    }
 
 
 

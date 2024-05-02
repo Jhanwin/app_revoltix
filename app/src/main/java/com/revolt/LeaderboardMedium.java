@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +40,8 @@ public class LeaderboardMedium extends AppCompatActivity {
     TextView testing, rankval, txtNameUser, txtScore;
 
     String nameGet;
+
+    ValueEventListener mediumLeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class LeaderboardMedium extends AppCompatActivity {
             public void onClick(View v) {
                 Intent toEasy = new Intent(getApplicationContext(), LeaderVersionTwo.class);
                 toEasy.putExtra("NameUser",nameGet);
+                database.removeEventListener(mediumLeader);
                 startActivity(toEasy);
                 finish();
             }
@@ -83,6 +87,7 @@ public class LeaderboardMedium extends AppCompatActivity {
             public void onClick(View v) {
                 Intent toHard = new Intent(getApplicationContext(), LeaderboardHard.class);
                 toHard.putExtra("NameUser",nameGet);
+                database.removeEventListener(mediumLeader);
                 startActivity(toHard);
                 finish();
             }
@@ -97,7 +102,7 @@ public class LeaderboardMedium extends AppCompatActivity {
 
     public void LoadLeaderboard(){
 
-        database.addValueEventListener(new ValueEventListener() {
+        mediumLeader = new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -138,8 +143,19 @@ public class LeaderboardMedium extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });
+        };
 
+        database.addValueEventListener(mediumLeader);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Call finish to close the current activity when the back button is pressed
+        super.onBackPressed();
+        database.removeEventListener(mediumLeader);
+        Toast.makeText(LeaderboardMedium.this, "Back", Toast.LENGTH_LONG).show();
+        finish();
     }
 
 

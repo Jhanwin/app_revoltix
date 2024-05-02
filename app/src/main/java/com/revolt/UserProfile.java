@@ -178,6 +178,16 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
 
     }
 
+    @Override
+    public void onBackPressed() {
+        // Call finish to close the current activity when the back button is pressed
+        super.onBackPressed();
+        dbRef.removeEventListener(getProfile);
+        dbRef.child("BattleMode").removeEventListener(getHistory);
+        Toast.makeText(UserProfile.this, "Back", Toast.LENGTH_LONG).show();
+        finish();
+    }
+
 
 
 

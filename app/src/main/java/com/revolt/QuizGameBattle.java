@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -51,7 +49,7 @@ public class QuizGameBattle extends AppCompatActivity {
     ImageView imgQues;
     DatabaseReference database,db;
     private RadioGroup answerRadioGroup;
-    TextView txt1,timerTextView,scoreTextView,itemTextView;
+    TextView txt1,timerTextView,itemTextView;
     RadioButton c1,c2,c3,c4;
     private int currentQuestionIndex = 0;
     int score;
@@ -62,14 +60,12 @@ public class QuizGameBattle extends AppCompatActivity {
 
     private CountDownTimer countDownTimer;
     String data,TextDiff,numOfItem,TextTopicNum,selectedTime;
-    String scoreEasy, scoreMedium, scoreHard, hexID;
-    MediaPlayer Right, Wrong;
+    String hexID;
 
-    ValueEventListener valueEventListener, getTheChildCount;
 
-    boolean exists;
+    ValueEventListener valueEventListener;
 
-    long take;
+
 
     String setTimeKey;
 
@@ -86,14 +82,11 @@ public class QuizGameBattle extends AppCompatActivity {
 
         Intent intent = getIntent();
         String TextSub = intent.getStringExtra("TextSub");
-//        String Mode = intent.getStringExtra("Mode");
         TextTopicNum = intent.getStringExtra("textSubToGet");
         TextDiff = intent.getStringExtra("textDifficulties");
         data = intent.getStringExtra("UserId");
         numOfItem = intent.getStringExtra("NumberOfItem");
         selectedTime = intent.getStringExtra("selectedTime");
-
-
 
         assert numOfItem != null;
         questionCounter = Integer.parseInt(numOfItem);
@@ -101,14 +94,13 @@ public class QuizGameBattle extends AppCompatActivity {
         assert selectedTime != null;
         numTime = Integer.parseInt(selectedTime);
 
-        TIMER_DURATION = 3600000L * 1;
+        TIMER_DURATION = 3600000L * numTime;
 
         assert TextSub != null;
         assert TextTopicNum != null;
         assert TextDiff != null;
 
         db = FirebaseDatabase.getInstance().getReference("users");
-
         database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub).child(TextTopicNum).child(TextDiff);
 
         txt1 = findViewById(R.id.questionsB);
@@ -119,15 +111,10 @@ public class QuizGameBattle extends AppCompatActivity {
         answerRadioGroup = findViewById(R.id.answerRadioGroupB);
         timerTextView = findViewById(R.id.timerTextView);
         itemTextView = findViewById(R.id.itemTextView);
-
-//        Right = MediaPlayer.create(this, R.raw.correct);
-//        Wrong = MediaPlayer.create(this, R.raw.wrong);
-
         imgQues = findViewById(R.id.imgQues);
 
 
         setKey();
-
         hexID = generateHexID(setTimeKey);
 
 //        getTheChildCount = new ValueEventListener() {
@@ -258,40 +245,7 @@ public class QuizGameBattle extends AppCompatActivity {
         formattedDateTime = currentTime.format(formatter);
 
         setTimeKey = formattedDateTime;
-
-//        hexID = generateHexID(formattedDateTime);
     }
-
-    public void setToFalse(){
-        c1.setClickable(false);
-        c2.setClickable(false);
-        c3.setClickable(false);
-        c4.setClickable(false);
-    }
-
-    public void setToTrue(){
-        c1.setClickable(true);
-        c2.setClickable(true);
-        c3.setClickable(true);
-        c4.setClickable(true);
-    }
-
-
-
-
-
-    private void playRight() {
-        if (Right != null) {
-            Right.start(); // Start playing the sound
-        }
-    }
-
-    private void playWrong() {
-        if (Wrong != null) {
-            Wrong.start(); // Start playing the sound
-        }
-    }
-
 
 
 
@@ -335,10 +289,10 @@ public class QuizGameBattle extends AppCompatActivity {
         }.start();
     }
 
-    private void resetTimer() {
-        countDownTimer.cancel();
-        startTimer();
-    }
+//    private void resetTimer() {
+//        countDownTimer.cancel();
+//        startTimer();
+//    }
 
     @Override
     protected void onDestroy() {
@@ -349,10 +303,6 @@ public class QuizGameBattle extends AppCompatActivity {
     }
 
     private void displayQuestion() {
-
-//        Toast.makeText(QuizGameBattle.this, hexID, Toast.LENGTH_LONG).show();
-
-//        setToTrue();
 
         if(!imageQuestion.get(currentQuestionIndex).equals("blank")){
             Picasso.get().load(imageQuestion.get(currentQuestionIndex)).into(imgQues);
@@ -470,8 +420,6 @@ public class QuizGameBattle extends AppCompatActivity {
 
         //comparing the text to the correctAnswer array if it is correct answer
         if (selectedAnswer.equals(correctAnswers.get(currentQuestionIndex))) {
-//            playRight();
-//            Toast.makeText(QuizGameBattle.this, "Correct! ", Toast.LENGTH_SHORT).show();
             String questionKey = "question" + (currentQuestionIndex + 1);
             Map<String, Object> questionData = new HashMap<>();
             questionData.put("question", questions.get(currentQuestionIndex));
@@ -481,9 +429,7 @@ public class QuizGameBattle extends AppCompatActivity {
             db.child(data).child("BattleMode").child(hexID).child("Item").child(questionKey).setValue(questionData);
             score++;
         } else {
-//            playWrong();
             String questionKey = "question" + (currentQuestionIndex + 1);
-//            Toast.makeText(QuizGameBattle.this, "Incorrect!", Toast.LENGTH_SHORT).show();
             Map<String, Object> questionData = new HashMap<>();
             questionData.put("question", questions.get(currentQuestionIndex));
             questionData.put("selectedAnswer", selectedAnswer);
@@ -509,70 +455,12 @@ public class QuizGameBattle extends AppCompatActivity {
             selected.clear();
             remarks.clear();
             database.removeEventListener(valueEventListener);
-//            db.child(data).removeEventListener(getTheChildCount);
             Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
             finish();
 
             //ending of quiz
         }
 
-//        Right.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                resetTimer();
-//                currentQuestionIndex++;
-//                // Move to the next question
-//                if (currentQuestionIndex < questions.size()) {
-//                    displayQuestion();
-//                    itemNum++;
-//                    itemTextView.setText("Item " +itemNum);
-//                } else {
-//                    SaveDataToDatabase();
-//                    countDownTimer.cancel();
-//                    questions.clear();
-//                    correctAnswers.clear();
-//                    confusionChoices.clear();
-//                    imageQuestion.clear();
-//                    selected.clear();
-//                    remarks.clear();
-//                    database.removeEventListener(valueEventListener);
-////                    db.child(data).removeEventListener(getTheChildCount);
-//                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
-//                    finish();
-//
-//                    //ending of quiz
-//                }
-//            }
-//        });
-//
-//        Wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                resetTimer();
-//                currentQuestionIndex++;
-//                // Move to the next question
-//                if (currentQuestionIndex < questions.size()) {
-//                    displayQuestion();
-//                    itemNum++;
-//                    itemTextView.setText("Item " +itemNum);
-//                } else {
-//                    SaveDataToDatabase();
-//                    countDownTimer.cancel();
-//                    questions.clear();
-//                    correctAnswers.clear();
-//                    confusionChoices.clear();
-//                    imageQuestion.clear();
-//                    selected.clear();
-//                    remarks.clear();
-//                    database.removeEventListener(valueEventListener);
-//                    db.child(data).removeEventListener(getTheChildCount);
-//                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
-//                    finish();
-//
-//                    //ending of quiz
-//                }
-//            }
-//        });
 
 
     }
