@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private void navigateToNextActivity(FirebaseUser user) {
 
         Intent second = new Intent(getApplicationContext(), Menu.class);
-        Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_SHORT).show();
         second.putExtra("id", user.getUid().toString());
         second.putExtra("link", user.getPhotoUrl().toString());
         second.putExtra("name", user.getDisplayName());
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                             map.put("scoreMedium",0);
                             map.put("scoreHard",0);
 
-                            Toast.makeText(MainActivity.this, user.getDisplayName(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, user.getDisplayName(), Toast.LENGTH_SHORT).show();
                             database.getReference().child("users").child(user.getUid()).setValue(map);
 
                             Intent second = new Intent(getApplicationContext(), Menu.class);

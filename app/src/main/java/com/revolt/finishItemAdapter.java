@@ -46,7 +46,19 @@ public class finishItemAdapter extends RecyclerView.Adapter<finishItemAdapter.My
             holder.questions.setText(finItem.getQuestion());
             holder.correctAns.setText(finItem.getCorrectAnswers());
             holder.selectedAns.setText(finItem.getSelectedAnswer());
-            holder.remarks.setText(finItem.getRemarks());
+
+            if(finItem.getRemarks().equals("correct")){
+                holder.remarks.setBackgroundColor(Color.GREEN);
+                holder.remarks.setTextColor(Color.BLACK);
+                holder.remarks.setText(finItem.getRemarks());
+            }else{
+                holder.remarks.setBackgroundColor(Color.RED);
+                holder.remarks.setTextColor(Color.WHITE);
+                holder.remarks.setText(finItem.getRemarks());
+            }
+
+
+
         }
 
     }

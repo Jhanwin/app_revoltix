@@ -53,25 +53,23 @@ public class Menu extends AppCompatActivity {
         BtnPracticeMode = findViewById(R.id.PracticeMode);
         BtnBattleMode = findViewById(R.id.BattleMode);
         BtnLeaderboards = findViewById(R.id.btnLeaderboards);
-        PretestMode = findViewById(R.id.PretestMode);
+//        PretestMode = findViewById(R.id.PretestMode);
 //        addQuestionToDb = findViewById(R.id.addQuestionToDb);
-        btnToUserProfile = findViewById(R.id.btnToUserProfile);
+//        btnToUserProfile = findViewById(R.id.btnToUserProfile);
 
-        menuBtn = findViewById(R.id.menuBtn);
+//        menuBtn = findViewById(R.id.menuBtn);
 
         final DrawerLayout dlayout = findViewById(R.id.drawerLayout);
 
         LinearLayout lt = findViewById(R.id.buttonsLayout);
 
-        menuBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                dlayout.openDrawer(GravityCompat.START);
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) lt.getLayoutParams();
-                layoutParams.gravity = Gravity.NO_GRAVITY; // Setting gravity to NO_GRAVITY removes it
-                lt.setLayoutParams(layoutParams);
-            }
-        });
+//        menuBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                dlayout.openDrawer(GravityCompat.START);
+//
+//            }
+//        });
 
         BtnPracticeMode.setOnClickListener(v -> {
             Intent subjects = new Intent(getApplicationContext(), Home.class);
@@ -80,16 +78,7 @@ public class Menu extends AppCompatActivity {
             startActivity(subjects);
         });
 
-        PretestMode.setOnClickListener(v -> {
-            Intent pre = new Intent(getApplicationContext(), PretestGame.class);
 
-            startActivity(pre);
-        });
-
-//        addQuestionToDb.setOnClickListener(v -> {
-//            Intent add = new Intent(getApplicationContext(), AddQuestion.class);
-//            startActivity(add);
-//        });
 
         BtnLeaderboards.setOnClickListener(v -> {
             Intent leaderboards = new Intent(getApplicationContext(), LeaderVersionTwo.class);
@@ -104,7 +93,7 @@ public class Menu extends AppCompatActivity {
             startActivity(add);
         });
 
-        btnToUserProfile.setOnClickListener(v -> {
+        profileUser.setOnClickListener(v -> {
             Intent profile = new Intent(getApplicationContext(), UserProfile.class);
             profile.putExtra("idprofile",data);
             startActivity(profile);
@@ -113,11 +102,7 @@ public class Menu extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, (android.view.Menu) menu);
-//        return true;
-//    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

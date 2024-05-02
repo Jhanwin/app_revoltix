@@ -84,6 +84,7 @@ public class LeaderboardMedium extends AppCompatActivity {
                 Intent toHard = new Intent(getApplicationContext(), LeaderboardHard.class);
                 toHard.putExtra("NameUser",nameGet);
                 startActivity(toHard);
+                finish();
             }
         });
 

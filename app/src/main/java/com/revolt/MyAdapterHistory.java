@@ -45,6 +45,7 @@ public class MyAdapterHistory extends RecyclerView.Adapter<MyAdapterHistory.MyVi
             holder.Time.setText(his.getTime());
             holder.Topic.setText(String.valueOf(his.getTopic()));
             holder.score.setText(String.valueOf(his.getScore()));
+//            holder.takeNo.setText(String.valueOf(his.getTakeNo()));
 
             holder.card.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -65,7 +66,7 @@ public class MyAdapterHistory extends RecyclerView.Adapter<MyAdapterHistory.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView Date,Difficulty,Time,Topic,score;
+        TextView Date,Difficulty,Time,Topic,score,takeNo;
         CardView card;
 
 
@@ -78,6 +79,7 @@ public class MyAdapterHistory extends RecyclerView.Adapter<MyAdapterHistory.MyVi
             Topic = itemView.findViewById(R.id.TopicVal);
             score = itemView.findViewById(R.id.ScoreVal);
             card = itemView.findViewById(R.id.card);
+//            takeNo = itemView.findViewById(R.id.takeNoVal);
 
             if (Date == null || Difficulty == null || Time == null || Topic == null || score == null) {
                 Log.e("MyAdapter", "One or more views is null");

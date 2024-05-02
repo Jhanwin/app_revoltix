@@ -1,8 +1,11 @@
 package com.revolt;
 
+import static android.app.PendingIntent.getActivity;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -42,6 +45,8 @@ public class QuizSubDifficulties extends AppCompatActivity {
     int sEasy, sMedium, sHard;
 
     String selectedItem;
+
+    ValueEventListener getNumEasy,getNumMedium,getNumHard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,17 +71,13 @@ public class QuizSubDifficulties extends AppCompatActivity {
         goHome3 = findViewById(R.id.goHome3);
         goHome3.setOnClickListener(v -> finish());
 
-
-
         // In your activity's onCreate method
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.dropdown_options, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinner.setAdapter(adapter);
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -95,17 +96,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
         assert TextSub != null;
         assert TextTopicNum != null;
         database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub).child(TextTopicNum);
-        database.child("Easy").addValueEventListener(new ValueEventListener() {
+        getNumEasy = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -117,9 +111,11 @@ public class QuizSubDifficulties extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
-        });
+        };
 
-        database.child("Medium").addValueEventListener(new ValueEventListener() {
+        database.child("Easy").addValueEventListener(getNumEasy);
+
+        getNumMedium = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -131,9 +127,11 @@ public class QuizSubDifficulties extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
-        });
+        };
 
-        database.child("Hard").addValueEventListener(new ValueEventListener() {
+        database.child("Medium").addValueEventListener(getNumMedium);
+
+        getNumHard = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -145,7 +143,13 @@ public class QuizSubDifficulties extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
-        });
+        };
+
+        database.child("Hard").addValueEventListener(getNumHard);
+
+        if(Mode.equals("PracticeMode")){
+            spinner.setVisibility(View.GONE);
+        }
 
 
 
@@ -176,6 +180,9 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("Mode", Mode);
                     addQuestAct.putExtra("UserId",data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+                    database.child("Easy").removeEventListener(getNumEasy);
+                    database.child("Medium").removeEventListener(getNumMedium);
+                    database.child("Hard").removeEventListener(getNumHard);
                     startActivity(addQuestAct);
                     finish();
 
@@ -196,6 +203,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
 
                     Toast.makeText(QuizSubDifficulties.this, "Too much value. Number of Question:"+easy, Toast.LENGTH_SHORT).show();
 
+                }else if (selectedItem.equalsIgnoreCase("Hours")) {
+
+                    Toast.makeText(QuizSubDifficulties.this, "Select Time", Toast.LENGTH_SHORT).show();
+
                 }else {
 
                     Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
@@ -209,7 +220,12 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("sMedium", sMedium);
                     addQuestAct.putExtra("sHard", sHard);
                     addQuestAct.putExtra("selectedTime", selectedItem);
+
+                    database.child("Easy").removeEventListener(getNumEasy);
+                    database.child("Medium").removeEventListener(getNumMedium);
+                    database.child("Hard").removeEventListener(getNumHard);
                     startActivity(addQuestAct);
+
                     finish();
 
                 }
@@ -243,6 +259,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("Mode", Mode);
                     addQuestAct.putExtra("UserId", data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+
+                    database.child("Easy").removeEventListener(getNumEasy);
+                    database.child("Medium").removeEventListener(getNumMedium);
+                    database.child("Hard").removeEventListener(getNumHard);
                     startActivity(addQuestAct);
                     finish();
                 }
@@ -261,6 +281,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
 
                     Toast.makeText(QuizSubDifficulties.this, "Too much value. Number of Question:"+medium, Toast.LENGTH_SHORT).show();
 
+                }else if (selectedItem.equalsIgnoreCase("Hours")) {
+
+                    Toast.makeText(QuizSubDifficulties.this, "Select Time", Toast.LENGTH_SHORT).show();
+
                 }else {
 
                     Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
@@ -276,6 +300,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("sHard", sHard);
 
                     addQuestAct.putExtra("selectedTime", selectedItem);
+
+                    database.child("Easy").removeEventListener(getNumEasy);
+                    database.child("Medium").removeEventListener(getNumMedium);
+                    database.child("Hard").removeEventListener(getNumHard);
                     startActivity(addQuestAct);
                     finish();
 
@@ -310,6 +338,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("Mode", Mode);
                     addQuestAct.putExtra("UserId", data);
                     addQuestAct.putExtra("NumberOfItem", numOfItem.getText().toString());
+
+                    database.child("Easy").removeEventListener(getNumEasy);
+                    database.child("Medium").removeEventListener(getNumMedium);
+                    database.child("Hard").removeEventListener(getNumHard);
                     startActivity(addQuestAct);
                     finish();
 
@@ -329,7 +361,11 @@ public class QuizSubDifficulties extends AppCompatActivity {
 
                     Toast.makeText(QuizSubDifficulties.this, "Too much value. Number of Question:"+hard, Toast.LENGTH_SHORT).show();
 
-                }else {
+                }else if (selectedItem.equalsIgnoreCase("Hours")) {
+
+                    Toast.makeText(QuizSubDifficulties.this, "Select Time", Toast.LENGTH_SHORT).show();
+
+                }else{
 
                     Intent addQuestAct = new Intent(getApplicationContext(), QuizGameBattle.class);
                     addQuestAct.putExtra("TextSub", TextSub);
@@ -342,6 +378,10 @@ public class QuizSubDifficulties extends AppCompatActivity {
                     addQuestAct.putExtra("sMedium", sMedium);
                     addQuestAct.putExtra("sHard", sHard);
                     addQuestAct.putExtra("selectedTime", selectedItem);
+
+                    database.child("Easy").removeEventListener(getNumEasy);
+                    database.child("Medium").removeEventListener(getNumMedium);
+                    database.child("Hard").removeEventListener(getNumHard);
                     startActivity(addQuestAct);
                     finish();
 
@@ -360,4 +400,6 @@ public class QuizSubDifficulties extends AppCompatActivity {
 
 
     }
+
+
 }

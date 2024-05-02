@@ -7,10 +7,89 @@
     android:background="@color/white"
     tools:context=".CheckItemQuiz">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/checkItemQuestion"
+    <RelativeLayout
+        android:id="@+id/RelativeHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bluebg" />
+
+        <LinearLayout
+            android:id="@+id/linearChild1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/Linear11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/goHome"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:contentDescription="@string/img_home"
+                    app:srcCompat="@drawable/home" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Linear12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="275dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:padding="5dp"
+                    android:text="Review your test"
+                    android:textAlignment="center"
+                    android:textColor="@color/yellow"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Linear13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/goHomej"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:contentDescription="@string/img_home" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/checkItemQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearChild1"
+            android:layout_marginTop="9dp"
+            tools:ignore="MissingConstraints" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

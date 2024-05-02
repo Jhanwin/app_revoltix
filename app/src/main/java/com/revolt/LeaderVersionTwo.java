@@ -87,6 +87,7 @@ public class LeaderVersionTwo extends AppCompatActivity {
                 Intent toHard = new Intent(getApplicationContext(), LeaderboardHard.class);
                 toHard.putExtra("NameUser",nameGet);
                 startActivity(toHard);
+                finish();
             }
         });
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Revolt</string>
+    <string name="app_name">Revoltix</string>
     <string name="login_with_google">    Login with Google</string>
     <string name="title_activity_quiz_sub_difficulties">QuizSubDifficulties</string>
     <!-- Strings used for fragments for navigation -->

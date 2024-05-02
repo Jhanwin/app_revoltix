@@ -33,7 +33,7 @@
             <LinearLayout
                 android:id="@+id/linearMother1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="350dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
@@ -72,14 +72,15 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="227dp"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
                             android:fontFamily="@font/futura_display"
                             android:text="@string/your_profile"
+                            android:textAlignment="center"
                             android:textColor="@color/white"
-                            android:textSize="30sp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
+                            android:textSize="30sp" />
 
                     </LinearLayout>
 
@@ -95,7 +96,7 @@
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:contentDescription="@string/img_home"
-                            app:srcCompat="@drawable/home" />
+                            />
 
 
                     </LinearLayout>
@@ -165,7 +166,7 @@
                     <LinearLayout
                         android:id="@+id/linearChild31"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="350dp"
                         android:background="@drawable/radius"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -182,28 +183,29 @@
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
-                        <com.github.mikephil.charting.charts.BarChart
+
+
+                            <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/barchart"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="250dp" />
+
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:text="Number of Quiz Taken"/>
 
                     </LinearLayout>
-<!--                </LinearLayout>-->
 
-                <!--                for medium-->
-
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/mediumChart"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="300dp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:padding="15dp">-->
 
                     <LinearLayout
                         android:id="@+id/mediumChart1"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="350dp"
                         android:background="@drawable/radius"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -223,7 +225,14 @@
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/barchartMedium"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="250dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:text="Number of Quiz Taken"/>
 
                     </LinearLayout>
 <!--                </LinearLayout>-->
@@ -243,7 +252,7 @@
                     <LinearLayout
                         android:id="@+id/hardChart1"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="350dp"
                         android:background="@drawable/radius"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -252,30 +261,28 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/futura_display"
-                            android:text="@string/hard"
-                            android:textColor="@color/black"
-                            android:textSize="20sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/futura_display"
+                                android:text="@string/hard"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
 
-                        <com.github.mikephil.charting.charts.BarChart
-                            android:id="@+id/barchartHard"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            <com.github.mikephil.charting.charts.BarChart
+                                android:id="@+id/barchartHard"
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:text="Number of Quiz Taken"/>
 
                     </LinearLayout>
-<!--                </LinearLayout>-->
 
-
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/linearChild4"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="350dp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:padding="15dp">-->
 
                     <LinearLayout
                         android:id="@+id/linearChild41"

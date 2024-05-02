@@ -37,6 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class UserProfile extends AppCompatActivity implements SelectListener{
@@ -54,11 +55,11 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
 
     ImageView UserProPicture;
     Button back;
-
-
     BarChart barchart, barchart2, barchart3;
 
     String idProfile;
+
+    ValueEventListener getProfile,getHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
         assert idProfile != null;
         dbRef = FirebaseDatabase.getInstance().getReference("users").child(idProfile);
 
-        dbRef.addValueEventListener(new ValueEventListener() {
+        getProfile = new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,67 +100,11 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        };
 
-        dbRef.child("BattleMode").addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-
-                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                        int score = childSnapshot.child("score").getValue(Integer.class);
-                        String Date = childSnapshot.child("Date").getValue(String.class);
-                        String Dif = childSnapshot.child("Difficulty").getValue(String.class);
-
-                        if(Dif.equals("Easy")){
-//                            String scoreString = String.valueOf(score);
-                            values.add(score);
-                        } else if (Dif.equals("Medium")) {
-                            valuesM.add(score);
-                        } else if (Dif.equals("Hard")) {
-                            valuesH.add(score);
-                        }
+        dbRef.addValueEventListener(getProfile);
 
 
-                    }
-
-                }
-                BarChart();
-                BarChartMedium();
-                BarChartHard();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-
-
-        ShowHistory();
-
-
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-
-    }
-
-
-
-
-
-
-
-    public void ShowHistory(){
-
-        dbRef = FirebaseDatabase.getInstance().getReference("users").child(idProfile);
         recyclerViewHis = findViewById(R.id.userListHistory);
         recyclerViewHis.setHasFixedSize(true);
         recyclerViewHis.setLayoutManager(new LinearLayoutManager(this));
@@ -167,21 +112,41 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
         myAdapterHis = new MyAdapterHistory(this, listHis, this);
         recyclerViewHis.setAdapter(myAdapterHis);
 
-        dbRef.child("BattleMode").addValueEventListener(new ValueEventListener() {
+        getHistory = new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listHis.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
+                    String Id = dataSnapshot.getKey();
                     String date = dataSnapshot.child("Date").getValue(String.class);
                     String diff = dataSnapshot.child("Difficulty").getValue(String.class);
                     String time = dataSnapshot.child("Time").getValue(String.class);
                     String topic = dataSnapshot.child("Topic").getValue(String.class);
                     int score = dataSnapshot.child("score").getValue(Integer.class);
 
-                    listHis.add(new History(date,diff,time,topic,score));
+
+                    listHis.add(new History(date,diff,time,topic,score,Id));
+
+                    switch (Objects.requireNonNull(diff)) {
+                        case "Easy":
+                            values.add(score);
+                            break;
+                        case "Medium":
+                            valuesM.add(score);
+                            break;
+                        case "Hard":
+                            valuesH.add(score);
+                            break;
+                    }
+
                 }
+
+
+                BarChart();
+                BarChartMedium();
+                BarChartHard();
 
                 // Check the size of the list after adding data
                 Log.d("TAG", "Size of listHis: " + listHis.size());
@@ -192,9 +157,28 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        };
+
+        dbRef.child("BattleMode").addValueEventListener(getHistory);
+
+
+
+
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbRef.removeEventListener(getProfile);
+                dbRef.child("BattleMode").removeEventListener(getHistory);
+
+                finish();
+            }
         });
 
+
     }
+
+
 
 
     public void BarChart(){
@@ -208,25 +192,40 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
             barEntries.add(barEntry);
         }
 
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Students");
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Tests");
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-//        barDataSet.setDrawValues(false);
 
-        barDataSet.setValueFormatter(new ValueFormatter() {
+        barchart.setData(new BarData(barDataSet));
+        barchart.animateY(300);
+        barchart.getDescription().setText(" ");
+        barchart.getDescription().setTextColor(Color.BLUE);
+
+
+        XAxis xAxis = barchart.getXAxis();
+        xAxis.setValueFormatter(new ValueFormatter() {
             @Override
-            public String getBarLabel(BarEntry barEntry) {
-                // Here you can customize the label for each bar entry
-                int index = (int) barEntry.getX();
-                // Retrieve additional data or descriptions based on the index
-                return "Another";
+            public String getAxisLabel(float value, AxisBase axis) {
+                return String.valueOf((int) value + 1);
             }
         });
 
-        barchart.setData(new BarData(barDataSet));
-        barchart.animateY(500);
-        barchart.getDescription().setText("Easy Chart");
-        barchart.getDescription().setPosition(600, 100);
-        barchart.getDescription().setTextColor(Color.BLUE);
+        YAxis yAxis = barchart.getAxisLeft();
+        yAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getAxisLabel(float value, AxisBase axis) {
+                return "Score - " + String.valueOf((int) value);
+            }
+        });
+
+
+        yAxis.setGranularity(1f);
+        yAxis.setGranularityEnabled(true);
+
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+
+        barchart.getAxisRight().setEnabled(false);
+        barchart.invalidate();
 
     }
 
@@ -239,13 +238,41 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
             BarEntry barEntry = new BarEntry(i,valuesM.get(i));
             barEntries.add(barEntry);
         }
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Medium Mode");
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Tests");
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        barDataSet.setDrawValues(false);
+
+
+
         barchart2.setData(new BarData(barDataSet));
-        barchart2.animateY(500);
-        barchart2.getDescription().setText("Medium Chart");
+        barchart2.animateY(300);
+        barchart2.getDescription().setText(" ");
         barchart2.getDescription().setTextColor(Color.BLUE);
+
+        XAxis xAxis = barchart2.getXAxis();
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getAxisLabel(float value, AxisBase axis) {
+                return String.valueOf((int) value + 1);
+            }
+        });
+
+        YAxis yAxis = barchart2.getAxisLeft();
+        yAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getAxisLabel(float value, AxisBase axis) {
+                return "Score - " +String.valueOf((int) value);
+            }
+        });
+
+        yAxis.setGranularity(1f);
+        yAxis.setGranularityEnabled(true);
+
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+
+        barchart2.getAxisRight().setEnabled(false);
+        barchart2.invalidate();
+
 
     }
 
@@ -256,13 +283,42 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
             BarEntry barEntry = new BarEntry(i,valuesH.get(i));
             barEntries.add(barEntry);
         }
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Hard Mode");
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Tests");
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        barDataSet.setDrawValues(false);
+
+
         barchart3.setData(new BarData(barDataSet));
-        barchart3.animateY(500);
-        barchart3.getDescription().setText("Hard Chart");
+        barchart3.animateY(300);
+        barchart3.getDescription().setText(" ");
         barchart3.getDescription().setTextColor(Color.BLUE);
+
+
+        XAxis xAxis = barchart3.getXAxis();
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getAxisLabel(float value, AxisBase axis) {
+                return String.valueOf((int) value + 1);
+            }
+        });
+
+        YAxis yAxis = barchart3.getAxisLeft();
+        yAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getAxisLabel(float value, AxisBase axis) {
+                return "Score - " +String.valueOf((int) value);
+            }
+        });
+
+        yAxis.setGranularity(1f);
+        yAxis.setGranularityEnabled(true);
+
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+
+        barchart3.getAxisRight().setEnabled(false);
+        barchart3.invalidate();
+
+
 
     }
 
@@ -271,7 +327,7 @@ public class UserProfile extends AppCompatActivity implements SelectListener{
         Toast.makeText(UserProfile.this, history.getTopic(), Toast.LENGTH_LONG).show();
         Intent checkItem = new Intent(getApplicationContext(), CheckItemQuiz.class);
         checkItem.putExtra("idprofile", idProfile);
-        checkItem.putExtra("TimeBattleMode", history.getTime());
+        checkItem.putExtra("TimeBattleMode", history.getId());
         startActivity(checkItem);
     }
 }

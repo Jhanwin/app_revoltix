@@ -34,8 +34,14 @@ public class TopicSubjects extends AppCompatActivity {
     ImageView goHome2;
     TextView textSubject;
 
+    DatabaseReference database;
+
     String TextSub, Mode, data;
     int sEasy, sMedium, sHard;
+
+    ValueEventListener listTopic;
+
+    boolean isDone = false;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -57,31 +63,90 @@ public class TopicSubjects extends AppCompatActivity {
 
 
         assert TextSub != null;
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub);
-        database.addValueEventListener(new ValueEventListener(){
-            @SuppressLint("SetTextI18n")
+        database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub);
+
+//        listTopic = new ValueEventListener(){
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    buttonCont.clear();
+//                    // Iterate through all children nodes and add them to the list
+//                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+//                        String key = childSnapshot.getKey();
+//                        buttonCont.add(key);
+//                    }
+//                    // After populating the list, create the button and set its text
+//                    createButton();
+//                    isDone = true;
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        };
+//
+
+
+
+//        database.addValueEventListener(listTopic);
+//        database.removeEventListener(listTopic);
+
+        fetchData(new ValueEventListenerCallback() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+            public void onDataChangeCompleted() {
+//                Toast.makeText(TopicSubjects.this, "Masaya kana?", Toast.LENGTH_LONG).show();
+                database.removeEventListener(listTopic);
+            }
+        });
+
+
+
+
+
+    }
+
+    public interface ValueEventListenerCallback {
+        void onDataChangeCompleted();
+    }
+
+
+    public void fetchData(ValueEventListenerCallback callback) {
+        listTopic = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Handle data change here
+                // This method will be called when the initial data is loaded and whenever the data changes
+
+                if(dataSnapshot.exists()){
                     buttonCont.clear();
                     // Iterate through all children nodes and add them to the list
-                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                         String key = childSnapshot.getKey();
                         buttonCont.add(key);
                     }
                     // After populating the list, create the button and set its text
                     createButton();
                 }
+
+
+                callback.onDataChangeCompleted();
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors here
             }
-        });
+        };
 
-
-
+        // Attach the ValueEventListener to the database reference
+        database.addValueEventListener(listTopic);
     }
+
+
+
+
 
     private void createButton() {
 
@@ -116,6 +181,7 @@ public class TopicSubjects extends AppCompatActivity {
                     quizSubDif.putExtra("sEasy", sEasy);
                     quizSubDif.putExtra("sMedium", sMedium);
                     quizSubDif.putExtra("sHard", sHard);
+
                     startActivity(quizSubDif);
 
                 }

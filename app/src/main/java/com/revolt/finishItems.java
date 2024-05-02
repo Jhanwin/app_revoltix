@@ -12,6 +12,7 @@ public class finishItems {
         this.remarks = remarks;
         this.selectedAnswer = selectedAnswer;
 
+
     }
 
     public String getCorrectAnswers() {
@@ -29,4 +30,5 @@ public class finishItems {
     public String getSelectedAnswer() {
         return selectedAnswer;
     }
+
 }

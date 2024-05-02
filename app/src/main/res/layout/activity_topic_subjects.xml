@@ -72,146 +72,73 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="20dp"
+                android:contentDescription="Scroll"
+                android:scrollbars="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                app:layout_constraintVertical_bias="0.226">
+                app:layout_constraintVertical_bias="0.204"
+                tools:layout_editor_absoluteX="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/glassmorphism"
-                    android:gravity="center"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:id="@+id/textSubject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/futura_display"
-                        android:text="SUBJECT NAME"
-
-                        android:shadowColor="#000000"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="10"
-
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="25sp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/topicButtons"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                    app:layout_constraintVertical_bias="0.226">
 
 
-<!--                    <Button-->
-<!--                        android:id="@+id/btnTopic1"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginBottom="10dp"-->
-<!--                        android:layout_weight="1"-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/glassmorphism"
+                        android:gravity="center"
+                        android:padding="10dp">
 
-<!--                        android:shadowColor="#000000"-->
-<!--                        android:shadowDx="0"-->
-<!--                        android:shadowDy="0"-->
-<!--                        android:shadowRadius="10"-->
+                        <TextView
+                            android:id="@+id/textSubject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/futura_display"
+                            android:shadowColor="#000000"
 
-<!--                        android:background="@drawable/bg_btn_subjects"-->
-<!--                        android:fontFamily="@font/futura_display"-->
-<!--                        android:letterSpacing="0.1"-->
-<!--                        android:padding="13dp"-->
-<!--                        android:text="DC Electrical Circuits"-->
-<!--                        android:textColor="@color/white"-->
-<!--                        android:textSize="20sp" />-->
+                            android:shadowDx="0"
+                            android:shadowDy="0"
+                            android:shadowRadius="10"
+                            android:text="SUBJECT NAME"
 
-<!--                    <Button-->
-<!--                        android:id="@+id/btnTopic2"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginBottom="10dp"-->
-<!--                        android:layout_weight="1"-->
-
-<!--                        android:shadowColor="#000000"-->
-<!--                        android:shadowDx="0"-->
-<!--                        android:shadowDy="0"-->
-<!--                        android:shadowRadius="10"-->
-
-<!--                        android:background="@drawable/bg_btn_subjects"-->
-<!--                        android:fontFamily="@font/futura_display"-->
-<!--                        android:letterSpacing="0.1"-->
-<!--                        android:padding="13dp"-->
-<!--                        android:text="Electronic Devices and Circuits"-->
-<!--                        android:textColor="@color/white"-->
-<!--                        android:textSize="20sp" />-->
-
-<!--                    <Button-->
-<!--                        android:id="@+id/btnTopic3"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginBottom="10dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="@drawable/bg_btn_subjects"-->
-<!--                        android:fontFamily="@font/futura_display"-->
-<!--                        android:letterSpacing="0.1"-->
-
-<!--                        android:shadowColor="#000000"-->
-<!--                        android:shadowDx="0"-->
-<!--                        android:shadowDy="0"-->
-<!--                        android:shadowRadius="10"-->
-
-<!--                        android:padding="13dp"-->
-<!--                        android:text="Topic 3"-->
-<!--                        android:textColor="@color/white"-->
-<!--                        android:textSize="20sp" />-->
-
-<!--                    <Button-->
-<!--                        android:id="@+id/btnTopic4"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginBottom="10dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="@drawable/bg_btn_subjects"-->
-<!--                        android:fontFamily="@font/futura_display"-->
-<!--                        android:letterSpacing="0.1"-->
-
-<!--                        android:shadowColor="#000000"-->
-<!--                        android:shadowDx="0"-->
-<!--                        android:shadowDy="0"-->
-<!--                        android:shadowRadius="10"-->
-
-<!--                        android:padding="13dp"-->
-<!--                        android:text="Topic 4"-->
-<!--                        android:textColor="@color/white"-->
-<!--                        android:textSize="20sp" />-->
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="25sp" />
 
 
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/topicButtons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+
+                    </LinearLayout>
                 </LinearLayout>
+            </ScrollView>
 
-
-            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

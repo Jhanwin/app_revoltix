@@ -23,9 +23,7 @@
         <activity
             android:name=".CheckItemQuiz"
             android:exported="false" />
-        <activity
-            android:name=".battlemodedraft"
-            android:exported="false" />
+
         <activity
             android:name=".LeaderVersionTwo"
             android:exported="false" />
@@ -38,9 +36,7 @@
         <activity
             android:name=".QuizGameBattle"
             android:exported="false" />
-        <activity
-            android:name=".AddQuestion"
-            android:exported="false" />
+
         <activity
             android:name=".UserProfile"
             android:exported="false" />

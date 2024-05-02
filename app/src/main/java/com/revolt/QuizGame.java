@@ -49,6 +49,8 @@ public class QuizGame extends AppCompatActivity {
 
     MediaPlayer Right, Wrong;
 
+    ValueEventListener loadQuestions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +91,7 @@ public class QuizGame extends AppCompatActivity {
         Wrong = MediaPlayer.create(this, R.raw.wrong);
 
 
-        database.addValueEventListener(new ValueEventListener() {
+        loadQuestions = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -144,7 +146,9 @@ public class QuizGame extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        };
+
+        database.addValueEventListener(loadQuestions);
 
         //the rest of the code
         c1.setOnClickListener(v -> checkAnswer());
@@ -224,14 +228,14 @@ public class QuizGame extends AppCompatActivity {
         //comparing the text to the correctAnswer array if it is correct answer
         if (selectedAnswer.equals(correctAnswers.get(currentQuestionIndex))) {
             playRight();
-            Toast.makeText(QuizGame.this, "Correct! ", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(QuizGame.this, "Correct! ", Toast.LENGTH_SHORT).show();
             ShowCorrectAns.setText("You are Correct!");
             ShowCorrectAns2.setText(correctAnswers.get(currentQuestionIndex));
 
 //            imageShow.setVisibility(View.VISIBLE);
         } else {
             playWrong();
-            Toast.makeText(QuizGame.this, "Incorrect!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(QuizGame.this, "Incorrect!", Toast.LENGTH_SHORT).show();
             ShowCorrectAns.setText("The Correct Answer is");
             ShowCorrectAns2.setText(correctAnswers.get(currentQuestionIndex));
 
@@ -249,6 +253,11 @@ public class QuizGame extends AppCompatActivity {
                 displayQuestion();
             } else {
                 Toast.makeText(QuizGame.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
+                database.removeEventListener(loadQuestions);
+                questions.clear();
+                imageLink.clear();
+                correctAnswers.clear();
+                confusionChoices.clear();
                 finish();
             }
             next.setVisibility(View.GONE);

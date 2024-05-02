@@ -7,13 +7,17 @@ public class History {
     public String time;
     public String topic;
     public int score;
+    public String id;
+//    public int takeNo;
 
-    public History(String date, String difficulty, String time, String topic, int score){
+    public History(String date, String difficulty, String time, String topic, int score, String id){
         this.date = date;
         this.difficulty = difficulty;
         this.time = time;
         this.topic = topic;
         this.score = score;
+        this.id = id;
+//        this.takeNo = takeNo;
     }
 
     public int getScore() {
@@ -32,5 +36,11 @@ public class History {
         return topic;
     }
 
+    public String getId() {
+        return id;
+    }
 
+//    public int getTakeNo() {
+//        return takeNo;
+//    }
 }

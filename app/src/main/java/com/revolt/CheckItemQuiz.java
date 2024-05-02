@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ public class CheckItemQuiz extends AppCompatActivity {
     ArrayList<finishItems> listHis;
 
     String IdProfile,time;
+
+    ValueEventListener checkAllItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,25 @@ public class CheckItemQuiz extends AppCompatActivity {
         Intent intent = getIntent();
         IdProfile = intent.getStringExtra("idprofile");
         time = intent.getStringExtra("TimeBattleMode");
+
+        ImageView goHome = findViewById(R.id.goHome);
+
+
+        dbRef = FirebaseDatabase.getInstance().getReference("users").child(IdProfile);
+        recyclerViewHis = findViewById(R.id.checkItemQuestion);
+        recyclerViewHis.setHasFixedSize(true);
+        recyclerViewHis.setLayoutManager(new LinearLayoutManager(this));
+        listHis = new ArrayList<>();
+        myAdapterHis = new finishItemAdapter(this, listHis);
+        recyclerViewHis.setAdapter(myAdapterHis);
+
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbRef.child("BattleMode").child(time).child("Item").removeEventListener(checkAllItem);
+                finish();
+            }
+        });
 
 
 
@@ -51,15 +73,7 @@ public class CheckItemQuiz extends AppCompatActivity {
 
     public void ShowHistory(){
 
-        dbRef = FirebaseDatabase.getInstance().getReference("users").child(IdProfile);
-        recyclerViewHis = findViewById(R.id.checkItemQuestion);
-        recyclerViewHis.setHasFixedSize(true);
-        recyclerViewHis.setLayoutManager(new LinearLayoutManager(this));
-        listHis = new ArrayList<>();
-        myAdapterHis = new finishItemAdapter(this, listHis);
-        recyclerViewHis.setAdapter(myAdapterHis);
-
-        dbRef.child("BattleMode").child(time).child("Item").addValueEventListener(new ValueEventListener() {
+        checkAllItem = new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -83,7 +97,11 @@ public class CheckItemQuiz extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        };
+
+        dbRef.child("BattleMode").child(time).child("Item").addValueEventListener(checkAllItem);
+
+
 
     }
 

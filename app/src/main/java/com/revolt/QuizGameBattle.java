@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
 import java.time.LocalTime;
@@ -32,6 +35,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class QuizGameBattle extends AppCompatActivity {
     List<String> questions = new ArrayList<>();
@@ -45,7 +49,7 @@ public class QuizGameBattle extends AppCompatActivity {
 
 
     ImageView imgQues;
-    DatabaseReference database;
+    DatabaseReference database,db;
     private RadioGroup answerRadioGroup;
     TextView txt1,timerTextView,scoreTextView,itemTextView;
     RadioButton c1,c2,c3,c4;
@@ -58,9 +62,22 @@ public class QuizGameBattle extends AppCompatActivity {
 
     private CountDownTimer countDownTimer;
     String data,TextDiff,numOfItem,TextTopicNum,selectedTime;
-    String scoreEasy, scoreMedium, scoreHard;
+    String scoreEasy, scoreMedium, scoreHard, hexID;
     MediaPlayer Right, Wrong;
 
+    ValueEventListener valueEventListener, getTheChildCount;
+
+    boolean exists;
+
+    long take;
+
+    String setTimeKey;
+
+    LocalDate currentDate;
+    LocalTime currentTime;
+    DateTimeFormatter formatter;
+
+    String formattedDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +101,14 @@ public class QuizGameBattle extends AppCompatActivity {
         assert selectedTime != null;
         numTime = Integer.parseInt(selectedTime);
 
-        TIMER_DURATION = 3600000L * numTime;
+        TIMER_DURATION = 3600000L * 1;
 
         assert TextSub != null;
         assert TextTopicNum != null;
         assert TextDiff != null;
+
+        db = FirebaseDatabase.getInstance().getReference("users");
+
         database = FirebaseDatabase.getInstance().getReference("AppData").child(TextSub).child(TextTopicNum).child(TextDiff);
 
         txt1 = findViewById(R.id.questionsB);
@@ -100,13 +120,47 @@ public class QuizGameBattle extends AppCompatActivity {
         timerTextView = findViewById(R.id.timerTextView);
         itemTextView = findViewById(R.id.itemTextView);
 
-        Right = MediaPlayer.create(this, R.raw.correct);
-        Wrong = MediaPlayer.create(this, R.raw.wrong);
+//        Right = MediaPlayer.create(this, R.raw.correct);
+//        Wrong = MediaPlayer.create(this, R.raw.wrong);
 
         imgQues = findViewById(R.id.imgQues);
 
 
-        database.addValueEventListener(new ValueEventListener() {
+        setKey();
+
+        hexID = generateHexID(setTimeKey);
+
+//        getTheChildCount = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                // Check if the key exists
+//                if (dataSnapshot.hasChild("BattleMode")) {
+//                    exists = true;
+//                    long count = dataSnapshot.child("BattleMode").getChildrenCount();
+//                    assert hexID != null;
+//                    db.child(data).child("BattleMode").child(hexID).child("Take").setValue(count+1);
+//
+//
+//                }else{
+//                    assert hexID != null;
+//                    db.child(data).child("BattleMode").child(hexID).child("Take").setValue(1);
+//
+//                }
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Handle error
+//                System.err.println("Error reading from database: " + databaseError.getMessage());
+//            }
+//        };
+//
+//        db.child(data).addListenerForSingleValueEvent(getTheChildCount);
+
+
+
+
+
+        valueEventListener = new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -159,7 +213,6 @@ public class QuizGameBattle extends AppCompatActivity {
                     displayQuestion();
                     startTimer();
                     itemTextView.setText("Item "+itemNum);
-                    Toast.makeText(QuizGameBattle.this, scoreEasy+" "+scoreMedium+" "+scoreHard, Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -168,15 +221,62 @@ public class QuizGameBattle extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        };
+
+        database.addValueEventListener(valueEventListener);
 
         //the rest of the code
-        c1.setOnClickListener(v -> checkAnswer());
-        c2.setOnClickListener(v -> checkAnswer());
-        c3.setOnClickListener(v -> checkAnswer());
-        c4.setOnClickListener(v -> checkAnswer());
+        c1.setOnClickListener(v -> {
+            checkAnswer();
+//            setToFalse();
+        });
+        c2.setOnClickListener(v -> {
+            checkAnswer();
+//            setToFalse();
+        });
+        c3.setOnClickListener(v -> {
+            checkAnswer();
+//            setToFalse();
+        });
+        c4.setOnClickListener(v -> {
+            checkAnswer();
+//            setToFalse();
+        });
 
     }
+
+    public void setKey(){
+        currentDate = LocalDate.now();
+        System.out.println("Current Date: " + currentDate);
+
+        // Get the current time
+        currentTime = LocalTime.now();
+        System.out.println("Current Time: " + currentTime);
+
+        // You can also format the date and time
+        formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        formattedDateTime = currentTime.format(formatter);
+
+        setTimeKey = formattedDateTime;
+
+//        hexID = generateHexID(formattedDateTime);
+    }
+
+    public void setToFalse(){
+        c1.setClickable(false);
+        c2.setClickable(false);
+        c3.setClickable(false);
+        c4.setClickable(false);
+    }
+
+    public void setToTrue(){
+        c1.setClickable(true);
+        c2.setClickable(true);
+        c3.setClickable(true);
+        c4.setClickable(true);
+    }
+
+
 
 
 
@@ -218,7 +318,6 @@ public class QuizGameBattle extends AppCompatActivity {
 
                 // Move to the next question
                 if (currentQuestionIndex < questions.size()) {
-                    resetTimer();
                     displayQuestion();
                     itemNum++;
                     itemTextView.setText("Item " +itemNum);
@@ -250,6 +349,10 @@ public class QuizGameBattle extends AppCompatActivity {
     }
 
     private void displayQuestion() {
+
+//        Toast.makeText(QuizGameBattle.this, hexID, Toast.LENGTH_LONG).show();
+
+//        setToTrue();
 
         if(!imageQuestion.get(currentQuestionIndex).equals("blank")){
             Picasso.get().load(imageQuestion.get(currentQuestionIndex)).into(imgQues);
@@ -296,91 +399,60 @@ public class QuizGameBattle extends AppCompatActivity {
 
     }
 
-    private void SaveDataToDatabase() {
-        // Get the current date
-        LocalDate currentDate = LocalDate.now();
-        System.out.println("Current Date: " + currentDate);
-
-        // Get the current time
-        LocalTime currentTime = LocalTime.now();
-        System.out.println("Current Time: " + currentTime);
-
-        // You can also format the date and time
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
-        String formattedDateTime = currentTime.format(formatter);
-
-//        DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference("users");
-//        ValueEventListener valueEventListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    if(snapshot.hasChild(data)) {
-//
-//                        DataSnapshot child = snapshot.child(data);
-//
-//                        int score = child.child("score").getValue(Integer.class);
-//                        int scoreMedium = child.child("scoreMedium").getValue(Integer.class);
-//                        int scoreHard = child.child("scoreHard").getValue(Integer.class);
-//
-//
-//
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        };
-//
-//        databaseUser.addValueEventListener(valueEventListener);
 
 
-        assert data != null;
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("users").child(data);
 
-        db.child("BattleMode").child(formattedDateTime).child("score").setValue(score);
-        db.child("BattleMode").child(formattedDateTime).child("Date").setValue(currentDate.toString());
-        db.child("BattleMode").child(formattedDateTime).child("Time").setValue(formattedDateTime);
-        db.child("BattleMode").child(formattedDateTime).child("Topic").setValue(TextTopicNum);
-        db.child("BattleMode").child(formattedDateTime).child("Difficulty").setValue(TextDiff);
+    private static String generateHexID(String input) {
+        try {
+            // Create MessageDigest instance for SHA-256
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
 
-        HashMap<String,Object> map = new HashMap<>();
+            // Add input string to digest
+            md.update(input.getBytes());
 
-        for(int i = 0;i<questions.size();i++) {
+            // Generate the hash
+            byte[] byteData = md.digest();
 
-            db.child("BattleMode")
-                    .child(formattedDateTime)
-                    .child("Item")
-                    .child("question"+(i+1))
-                    .child("question").setValue(questions.get(i));
-
-            db.child("BattleMode")
-                    .child(formattedDateTime)
-                    .child("Item")
-                    .child("question"+(i+1))
-                    .child("selectedAnswer").setValue(selected.get(i));
-
-            db.child("BattleMode")
-                    .child(formattedDateTime)
-                    .child("Item")
-                    .child("question"+(i+1))
-                    .child("remarks").setValue(remarks.get(i));
-
-            db.child("BattleMode")
-                    .child(formattedDateTime)
-                    .child("Item")
-                    .child("question"+(i+1))
-                    .child("correctAnswer").setValue(correctAnswers.get(i));
-
+            // Convert byte array to hex format
+            StringBuilder sb = new StringBuilder();
+            for (byte b : byteData) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
         }
+    }
 
 
+
+
+
+
+
+
+
+    private void SaveDataToDatabase() {
+
+
+//        db = FirebaseDatabase.getInstance().getReference("users");
+
+
+
+
+
+        assert hexID != null;
+        db.child(data).child("BattleMode").child(hexID).child("score").setValue(score);
+        db.child(data).child("BattleMode").child(hexID).child("Date").setValue(currentDate.toString());
+        db.child(data).child("BattleMode").child(hexID).child("Time").setValue(formattedDateTime);
+        db.child(data).child("BattleMode").child(hexID).child("Topic").setValue(TextTopicNum);
+        db.child(data).child("BattleMode").child(hexID).child("Difficulty").setValue(TextDiff);
 
         Intent ScoreBoard = new Intent(getApplicationContext(), ScoreDashboard.class);
         ScoreBoard.putExtra("Score",Integer.toString(score));
         ScoreBoard.putExtra("numOfItem",numOfItem);
-//        databaseUser.removeEventListener(valueEventListener);
+        ScoreBoard.putExtra("UserId", data);
         startActivity(ScoreBoard);
     }
 
@@ -398,67 +470,113 @@ public class QuizGameBattle extends AppCompatActivity {
 
         //comparing the text to the correctAnswer array if it is correct answer
         if (selectedAnswer.equals(correctAnswers.get(currentQuestionIndex))) {
-            playRight();
-            Toast.makeText(QuizGameBattle.this, "Correct! ", Toast.LENGTH_SHORT).show();
-            selected.add(selectedAnswer);
-            remarks.add("correct");
+//            playRight();
+//            Toast.makeText(QuizGameBattle.this, "Correct! ", Toast.LENGTH_SHORT).show();
+            String questionKey = "question" + (currentQuestionIndex + 1);
+            Map<String, Object> questionData = new HashMap<>();
+            questionData.put("question", questions.get(currentQuestionIndex));
+            questionData.put("selectedAnswer", selectedAnswer);
+            questionData.put("remarks", "correct");
+            questionData.put("correctAnswer", correctAnswers.get(currentQuestionIndex));
+            db.child(data).child("BattleMode").child(hexID).child("Item").child(questionKey).setValue(questionData);
             score++;
-//            scoreTextView.setText("Score: "+score);
         } else {
-            playWrong();
-            selected.add(selectedAnswer);
-            remarks.add("wrong");
-            Toast.makeText(QuizGameBattle.this, "Incorrect!", Toast.LENGTH_SHORT).show();
+//            playWrong();
+            String questionKey = "question" + (currentQuestionIndex + 1);
+//            Toast.makeText(QuizGameBattle.this, "Incorrect!", Toast.LENGTH_SHORT).show();
+            Map<String, Object> questionData = new HashMap<>();
+            questionData.put("question", questions.get(currentQuestionIndex));
+            questionData.put("selectedAnswer", selectedAnswer);
+            questionData.put("remarks", "wrong");
+            questionData.put("correctAnswer", correctAnswers.get(currentQuestionIndex));
+            db.child(data).child("BattleMode").child(hexID).child("Item").child(questionKey).setValue(questionData);
+
         }
 
-        Right.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                resetTimer();
-                currentQuestionIndex++;
-                // Move to the next question
-                if (currentQuestionIndex < questions.size()) {
-                    displayQuestion();
-                    itemNum++;
-                    itemTextView.setText("Item " +itemNum);
-                } else {
-                    SaveDataToDatabase();
-                    countDownTimer.cancel();
-                    questions.clear();
-                    correctAnswers.clear();
-                    confusionChoices.clear();
-                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
+        currentQuestionIndex++;
+        // Move to the next question
+        if (currentQuestionIndex < questions.size()) {
+            displayQuestion();
+            itemNum++;
+            itemTextView.setText("Item " +itemNum);
+        } else {
+            SaveDataToDatabase();
+            countDownTimer.cancel();
+            questions.clear();
+            correctAnswers.clear();
+            confusionChoices.clear();
+            imageQuestion.clear();
+            selected.clear();
+            remarks.clear();
+            database.removeEventListener(valueEventListener);
+//            db.child(data).removeEventListener(getTheChildCount);
+            Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
+            finish();
 
-                    finish();
-                    //ending of quiz
-                }
-            }
-        });
+            //ending of quiz
+        }
 
-        Wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                resetTimer();
-                currentQuestionIndex++;
-                // Move to the next question
-                if (currentQuestionIndex < questions.size()) {
-                    displayQuestion();
-                    itemNum++;
-                    itemTextView.setText("Item " +itemNum);
-                } else {
-                    SaveDataToDatabase();
-                    countDownTimer.cancel();
-                    questions.clear();
-                    correctAnswers.clear();
-                    confusionChoices.clear();
-                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
-                    finish();
-                    //ending of quiz
-                }
-            }
-        });
+//        Right.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            @Override
+//            public void onCompletion(MediaPlayer mp) {
+//                resetTimer();
+//                currentQuestionIndex++;
+//                // Move to the next question
+//                if (currentQuestionIndex < questions.size()) {
+//                    displayQuestion();
+//                    itemNum++;
+//                    itemTextView.setText("Item " +itemNum);
+//                } else {
+//                    SaveDataToDatabase();
+//                    countDownTimer.cancel();
+//                    questions.clear();
+//                    correctAnswers.clear();
+//                    confusionChoices.clear();
+//                    imageQuestion.clear();
+//                    selected.clear();
+//                    remarks.clear();
+//                    database.removeEventListener(valueEventListener);
+////                    db.child(data).removeEventListener(getTheChildCount);
+//                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
+//                    finish();
+//
+//                    //ending of quiz
+//                }
+//            }
+//        });
+//
+//        Wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//            @Override
+//            public void onCompletion(MediaPlayer mp) {
+//                resetTimer();
+//                currentQuestionIndex++;
+//                // Move to the next question
+//                if (currentQuestionIndex < questions.size()) {
+//                    displayQuestion();
+//                    itemNum++;
+//                    itemTextView.setText("Item " +itemNum);
+//                } else {
+//                    SaveDataToDatabase();
+//                    countDownTimer.cancel();
+//                    questions.clear();
+//                    correctAnswers.clear();
+//                    confusionChoices.clear();
+//                    imageQuestion.clear();
+//                    selected.clear();
+//                    remarks.clear();
+//                    database.removeEventListener(valueEventListener);
+//                    db.child(data).removeEventListener(getTheChildCount);
+//                    Toast.makeText(QuizGameBattle.this, "Quiz completed!", Toast.LENGTH_SHORT).show();
+//                    finish();
+//
+//                    //ending of quiz
+//                }
+//            }
+//        });
 
 
     }
+
+
 
 }
