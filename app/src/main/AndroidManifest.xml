@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- Add the INTERNET permission -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,36 @@
         android:theme="@style/Theme.Revolt"
         tools:targetApi="31">
         <activity
+            android:name=".offScoreBoard"
+            android:exported="false" />
+        <activity
+            android:name=".offPractice"
+            android:exported="false" />
+        <activity
+            android:name=".offlineQuizBattle"
+            android:exported="false" />
+        <activity
+            android:name=".offQuizDiff"
+            android:exported="false" />
+        <activity
+            android:name=".offlineTopics"
+            android:exported="false" />
+        <activity
+            android:name=".offlineSubOption"
+            android:exported="false" />
+        <activity
+            android:name=".ModeOption"
+            android:exported="false" />
+        <activity
+            android:name=".OpenJson"
+            android:exported="false" />
+        <activity
+            android:name=".SampleDraftShow"
+            android:exported="false" />
+        <activity
+            android:name=".SampleDraft"
+            android:exported="false" />
+        <activity
             android:name=".LeaderboardHard"
             android:exported="false" />
         <activity
@@ -23,7 +54,6 @@
         <activity
             android:name=".CheckItemQuiz"
             android:exported="false" />
-
         <activity
             android:name=".LeaderVersionTwo"
             android:exported="false" />
@@ -36,7 +66,6 @@
         <activity
             android:name=".QuizGameBattle"
             android:exported="false" />
-
         <activity
             android:name=".UserProfile"
             android:exported="false" />

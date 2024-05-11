@@ -148,12 +148,10 @@
                         android:layout_width="122dp"
                         android:layout_height="41dp"
                         android:contentDescription="@string/go_home"
-                        app:srcCompat="@drawable/home" />
+                        app:srcCompat="@drawable/left" />
 
 
                 </LinearLayout>
-
-
 
 
             </LinearLayout>

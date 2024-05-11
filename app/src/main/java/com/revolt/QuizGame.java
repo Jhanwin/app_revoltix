@@ -42,7 +42,7 @@ public class QuizGame extends AppCompatActivity {
     LinearLayout LayoutL;
     ImageView imageShow,imageShowWrong;
     private RadioGroup answerRadioGroup;
-    TextView txt1,ShowCorrectAns,ShowCorrectAns2;
+    TextView txt1,ShowCorrectAns,ShowCorrectAns2,itemTextView;
     RadioButton c1,c2,c3,c4;
     private int currentQuestionIndex = 0;
     int questionCounter;
@@ -79,13 +79,15 @@ public class QuizGame extends AppCompatActivity {
         c2 = findViewById(R.id.answerOption2);
         c3 = findViewById(R.id.answerOption3);
         c4 = findViewById(R.id.answerOption4);
+
         answerRadioGroup = findViewById(R.id.answerRadioGroup);
         LayoutL = findViewById(R.id.LayoutImageAppear);
-//        imageShow = findViewById(R.id.imgToShow);
-//        imageShowWrong = findViewById(R.id.imgToShowWrong);
+
         ShowCorrectAns = findViewById(R.id.ShowCorrectAns);
         ShowCorrectAns2 = findViewById(R.id.ShowCorrectAns2);
         ImageView goHome = findViewById(R.id.goHome);
+
+        itemTextView = findViewById(R.id.itemTextView);
 
         Right = MediaPlayer.create(this, R.raw.correct);
         Wrong = MediaPlayer.create(this, R.raw.wrong);
@@ -172,6 +174,7 @@ public class QuizGame extends AppCompatActivity {
     }
 
     private void displayQuestion() {
+        itemTextView.setText("Item "+(currentQuestionIndex+1));
         txt1.setText(questions.get(currentQuestionIndex));
 
         //resetting the radio button

@@ -40,9 +40,7 @@ public class QuizGameBattle extends AppCompatActivity {
     List<String> correctAnswers = new ArrayList<>();
     List<List<String>> confusionChoices = new ArrayList<>();
     List<String> imageQuestion = new ArrayList<>();
-
     List<String> selected = new ArrayList<>();
-
     List<String> remarks = new ArrayList<>();
 
 
@@ -117,31 +115,14 @@ public class QuizGameBattle extends AppCompatActivity {
         setKey();
         hexID = generateHexID(setTimeKey);
 
-//        getTheChildCount = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                // Check if the key exists
-//                if (dataSnapshot.hasChild("BattleMode")) {
-//                    exists = true;
-//                    long count = dataSnapshot.child("BattleMode").getChildrenCount();
-//                    assert hexID != null;
-//                    db.child(data).child("BattleMode").child(hexID).child("Take").setValue(count+1);
-//
-//
-//                }else{
-//                    assert hexID != null;
-//                    db.child(data).child("BattleMode").child(hexID).child("Take").setValue(1);
-//
-//                }
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Handle error
-//                System.err.println("Error reading from database: " + databaseError.getMessage());
-//            }
-//        };
-//
-//        db.child(data).addListenerForSingleValueEvent(getTheChildCount);
+        assert hexID != null;
+        db.child(data).child("BattleMode").child(hexID).child("score").setValue(score);
+        db.child(data).child("BattleMode").child(hexID).child("Date").setValue(currentDate.toString());
+        db.child(data).child("BattleMode").child(hexID).child("Time").setValue(formattedDateTime);
+        db.child(data).child("BattleMode").child(hexID).child("Topic").setValue(TextTopicNum);
+        db.child(data).child("BattleMode").child(hexID).child("Difficulty").setValue(TextDiff);
+
+
 
 
 

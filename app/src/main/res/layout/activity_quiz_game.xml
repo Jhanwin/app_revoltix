@@ -82,6 +82,35 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/glassmorphism"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+
+                <TextView
+                    android:id="@+id/itemTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:text="@string/emptytext"
+
+                    android:shadowColor="#000000"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="10"
+
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
 
 
             <LinearLayout

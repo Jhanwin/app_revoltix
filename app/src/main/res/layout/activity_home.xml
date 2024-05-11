@@ -63,7 +63,7 @@
                         android:layout_width="48dp"
                         android:layout_height="match_parent"
                         android:contentDescription="@string/img_home"
-                        app:srcCompat="@drawable/home" />
+                        app:srcCompat="@drawable/left" />
 
 
                 </LinearLayout>

@@ -1,0 +1,13 @@
+{
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "director": {
+      "name": "Frank Darabont"
+    },
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton",
+      "William Sadler"
+    ]
+  }

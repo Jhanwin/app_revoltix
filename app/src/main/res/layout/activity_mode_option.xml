@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ModeOption">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bluebg" />
+
+        <LinearLayout
+            android:id="@+id/lilayout"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/goBackOff"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/img_home"
+                app:srcCompat="@drawable/left" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/MainLinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/futura_display"
+                    android:textAlignment="center"
+                    android:textSize="35sp"
+                    android:textColor="@color/white"
+                    android:text="Offline Mode"/>
+
+                <LinearLayout
+                    android:id="@+id/SubLinearLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/PracticeModeOffline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/black"
+                        android:background="@drawable/btn_practicemode"
+                        android:fontFamily="@font/futura_display"
+                        android:textSize="18sp"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:text="@string/practice_mode" />
+
+                    <Button
+                        android:id="@+id/BattleModeOffline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/futura_display"
+                        android:textSize="18sp"
+
+                        android:shadowColor="#000000"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="10"
+
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:background="@drawable/bg_btn_subjects"
+                        android:text="@string/battle_mode" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

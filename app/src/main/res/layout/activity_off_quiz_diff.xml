@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuizSubDifficulties">
+    tools:context=".offQuizDiff">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,72 +16,40 @@
             android:scaleType="centerCrop"
             android:src="@drawable/bluebg" />
 
+        <LinearLayout
+            android:id="@+id/layoutOffQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:padding="10dp"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/goBackOff"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/img_home"
+                app:srcCompat="@drawable/left" />
+
+        </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true">
+            android:layout_height="match_parent">
+
 
             <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:gravity="left"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:orientation="horizontal">
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imageView2"-->
-<!--                        android:layout_width="48dp"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        app:srcCompat="@drawable/more" />-->
-
-                    <ImageView
-                        android:id="@+id/goHome3"
-                        android:layout_width="62dp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/left" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/futura_display"
-                        android:letterSpacing="0.1"
-                        android:text="REVOLTIX"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="30sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/layoutOff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:orientation="vertical"
                 android:padding="20dp"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                app:layout_constraintVertical_bias="0.224"
-                tools:layout_editor_absoluteX="0dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,11 +108,10 @@
                         tools:layout_editor_absoluteX="-16dp" />
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/spinnerOff"
                         android:layout_width="152dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-
                         android:padding="10dp" />
 
 
@@ -161,7 +128,7 @@
 
 
                     <Button
-                        android:id="@+id/btnEasy"
+                        android:id="@+id/btnOffEasy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -182,7 +149,7 @@
                         android:textSize="20sp" />
 
                     <Button
-                        android:id="@+id/btnMedium"
+                        android:id="@+id/btnOffMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -203,7 +170,7 @@
                         android:textSize="20sp" />
 
                     <Button
-                        android:id="@+id/btnHard"
+                        android:id="@+id/btnOffHard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -228,6 +195,11 @@
 
 
             </LinearLayout>
+
+
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>

@@ -50,7 +50,7 @@
                         android:id="@+id/goHome2"
                         android:layout_width="48dp"
                         android:layout_height="match_parent"
-                        app:srcCompat="@drawable/home" />
+                        app:srcCompat="@drawable/left" />
 
                 </LinearLayout>
 
